@@ -8,7 +8,7 @@ function Header() {
     <div className="header">
       <img
         className="header__logo"
-        src="http://media.corporate-ir.net/media_files/IROL/17/176060/Oct18/Amazon%20logo.PNG"
+        src="https://pnggrid.com/wp-content/uploads/2021/05/Amazon-Logo-Transparent-1024x310.png"
         alt="logo"
       />
       <div className="header__search">
