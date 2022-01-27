@@ -1,3 +1,38 @@
+# Amazon Clone
+
+## Contributors
+1. Abdallh Samman (Scrum Master).
+2. Haitham Assoli (Project Owner).
+3. Mohammad abualhaj.
+4. Hassan Wael.
+5. Sahar Zahran.
+
+## Technologies
+1. HTML5.
+2. CSS3.
+3. Javascript.
+4. material ui.
+5. Bootstrap.
+6. API
+7. React
+8. Firebase
+
+## Tools
+1. Google Chrome.
+2. Windows 10.
+3. Visual Studio Code.
+4. Git & Github.
+
+## Wireframe
+
+## Mockup
+
+## Trello
+https://trello.com/b/Cl1WhiMv/react-project
+
+## Live page
+https://abdallhsamman.github.io/Amazon_Clone/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
