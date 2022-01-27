@@ -2,11 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useRoutes,
+} from "react-router-dom";
 // import Login from './components/Firebase/Login'
 
 ReactDOM.render(
   <React.StrictMode>
+    <Router>
     <App />
+    </Router>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
