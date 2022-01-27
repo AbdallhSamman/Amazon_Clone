@@ -3,7 +3,7 @@ import "./Product.css";
 
 function Product({ id, title, image, price, rating }) {
   return (
-    <div className="product">
+    <div key={id} className="product">
       <div className="product__info">
         <p>{title}</p>
         <p className="product__price">
@@ -13,9 +13,9 @@ function Product({ id, title, image, price, rating }) {
         <div className="product__rating">
           {Array(rating)
             .fill()
-            .map((_, i) => {
-              <p>⭐</p>;
-            })}
+            .map((_, i) => (
+              <p>⭐</p>
+            ))}
         </div>
       </div>
       <img src={image} alt={image} />
