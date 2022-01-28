@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { NavLink } from 'react-router-dom'
+import {auth} from '../Firebase/firebase'
+// import {useStateValue} from 'StateProvider'
 
 function Header() {
+  // const [{user},dispatch]=useStateValue();
+  // const handelAuth=()=>{
+  //   if (user) {
+  //     auth.signOut();
+      
+  //   }
+  // }
   return (
     <>
       <div className="header">
@@ -18,7 +27,7 @@ function Header() {
           <SearchIcon className="header__searchIcon" />
         </div>
         <div className="header__nav">
-          <div className="header__option">
+          <div  className="header__option">
             <span className="header__optionLineOne">Hello Guest</span>
             <NavLink  to='/login'>  
           <span className="header__optionLineTow">Sign in</span>

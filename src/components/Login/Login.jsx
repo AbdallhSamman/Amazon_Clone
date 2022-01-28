@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import '../Login/login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase";
+import { padding } from '@mui/system';
 
 
 function Login() {
+    const regex="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
     const navigate=useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [erorr,setErorr]=useState('');
     const signIn=(e)=>{
         e.preventDefault();
         auth
@@ -18,7 +21,7 @@ function Login() {
                 navigate('/')
             }
         })
-        .catch(error=>alert(error.message))
+        .catch(error=>setErorr(error.message))
     }
     const register=(e)=>{
         e.preventDefault();
@@ -30,7 +33,8 @@ function Login() {
                 navigate('/')
             }
         })
-        .catch(error=>alert(error.message))
+        .catch(error=>setErorr(error.message))
+       
     
     }
   
@@ -46,10 +50,10 @@ function Login() {
             <div className='login__container'>
                 <h1>Sign-in</h1>
 
+                    <span className='errorMessage'>{erorr}</span>
                 <form>
                     <h5>E-mail</h5>
                     <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
-                    
                     <h5>Password</h5>
                     <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 
