@@ -11,3 +11,7 @@ const reducer = (state, action) =>{
 }
 
 export default reducer;
+
+/*reducer: we use it to push the data from product component after action(add to cart) to the datalayer
+and then from the datalayer to the cart
+*/
