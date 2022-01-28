@@ -14,8 +14,8 @@ function Home() {
         <div className="home__row">
           <Product
             id="10"
-            title="hi"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            title="The lean Startup"
+            image="https://www.maktabahbookshop.com/wp-content/uploads/2021/09/products-7-2.png"
             price={20}
             rating={2}
           />

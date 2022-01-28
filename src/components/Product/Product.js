@@ -1,5 +1,6 @@
 import React from "react";
 import "./Product.css";
+import StarIcon from '@mui/icons-material/Star';
 
 function Product({ id, title, image, price, rating }) {
   return (
@@ -11,11 +12,9 @@ function Product({ id, title, image, price, rating }) {
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          {Array(rating)
-            .fill()
-            .map((_, i) => {
-              <p>⭐</p>;
-            })}
+        {Array(rating).fill().map((_,i)=>
+              (<StarIcon className='product__rating--Star'/>)
+            )}
         </div>
       </div>
       <img src={image} alt={image} />
