@@ -3,12 +3,12 @@ import '../footer/footer.css';
  function Footer() {
   return <div>
 <footer>
-    <div class="top text-center">
+    <div className="top text-center">
       <a href="#nav-top">Back to top</a>
     </div>
 
-    <div class="middle">
-      <div class="center">
+    <div className="middle">
+      <div className="center">
         <ul>
           <li><h3>Get to Know Us</h3></li>
           <li><a>Careers</a></li>
@@ -52,14 +52,14 @@ import '../footer/footer.css';
         </ul>
       </div>
 
-      <ul class="copy text-center">
+      <ul className="copy text-center">
         <li><img
           className="logo"
           src="https://pnggrid.com/wp-content/uploads/2021/05/Amazon-Logo-Transparent-1024x310.png"
           alt="logo"
         /></li>
-        <li><a class="select"><i class="fa fa-globe" aria-hidden="true"></i> English</a></li>
-        <li><a class="select"><i class="flag-icon-us"></i>United States</a></li>
+        <li><a className="select"><i className="fa fa-globe" aria-hidden="true"></i> English</a></li>
+        <li><a className="select"><i className="flag-icon-us"></i>United States</a></li>
       </ul>
     </div>
 
