@@ -4,9 +4,6 @@ import './index.css';
 import App from './App';
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
-  useRoutes,
 } from "react-router-dom";
 // import Login from './components/Firebase/Login'
 

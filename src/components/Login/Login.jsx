@@ -18,7 +18,7 @@ function Login() {
                 navigate('/')
             }
         })
-        .catch(error=>alert(error.message))
+        .catch(error=>{console.log("hey")})
     }
     const register=(e)=>{
         e.preventDefault();
