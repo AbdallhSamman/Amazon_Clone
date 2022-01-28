@@ -1,66 +1,97 @@
 import React from "react";
-import "./Home.css";
 import Product from "../Product/Product";
+import "./Home.css";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/bundle";
+import "swiper/css/navigation";
+
+// import Swiper core and required modules
+import SwiperCore, { Navigation } from "swiper";
+
+// install Swiper modules
+SwiperCore.use([Navigation]);
 
 function Home() {
   return (
     <div className="home">
-      <div className="home__container">
-        <img
-          className="home__image"
-          src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-          alt="home_img"
+    <div className="home__container">
+      <Swiper navigation={true} className="mySwiper">
+        <SwiperSlide>
+          <img
+            className="home__image"
+            src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+            alt="home_img"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="home__image"
+            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+            alt="home_img"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="home__image"
+            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+            alt="home_img"
+          />
+        </SwiperSlide>
+      </Swiper>
+      <div className="home__row">
+        <Product
+          id="101111"
+          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
+          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+          price={20}
+          rating={3}
         />
-        <div className="home__row">
-          <Product
-            id="1"
-            title="test one"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-            price={11.99}
-            rating={2}
-          />
-          <Product
-            id="2"
-            title="test two"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-            price={22.99}
-            rating={5}
-          />
-        </div>
-        <div className="home__row">
-          <Product
-            id="3"
-            title="test three"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-            price={33.99}
-            rating={1}
-          />
-          <Product
-            id="4"
-            title="test four"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-            price={44.99}
-            rating={4}
-          />
-          <Product
-            id="5"
-            title="test five"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-            price={55.99}
-            rating={5}
-          />
-        </div>
-        <div className="home__row">
-          <Product
-            id="6"
-            title="test six"
-            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-            price={66.99}
-            rating={2}
-          />
-        </div>
+        <Product
+          id="10111"
+          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
+          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+          price={20}
+          rating={2}
+        />
+      </div>
+      <div className="home__row">
+        <Product
+          id="1011"
+          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
+          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+          price={20}
+          rating={2}
+        />
+        <Product
+          id="101"
+          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
+          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+          price={20}
+          rating={2}
+        />
+        <Product
+          id="1110"
+          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
+          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+          price={20}
+          rating={2}
+        />
+      </div>
+      <div className="home__row">
+        <Product
+          id="110"
+          title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ab mollitia eos voluptatibus sint dolor fuga. Facere reprehenderit cumque voluptatem nemo facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
+          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+          price={20}
+          rating={2}
+        />
       </div>
     </div>
+  </div>
   );
 }
 
