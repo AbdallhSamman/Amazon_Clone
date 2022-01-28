@@ -13,21 +13,51 @@ function Home() {
         />
         <div className="home__row">
           <Product
-            id="10"
-            title="The lean Startup"
-            image="https://www.maktabahbookshop.com/wp-content/uploads/2021/09/products-7-2.png"
-            price={20}
+            id="1"
+            title="test one"
+            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            price={11.99}
             rating={2}
           />
-          <Product />
+          <Product
+            id="2"
+            title="test two"
+            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            price={22.99}
+            rating={5}
+          />
         </div>
         <div className="home__row">
-          <Product />
-          <Product />
-          <Product />
+          <Product
+            id="3"
+            title="test three"
+            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            price={33.99}
+            rating={1}
+          />
+          <Product
+            id="4"
+            title="test four"
+            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            price={44.99}
+            rating={4}
+          />
+          <Product
+            id="5"
+            title="test five"
+            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            price={55.99}
+            rating={5}
+          />
         </div>
         <div className="home__row">
-          <Product />
+          <Product
+            id="6"
+            title="test six"
+            image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
+            price={66.99}
+            rating={2}
+          />
         </div>
       </div>
     </div>
