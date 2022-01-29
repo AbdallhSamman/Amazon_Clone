@@ -3,6 +3,7 @@ import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import Slider from '@mui/material/Slider';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -18,7 +19,20 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [filter_products, setProductsFilter] = useState([]);
   let product=[];
-
+  const filterRating=(x)=>{
+    setProductsFilter(products.filter((ele)=>{
+      let rate = Math.floor(ele.product_rating/ele.product_users_rating);
+      return rate >= x;
+    
+    }));
+  }
+  const filterPrice=(min=0,max=999)=>{
+    setProductsFilter(products.filter((ele)=>{
+    
+      return ele.product_price >= min && ele.product_price <= max;
+    
+    }));
+  }
   const filter=()=>{
 console.log('sfg',products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
     
@@ -76,7 +90,7 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
           </SwiperSlide>
         </Swiper>
        
-
+      
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
           {filter_products.slice(0, 4).map((ele, index) => (
             <Product
@@ -125,8 +139,13 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
             />
           ))}
         </div>
-        <button onClick={()=>{filter()}}>Filter</button>
-    <button onClick={()=>{unfilter()}}>Filter</button>
+        <button onClick={()=>{unfilter()}}>Filter</button>
+        <button onClick={()=>{filterRating(1)}}>--- 1 up -- </button>
+        <button onClick={()=>{filterRating(2)}}>-- 2 up --  </button>
+        <button onClick={()=>{filterRating(3)}}>-- 3 up --  </button>
+        <button onClick={()=>{filterRating(4)}}>-- 4 up -- </button>
+        <button onClick={()=>{filterRating(5)}}>-- 5</button>
+        <Slider min={0} max={999} defaultValue={50} onChange={ (e)=>{filterPrice(e.target.value)}} aria-label="Default" valueLabelDisplay="auto" />
         {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
         {products?.map((ele, index) => (
             <Product
