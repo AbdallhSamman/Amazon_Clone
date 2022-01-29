@@ -17,8 +17,19 @@ SwiperCore.use([Navigation]);
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [filter_products, setProductsFilter] = useState([]);
   let product=[];
-  let trs ="";
+
+  const filter=()=>{
+console.log('sfg',products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
+    
+setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
+  }
+  const unfilter=()=>{
+       
+    setProductsFilter(products);
+      }
+  
   useEffect(()=>{
   
   db.collection("categories")
@@ -31,13 +42,14 @@ function Home() {
       });
   
       setProducts(product);
+      setProductsFilter(product);
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
       });
  
     },[]);
-
+    
   return (
   
     <div className="home">
@@ -67,62 +79,22 @@ function Home() {
         </Swiper>
        
     
-    
-    {products?.map((ele,index) => (
+    {filter_products?.map((ele) => (
       
       <div className="home__row">
+
       <Product
-      key={index}
+      key={ele.product_id}
       id={ele.product_id}
       title={ele.product_description}
-      image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+      image={ele.product_images[0]}
       price={ele.product_price}
-      rating={2}
+      rating={Math.floor(ele.product_rating/ele.product_users_rating)}
     />
     </div>
     ))}
-
-    
-          {/* <Product
-          id="10111"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-      </div>
-      <div className="home__row">
-        <Product
-          id="1011"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        /> */}
-          {/* <Product
-          id="101"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-        <Product
-          id="1110"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-      </div>
-      <div className="home__row">
-        <Product
-          id="110"
-          title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ab mollitia eos voluptatibus sint dolor fuga. Facere reprehenderit cumque voluptatem nemo facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        /> */}
-      
+    <button onClick={()=>{filter()}}>Filter</button>
+    <button onClick={()=>{unfilter()}}>Filter</button>
       </div>
     </div>
   );
