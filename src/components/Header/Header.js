@@ -14,7 +14,6 @@ function Header() {
     if (user) {
       auth.signOut();
   }
-console.log(user)
     }
   return (
     <>
@@ -32,10 +31,20 @@ console.log(user)
         </div>
         <div className="header__nav">
           <div className="header__nav">
-              <NavLink to={!user && '/login'}>
-            <div onClick={handelAuth} className="header__option">
+              <NavLink to={!user && '/login'}
+               style={({ isActive }) => ({
+                color: isActive ? '#fff' : '#545e6f',
+                textDecoration: isActive ? 'none' : 'none',
+              })}>
+            <div  className="header__option">
+          <NavLink to={!user && '/profile'} 
+          style={({ isActive }) => ({
+            color: isActive ? '#fff' : '#545e6f',
+            textDecoration: isActive ? 'none' : 'none',
+          })}>
               <span className="header__optionLineOne">Hello, {user?.email}</span>
-                <span className="header__optionLineTow">{user?'Sign Out':'Sign In'}</span>
+              </NavLink>
+                <span onClick={handelAuth} className="header__optionLineTow">{user?'Sign Out':'Sign In'}</span>
             </div>
               </NavLink>
             <div className="header__option">
