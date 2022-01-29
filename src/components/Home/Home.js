@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
@@ -14,32 +14,26 @@ import SwiperCore, { Navigation } from "swiper";
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
-
 function Home() {
   const [products, setProducts] = useState([]);
-  let product=[];
-  let trs ="";
-  useEffect(()=>{
-  
-  db.collection("categories")
-    .get()
-    .then((querySnapshot) => {
-     
-      querySnapshot.forEach((docs) => {
-        product.push(docs.data().products)
-     
+  let product = [];
+  let trs = "";
+  useEffect(() => {
+    db.collection("categories")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((docs) => {
+          product.push(docs.data().products);
+        });
+
+        setProducts(product);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
       });
-  
-      setProducts(product);
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-      });
- 
-    },[]);
+  }, []);
 
   return (
-  
     <div className="home">
       <div className="home__container">
         <Swiper navigation={true} className="mySwiper">
@@ -65,25 +59,70 @@ function Home() {
             />
           </SwiperSlide>
         </Swiper>
-       
-    
-    
-    {products?.map((ele,index) => (
-      
-      <div className="home__row">
-      <Product
-      key={index}
-      id={ele.product_id}
-      title={ele.product_description}
-      image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-      price={ele.product_price}
-      rating={2}
-    />
-    </div>
-    ))}
 
-    
-          {/* <Product
+        <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
+          {products.slice(0, 4).map((ele, index) => (
+            <Product
+              key={ele.product_id}
+              id={ele.product_id}
+              title="iPhone 13 Pro Max"
+              price={ele.product_price}
+              description={ele.product_description}
+              category="Technologies"
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              rating={2}
+            />
+          ))}
+
+          <img
+            className="md:col-span-full"
+            src="https://links.papareact.com/dyz"
+            alt=""
+          />
+
+          <div className="md:col-span-2">
+            {products.slice(4, 5).map((ele, index) => (
+              <Product
+                key={ele.product_id}
+                id={ele.product_id}
+                title="food"
+                price={ele.product_price}
+                description={ele.product_description}
+                category="food"
+                image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+                rating={2}
+              />
+            ))}
+          </div>
+
+          {products.slice(5, products.length).map((ele, index) => (
+            <Product
+              key={ele.product_id}
+              id={ele.product_id}
+              title="iPhone 13 Pro Max"
+              price={ele.product_price}
+              description={ele.product_description}
+              category="Technologies"
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              rating={2}
+            />
+          ))}
+        </div>
+
+        {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
+        {products?.map((ele, index) => (
+            <Product
+              key={index}
+              id={ele.product_id}
+              title={ele.product_description}
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              price={ele.product_price}
+              rating={2}
+            />
+            ))}
+            </div> */}
+
+        {/* <Product
           id="10111"
           title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
           image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
@@ -99,7 +138,7 @@ function Home() {
           price={20}
           rating={2}
         /> */}
-          {/* <Product
+        {/* <Product
           id="101"
           title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
           image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
@@ -122,7 +161,6 @@ function Home() {
           price={20}
           rating={2}
         /> */}
-      
       </div>
     </div>
   );
