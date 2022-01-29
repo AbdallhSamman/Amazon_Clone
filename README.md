@@ -31,7 +31,7 @@
 https://trello.com/b/Cl1WhiMv/react-project
 
 ## Live page
-https://abdallhsamman.github.io/Amazon_Clone/
+https://fir-10e84.web.app/
 
 # Getting Started with Create React App
 

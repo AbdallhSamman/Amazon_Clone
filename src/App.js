@@ -5,9 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
-// import { Login } from "@mui/icons-material";
 import { auth } from "firebase";
 import Footer from "./components/footer/footer";
+import Profile from "./components/profilepage/profile";
+import Signup from "./components/signup/signup";
 import { useStateValue } from "./StateProvider";
 import Payment from "./components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
@@ -42,6 +43,8 @@ function App() {
 					<Route path="/" element={<Home />}></Route>
 					<Route path="/login" element={<Login />}></Route>
 					<Route path="/checkout" element={<Checkout />} />
+          <Route path='/signup' element={<Signup/>}></Route>
+          <Route path='/profile' element={<Profile/>}></Route>
 					<Route path="/payment" element={<Elements stripe={promise}><Payment/></Elements>}></Route>
 				</Routes>
 				<Footer />

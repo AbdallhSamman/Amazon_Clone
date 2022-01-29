@@ -93,7 +93,7 @@ function Home() {
       </div>
       <div className="home__row">
         <Product
-          id="1011"
+          id="3"
           title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
           image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
           price={20}
@@ -107,7 +107,7 @@ function Home() {
           rating={2}
         />
         <Product
-          id="1110"
+          id="5"
           title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
           image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
           price={20}
@@ -116,7 +116,7 @@ function Home() {
       </div>
       <div className="home__row">
         <Product
-          id="110"
+          id="6"
           title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ab mollitia eos voluptatibus sint dolor fuga. Facere reprehenderit cumque voluptatem nemo facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
           image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
           price={20}

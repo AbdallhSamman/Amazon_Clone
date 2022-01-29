@@ -5,6 +5,7 @@ import { useStateValue } from "../../StateProvider";
 
 function Product({ id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
+  let id_star=0;
 
   const addToBasket = () => {
     dispatch({
@@ -30,7 +31,8 @@ function Product({ id, title, image, price, rating }) {
           {Array(rating)
             .fill()
             .map(() => (
-              <StarIcon key="{id}" className="product__rating--Star" />
+              id_star=Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
+              <StarIcon key={id_star} className="product__rating--Star" />
             ))}
         </div>
       </div>
