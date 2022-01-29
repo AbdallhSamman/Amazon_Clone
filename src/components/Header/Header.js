@@ -41,18 +41,18 @@ function Header() {
           <SearchIcon className="h-12 p-4" />
         </div>
         
-          <div className="header__nav">
+          <div className="header__nav text-white flex items-center text-xs space-x-6 px-4">
               <NavLink to={!user && '/login'}
-               style={({ isActive }) => ({
+               style={{
                 color:  '#fff',
-                textDecoration: isActive ? 'none' : 'none',
-              })}>
+                textDecoration:'none',
+              }}>
             <div  className="header__option">
           <NavLink to={user?'/profile':'/login'} 
-          style={({ isActive }) => ({
+          style={ {
             color: '#fff',
-            textDecoration: isActive ? 'none' : 'none',
-          })}>
+            textDecoration:'none',
+          }}>
               <span className="header__optionLineOne">Hello, {user?.email}</span>
               </NavLink>
                 <span onClick={handelAuth} className="header__optionLineTow">{user?'Sign Out':'Sign In'}</span>
