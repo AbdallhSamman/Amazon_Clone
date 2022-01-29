@@ -28,7 +28,7 @@ function Product({ id, title, image, price, rating, description, category }) {
         src={image}
         height="200"
         width="200"
-        style={{ objectFit: "contain" }}
+        style={{ objectFit: "contain", margin: "auto" }}
       />
 
       <h4 className="my-3 ">{title}</h4>
