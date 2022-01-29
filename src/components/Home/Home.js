@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
@@ -14,11 +14,21 @@ import SwiperCore, { Navigation } from "swiper";
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
-
 function Home() {
   const [products, setProducts] = useState([]);
+  const [filter_products, setProductsFilter] = useState([]);
   let product=[];
-  let trs ="";
+
+  const filter=()=>{
+console.log('sfg',products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
+    
+setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
+  }
+  const unfilter=()=>{
+       
+    setProductsFilter(products);
+      }
+  
   useEffect(()=>{
   
   db.collection("categories")
@@ -31,15 +41,15 @@ function Home() {
       });
   
       setProducts(product);
+      setProductsFilter(product);
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
       });
  
     },[]);
-
+    
   return (
-  
     <div className="home">
       <div className="home__container">
         <Swiper navigation={true} className="mySwiper">
@@ -66,63 +76,69 @@ function Home() {
           </SwiperSlide>
         </Swiper>
        
-    
-    
-    {products?.map((ele,index) => (
-      
-      <div className="home__row">
-      <Product
-      key={index}
-      id={ele.product_id}
-      title={ele.product_description}
-      image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-      price={ele.product_price}
-      rating={2}
-    />
-    </div>
-    ))}
 
-    
-          {/* <Product
-          id="10111"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-      </div>
-      <div className="home__row">
-        <Product
-          id="3"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        /> */}
-          {/* <Product
-          id="101"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-        <Product
-          id="5"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-      </div>
-      <div className="home__row">
-        <Product
-          id="6"
-          title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ab mollitia eos voluptatibus sint dolor fuga. Facere reprehenderit cumque voluptatem nemo facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        /> */}
-      
+        <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
+          {filter_products.slice(0, 4).map((ele, index) => (
+            <Product
+              key={ele.product_id}
+              id={ele.product_id}
+              title={ele.product_name}
+              price={ele.product_price}
+              description={ele.product_description}
+              category={ele.category_name}
+              image={ele.product_images[0]}
+              rating={Math.floor(ele.product_rating/ele.product_users_rating)}
+            />
+          ))}
+
+          <img
+            className="md:col-span-full"
+            src="https://links.papareact.com/dyz"
+            alt=""
+          />
+
+          <div className="md:col-span-2">
+            {filter_products.slice(4, 5).map((ele, index) => (
+              <Product
+                key={ele.product_id}
+                id={ele.product_id}
+                title="food"
+                price={ele.product_price}
+                description={ele.product_description}
+                category="food"
+                image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+                rating={2}
+              />
+            ))}
+          </div>
+
+          {filter_products.slice(5, products.length).map((ele, index) => (
+            <Product
+              key={ele.product_id}
+              id={ele.product_id}
+              title="iPhone 13 Pro Max"
+              price={ele.product_price}
+              description={ele.product_description}
+              category="Technologies"
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              rating={2}
+            />
+          ))}
+        </div>
+        <button onClick={()=>{filter()}}>Filter</button>
+    <button onClick={()=>{unfilter()}}>Filter</button>
+        {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
+        {products?.map((ele, index) => (
+            <Product
+              key={index}
+              id={ele.product_id}
+              title={ele.product_description}
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              price={ele.product_price}
+              rating={2}
+            />
+            ))}
+            </div> */}
       </div>
     </div>
   );
