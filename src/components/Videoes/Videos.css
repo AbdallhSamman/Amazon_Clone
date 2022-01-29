@@ -12,3 +12,20 @@
     justify-content: space-between;
     align-items: center;
 }
+.videos__items{
+    list-style: none;
+    text-align: center;
+    
+}
+.videos__allVideos{
+    display: flex;
+    flex-wrap: wrap;
+ 
+}
+.videos__singleVideo{
+    background-color: red;
+    padding: 2rem;
+    width: 100px;
+    height: max-content;
+ 
+}
