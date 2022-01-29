@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
@@ -13,7 +13,6 @@ import SwiperCore, { Navigation } from "swiper";
 
 // install Swiper modules
 SwiperCore.use([Navigation]);
-
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -51,7 +50,6 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
     },[]);
     
   return (
-  
     <div className="home">
       <div className="home__container">
         <Swiper navigation={true} className="mySwiper">
@@ -78,23 +76,69 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
           </SwiperSlide>
         </Swiper>
        
-    
-    {filter_products?.map((ele) => (
-      
-      <div className="home__row">
 
-      <Product
-      key={ele.product_id}
-      id={ele.product_id}
-      title={ele.product_description}
-      image={ele.product_images[0]}
-      price={ele.product_price}
-      rating={Math.floor(ele.product_rating/ele.product_users_rating)}
-    />
-    </div>
-    ))}
-    <button onClick={()=>{filter()}}>Filter</button>
+        <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
+          {filter_products.slice(0, 4).map((ele, index) => (
+            <Product
+              key={ele.product_id}
+              id={ele.product_id}
+              title="iPhone 13 Pro Max"
+              price={ele.product_price}
+              description={ele.product_description}
+              category="Technologies"
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              rating={2}
+            />
+          ))}
+
+          <img
+            className="md:col-span-full"
+            src="https://links.papareact.com/dyz"
+            alt=""
+          />
+
+          <div className="md:col-span-2">
+            {filter_products.slice(4, 5).map((ele, index) => (
+              <Product
+                key={ele.product_id}
+                id={ele.product_id}
+                title="food"
+                price={ele.product_price}
+                description={ele.product_description}
+                category="food"
+                image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+                rating={2}
+              />
+            ))}
+          </div>
+
+          {filter_products.slice(5, products.length).map((ele, index) => (
+            <Product
+              key={ele.product_id}
+              id={ele.product_id}
+              title="iPhone 13 Pro Max"
+              price={ele.product_price}
+              description={ele.product_description}
+              category="Technologies"
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              rating={2}
+            />
+          ))}
+        </div>
+        <button onClick={()=>{filter()}}>Filter</button>
     <button onClick={()=>{unfilter()}}>Filter</button>
+        {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
+        {products?.map((ele, index) => (
+            <Product
+              key={index}
+              id={ele.product_id}
+              title={ele.product_description}
+              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
+              price={ele.product_price}
+              rating={2}
+            />
+            ))}
+            </div> */}
       </div>
     </div>
   );
