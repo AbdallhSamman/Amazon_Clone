@@ -14,7 +14,6 @@ function Header() {
     if (user) {
       auth.signOut();
   }
-console.log(user)
     }
   return (
     <>
@@ -34,7 +33,7 @@ console.log(user)
           <div className="header__nav">
               <NavLink to={!user && '/login'}>
             <div onClick={handelAuth} className="header__option">
-              <span className="header__optionLineOne">Hello, {user?.email}</span>
+              <span className="header__optionLineOne">Hello, {!user? 'Guest' : user.email}</span>
                 <span className="header__optionLineTow">{user?'Sign Out':'Sign In'}</span>
             </div>
               </NavLink>
