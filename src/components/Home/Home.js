@@ -82,12 +82,12 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
             <Product
               key={ele.product_id}
               id={ele.product_id}
-              title="iPhone 13 Pro Max"
+              title={ele.product_name}
               price={ele.product_price}
               description={ele.product_description}
-              category="Technologies"
-              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-              rating={2}
+              category={ele.category_name}
+              image={ele.product_images[0]}
+              rating={Math.floor(ele.product_rating/ele.product_users_rating)}
             />
           ))}
 
