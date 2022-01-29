@@ -9,18 +9,12 @@ function Signup() {
     const [{ basket , user},dispatch] = useStateValue();
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
-  const [phone, setphone] = useState('')
-  const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [erorr, setErorr] = useState('')
   const register = (e) => {
     e.preventDefault()
     auth
       .createUserWithEmailAndPassword(email, password)
-      return db.collection('users').doc(Credential.user.UID).set({
-        phone:phone,
-        userName:userName
-      })
       .then((auth) => {
         console.log(auth)
         if (auth) {
@@ -40,15 +34,10 @@ function Signup() {
       </Link>
 
       <div className="login__container">
-        <h1>Sign-in</h1>
+        <h1>Regester</h1>
         <span className="errorMessage">{erorr}</span>
         <form>
-          <h5>User Name</h5>
-          <input
-          type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
+         
           <h5>E-mail</h5>
           <input
             type="text"
@@ -61,18 +50,11 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
-        <h5>phone</h5>
-        <input
-          type="text"
-          value={phone}
-          onChange={(e) => setphone(e.target.value)}
-        />
          
         </form>
 
         <p>
-          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use &
+          By signing-up you agree to the AMAZON FAKE CLONE Conditions of Use &
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>

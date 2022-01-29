@@ -33,13 +33,13 @@ function Header() {
           <div className="header__nav">
               <NavLink to={!user && '/login'}
                style={({ isActive }) => ({
-                color: isActive ? '#fff' : '#545e6f',
+                color:  '#fff',
                 textDecoration: isActive ? 'none' : 'none',
               })}>
             <div  className="header__option">
-          <NavLink to={!user && '/profile'} 
+          <NavLink to={user?'/profile':'/login'} 
           style={({ isActive }) => ({
-            color: isActive ? '#fff' : '#545e6f',
+            color: '#fff',
             textDecoration: isActive ? 'none' : 'none',
           })}>
               <span className="header__optionLineOne">Hello, {user?.email}</span>
