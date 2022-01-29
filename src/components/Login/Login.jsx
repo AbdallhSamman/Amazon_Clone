@@ -43,6 +43,7 @@ function Login() {
         <form>
           <h5>E-mail</h5>
           <input
+          
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
