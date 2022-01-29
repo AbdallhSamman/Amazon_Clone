@@ -3,6 +3,7 @@ import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import Slider from '@mui/material/Slider';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -16,23 +17,52 @@ SwiperCore.use([Navigation]);
 
 function Home() {
   const [products, setProducts] = useState([]);
-  let product = [];
-  let trs = "";
-  useEffect(() => {
-    db.collection("categories")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((docs) => {
-          product.push(docs.data().products);
-        });
-
-        setProducts(product);
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
+  const [filter_products, setProductsFilter] = useState([]);
+  let product=[];
+  const filterRating=(x)=>{
+    setProductsFilter(products.filter((ele)=>{
+      let rate = Math.floor(ele.product_rating/ele.product_users_rating);
+      return rate >= x;
+    
+    }));
+  }
+  const filterPrice=(min=0,max=999)=>{
+    setProductsFilter(products.filter((ele)=>{
+    
+      return ele.product_price >= min && ele.product_price <= max;
+    
+    }));
+  }
+  const filter=()=>{
+console.log('sfg',products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
+    
+setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
+  }
+  const unfilter=()=>{
+       
+    setProductsFilter(products);
+      }
+  
+  useEffect(()=>{
+  
+  db.collection("categories")
+    .get()
+    .then((querySnapshot) => {
+     
+      querySnapshot.forEach((docs) => {
+        product.push(docs.data().products)
+     
       });
-  }, []);
-
+  
+      setProducts(product);
+      setProductsFilter(product);
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+      });
+ 
+    },[]);
+    
   return (
     <div className="home">
       <div className="home__container">
@@ -59,18 +89,19 @@ function Home() {
             />
           </SwiperSlide>
         </Swiper>
-
+       
+      
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
-          {products.slice(0, 4).map((ele, index) => (
+          {filter_products.slice(0, 4).map((ele, index) => (
             <Product
               key={ele.product_id}
               id={ele.product_id}
-              title="iPhone 13 Pro Max"
+              title={ele.product_name}
               price={ele.product_price}
               description={ele.product_description}
-              category="Technologies"
-              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-              rating={2}
+              category={ele.category_name}
+              image={ele.product_images[0]}
+              rating={Math.floor(ele.product_rating/ele.product_users_rating)}
             />
           ))}
 
@@ -81,7 +112,7 @@ function Home() {
           />
 
           <div className="md:col-span-2">
-            {products.slice(4, 5).map((ele, index) => (
+            {filter_products.slice(4, 5).map((ele, index) => (
               <Product
                 key={ele.product_id}
                 id={ele.product_id}
@@ -95,7 +126,7 @@ function Home() {
             ))}
           </div>
 
-          {products.slice(5, products.length).map((ele, index) => (
+          {filter_products.slice(5, products.length).map((ele, index) => (
             <Product
               key={ele.product_id}
               id={ele.product_id}
@@ -108,7 +139,13 @@ function Home() {
             />
           ))}
         </div>
-
+        <button onClick={()=>{unfilter()}}>Filter</button>
+        <button onClick={()=>{filterRating(1)}}>--- 1 up -- </button>
+        <button onClick={()=>{filterRating(2)}}>-- 2 up --  </button>
+        <button onClick={()=>{filterRating(3)}}>-- 3 up --  </button>
+        <button onClick={()=>{filterRating(4)}}>-- 4 up -- </button>
+        <button onClick={()=>{filterRating(5)}}>-- 5</button>
+        <Slider min={0} max={999} defaultValue={50} onChange={ (e)=>{filterPrice(e.target.value)}} aria-label="Default" valueLabelDisplay="auto" />
         {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
         {products?.map((ele, index) => (
             <Product
@@ -121,46 +158,6 @@ function Home() {
             />
             ))}
             </div> */}
-
-        {/* <Product
-          id="10111"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-      </div>
-      <div className="home__row">
-        <Product
-          id="3"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        /> */}
-        {/* <Product
-          id="101"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-        <Product
-          id="5"
-          title="Lorem Quos, ab mollitia facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        />
-      </div>
-      <div className="home__row">
-        <Product
-          id="6"
-          title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ab mollitia eos voluptatibus sint dolor fuga. Facere reprehenderit cumque voluptatem nemo facilis dolor accusamus illo at exercitationem! Quasi, id vitae!"
-          image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/July/amazonbasics_520x520._SY304_CB442725065_.jpg"
-          price={20}
-          rating={2}
-        /> */}
       </div>
     </div>
   );
