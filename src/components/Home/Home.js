@@ -3,7 +3,8 @@ import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import Slider from '@mui/material/Slider';
+import Slider from "@mui/material/Slider";
+import { StarIcon } from "@heroicons/react/solid";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -18,51 +19,55 @@ SwiperCore.use([Navigation]);
 function Home() {
   const [products, setProducts] = useState([]);
   const [filter_products, setProductsFilter] = useState([]);
-  let product=[];
-  const filterRating=(x)=>{
-    setProductsFilter(products.filter((ele)=>{
-      let rate = Math.floor(ele.product_rating/ele.product_users_rating);
-      return rate >= x;
-    
-    }));
-  }
-  const filterPrice=(min=0,max=999)=>{
-    setProductsFilter(products.filter((ele)=>{
-    
-      return ele.product_price >= min && ele.product_price <= max;
-    
-    }));
-  }
-  const filter=()=>{
-console.log('sfg',products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
-    
-setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.product_id==10}));
-  }
-  const unfilter=()=>{
-       
-    setProductsFilter(products);
-      }
-  
-  useEffect(()=>{
-  
-  db.collection("categories")
-    .get()
-    .then((querySnapshot) => {
-     
-      querySnapshot.forEach((docs) => {
-        product.push(docs.data().products)
-     
-      });
-  
-      setProducts(product);
-      setProductsFilter(product);
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-      });
+  const [priceFilter,setPriceFilter] = useState(999);
+  const [rateFilter,setRateFilter] = useState(5);
+  let product = [];
  
-    },[]);
-    
+ 
+  const returnProduct = (element) => {
+    const prod = element.map((elemento, index) => {
+      if (elemento.product_price<=priceFilter) {
+        let proRate = (elemento.product_rating/elemento.product_users_rating)
+        if (proRate<=rateFilter) {
+          
+        
+        return (
+          <Product
+            key={elemento.product_id}
+            id={elemento.product_id}
+            title={elemento.product_name}
+            price={elemento.product_price}
+            description={elemento.product_description}
+            image={elemento.product_images[0]}
+            rating={Math.floor(elemento.product_rating/elemento.product_users_rating)}
+          />
+        )
+      }}
+    });
+    return prod;
+  };
+
+  const unfilter = () => {
+    setPriceFilter(999);
+    setRateFilter(5);
+  };
+
+  useEffect(() => {
+    db.collection("categories")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((docs) => {
+          product.push(docs.data().products);
+        });
+
+        setProducts(product);
+        setProductsFilter(product);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }, []);
+
   return (
     <div className="home">
       <div className="home__container">
@@ -89,21 +94,11 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
             />
           </SwiperSlide>
         </Swiper>
-       
-      
+
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
-          {filter_products.slice(0, 4).map((ele, index) => (
-            <Product
-              key={ele.product_id}
-              id={ele.product_id}
-              title={ele.product_name}
-              price={ele.product_price}
-              description={ele.product_description}
-              category={ele.category_name}
-              image={ele.product_images[0]}
-              rating={Math.floor(ele.product_rating/ele.product_users_rating)}
-            />
-          ))}
+          {filter_products
+            .slice(0, 2)
+            .map((elee, index) => returnProduct(elee))}
 
           <img
             className="md:col-span-full"
@@ -112,18 +107,9 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
           />
 
           <div className="md:col-span-2">
-            {filter_products.slice(4, 5).map((ele, index) => (
-              <Product
-                key={ele.product_id}
-                id={ele.product_id}
-                title="food"
-                price={ele.product_price}
-                description={ele.product_description}
-                category="food"
-                image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-                rating={2}
-              />
-            ))}
+            {filter_products
+              .slice(4, 5)
+              .map((ele, index) => returnProduct(ele))}
           </div>
 
           {filter_products.slice(5, products.length).map((ele, index) => (
@@ -139,13 +125,56 @@ setProductsFilter(products.filter((ele)=>{return ele.product_id==9 || ele.produc
             />
           ))}
         </div>
-        <button onClick={()=>{unfilter()}}>Filter</button>
-        <button onClick={()=>{filterRating(1)}}>--- 1 up -- </button>
-        <button onClick={()=>{filterRating(2)}}>-- 2 up --  </button>
-        <button onClick={()=>{filterRating(3)}}>-- 3 up --  </button>
-        <button onClick={()=>{filterRating(4)}}>-- 4 up -- </button>
-        <button onClick={()=>{filterRating(5)}}>-- 5</button>
-        <Slider min={0} max={999} defaultValue={50} onChange={ (e)=>{filterPrice(e.target.value)}} aria-label="Default" valueLabelDisplay="auto" />
+        <button
+          onClick={() => {
+            unfilter();
+          }}
+        >
+          Filter
+        </button>
+        <span className="h-5 w-5 stars">
+          <StarIcon
+            className="h-5 w-5"
+            onClick={() => {
+              setRateFilter(1);
+            }}
+          />
+          <StarIcon
+            className="h-5 w-5"
+            onClick={() => {
+              setRateFilter(2);
+            }}
+          />
+          <StarIcon
+            className="h-5 w-5"
+            onClick={() => {
+              setRateFilter(3);
+            }}
+          />
+          <StarIcon
+            className="h-5 w-5"
+            onClick={() => {
+              setRateFilter(4);
+            }}
+          />
+          <StarIcon
+            className="h-5 w-5"
+            onClick={() => {
+              setRateFilter(5);
+            }}
+          />
+        </span>
+
+        <Slider
+          min={0}
+          max={999}
+          defaultValue={50}
+          onChange={(e) => {
+            setPriceFilter(e.target.value);
+          }}
+          aria-label="Default"
+          valueLabelDisplay="auto"
+        />
         {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
         {products?.map((ele, index) => (
             <Product
