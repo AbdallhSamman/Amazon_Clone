@@ -1,0 +1,14 @@
+.videos__container{
+    padding: 20px;
+    background-color: #fff;
+    height: max-content;
+}
+
+.videos__title{
+    text-align: center;
+}
+.videos__allVideos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

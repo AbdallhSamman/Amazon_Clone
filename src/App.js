@@ -9,7 +9,7 @@ import Login from "./components/Login/Login";
 import { auth } from "firebase";
 import Footer from "./components/footer/footer";
 import { useStateValue } from "./StateProvider";
-
+import Videos from './components/Videoes/Videos';
 
 function App() {
   const [{},dispatch]=useStateValue()
@@ -40,6 +40,7 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/checkout' element = {<Checkout/>}/>
       </Routes>
+      <Videos />
       <Footer/>
     </div>
     </BrowserRouter>
