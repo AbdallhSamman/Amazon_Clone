@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@heroicons/react": "^1.0.1",
+    "@heroicons/react": "^1.0.5",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.3.1",
     "@stripe/react-stripe-js": "^1.7.0",
@@ -23,6 +23,7 @@
     "react-moment": "^1.1.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "read-more-react": "^1.0.10",
     "slider": "^1.0.4",
     "stripe": "^8.201.0",
     "swiper": "^7.4.1",

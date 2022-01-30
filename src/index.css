@@ -23,3 +23,6 @@
 body {
   background-color: rgb(234, 237, 237);
 }
+.text-xs {
+  text-align: left;
+}
