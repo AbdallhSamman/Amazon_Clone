@@ -14,6 +14,7 @@ import { useStateValue } from "./StateProvider";
 import Payment from "./components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { SearchInputContext } from "./components/Context/SearchInputContext";
 
 const promise = loadStripe("pk_test_XFy4Y8Pm6x2kEnAlJNd54d99");
 
@@ -39,6 +40,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
+     
+
+     
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -57,6 +61,7 @@ function App() {
           ></Route>
         </Routes>
         <Footer />
+        
       </div>
     </BrowserRouter>
   );

@@ -37,6 +37,7 @@ function Header() {
           <input
             className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
             type="text"
+            id="search"
           />
           <SearchIcon className="h-12 p-4" />
         </div>

@@ -21,47 +21,33 @@ function Home() {
   const [filter_products, setProductsFilter] = useState([]);
   const [priceFilter, setPriceFilter] = useState(999);
   const [rateFilter, setRateFilter] = useState(5);
+  const [search, setSearch] = useState("");
   let product = [];
 
   const returnProduct = (element) => {
     const prod = element.map((elemento, index) => {
-<<<<<<< HEAD
-      if (elemento.product_price<=priceFilter) {
-        let proRate = (elemento.product_rating/elemento.product_users_rating)
-        if (proRate<=rateFilter) {
-          
-        return (
-          <Product
-            key={elemento.product_id}
-            id={elemento.product_id}
-            title={elemento.product_name}
-            price={elemento.product_price}
-            description={elemento.product_description}
-            image={elemento.product_images[0]}
-            rating={Math.floor(elemento.product_rating/elemento.product_users_rating)}
-          />
-        )
-      }}
-=======
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
         if (proRate <= rateFilter) {
-          return (
-            <Product
-              key={elemento.product_id}
-              id={elemento.product_id}
-              title={elemento.product_name}
-              price={elemento.product_price}
-              description={elemento.product_description}
-              image={elemento.product_images[0]}
-              rating={Math.floor(
-                elemento.product_rating / elemento.product_users_rating
-              )}
-            />
-          );
+          
+          if(elemento.product_name.toLowerCase().includes(search.toLowerCase()) || elemento.product_description.toLowerCase().includes(search.toLowerCase())){
+            return (
+              <Product
+                key={elemento.product_id}
+                id={elemento.product_id}
+                title={elemento.product_name}
+                price={elemento.product_price}
+                description={elemento.product_description}
+                image={elemento.product_images[0]}
+                rating={Math.floor(
+                  elemento.product_rating / elemento.product_users_rating
+                )}
+              />
+            );
+          }
+      
         }
       }
->>>>>>> f5bae07745c1cc4bda8e18de5386cab471b12952
     });
     return prod;
   };
@@ -81,6 +67,10 @@ function Home() {
 
         setProducts(product);
         setProductsFilter(product);
+        let searchBar=document.getElementById('search');
+        searchBar.addEventListener('change',(e)=>{
+          setSearch(e.target.value);
+        }); 
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
