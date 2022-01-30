@@ -30,7 +30,6 @@ function Home() {
         let proRate = (elemento.product_rating/elemento.product_users_rating)
         if (proRate<=rateFilter) {
           
-        
         return (
           <Product
             key={elemento.product_id}
