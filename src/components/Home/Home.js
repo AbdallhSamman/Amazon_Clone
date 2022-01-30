@@ -3,8 +3,6 @@ import Product from "../Product/Product";
 import "./Home.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import Slider from "@mui/material/Slider";
-import { StarIcon } from "@heroicons/react/solid";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -134,68 +132,6 @@ function Home() {
             />
           ))}
         </div>
-        <button
-          onClick={() => {
-            unfilter();
-          }}
-        >
-          Filter
-        </button>
-        <span className="h-5 w-5 stars">
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(1);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(2);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(3);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(4);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(5);
-            }}
-          />
-        </span>
-
-        <Slider
-          min={0}
-          max={999}
-          defaultValue={50}
-          onChange={(e) => {
-            setPriceFilter(e.target.value);
-          }}
-          aria-label="Default"
-          valueLabelDisplay="auto"
-        />
-        {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
-        {products?.map((ele, index) => (
-            <Product
-              key={index}
-              id={ele.product_id}
-              title={ele.product_description}
-              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-              price={ele.product_price}
-              rating={2}
-            />
-            ))}
-            </div> */}
       </div>
     </div>
   );
