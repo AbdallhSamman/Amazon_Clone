@@ -1,3 +1,6 @@
+.video{
+    width: 100%;
+}
 .videos__container{
     padding: 20px;
     background-color: #fff;
@@ -11,21 +14,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 .videos__items{
     list-style: none;
     text-align: center;
-    
-}
-.videos__allVideos{
     display: flex;
     flex-wrap: wrap;
- 
+    
 }
 .videos__singleVideo{
-    background-color: red;
     padding: 2rem;
-    width: 100px;
+    width: 350px;
     height: max-content;
- 
+    margin: 1rem;
 }
