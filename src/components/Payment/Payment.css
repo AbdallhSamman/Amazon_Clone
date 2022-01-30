@@ -24,3 +24,37 @@
 .payment__item ,.payment__details {
 	flex: 0.8;
 }
+.address__left{
+	display: flex;
+	flex-direction: column;
+	grid-area: left;
+	margin: 5rem 10rem 5rem 0;
+	border: solid 2px #a09f9f;
+border-radius: 10px;
+}
+.address__left>form>input{
+	width: 25vw;
+	border:solid 1px #BBBBBB;
+	padding: 4px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+.address__left>form{
+	display: flex;
+	flex-direction: column;
+	padding: 1.8rem;
+}
+.login__signInButton{
+	width: 10vw;
+}
+.payment__items{
+	grid-area: items;
+}
+
+.payment__section1{
+	display: grid;
+	grid-template-areas: 
+	'left items';
+	align-items: center;
+	justify-content: space-evenly;
+}
