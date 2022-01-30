@@ -59,7 +59,7 @@ function App() {
             }
           ></Route>
         </Routes> 
-        <Videos />
+        {/* <Videos /> */}
         <Footer />
         
       </div>

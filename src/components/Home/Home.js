@@ -5,6 +5,7 @@ import "./Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "@mui/material/Slider";
 import { StarIcon } from "@heroicons/react/solid";
+import Videos from '../Videoes/Videos'
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -12,7 +13,6 @@ import "swiper/css/navigation";
 import { db } from "../Firebase/firebase";
 // import Swiper core and required modules
 import SwiperCore, { Navigation } from "swiper";
-
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
@@ -81,6 +81,9 @@ function Home() {
     <div className="home">
       <div className="home__container">
         <Swiper navigation={true} className="mySwiper">
+        
+           
+          
           <SwiperSlide>
             <img
               className="home__image swiper-image"
@@ -184,6 +187,9 @@ function Home() {
           aria-label="Default"
           valueLabelDisplay="auto"
         />
+        
+        <Videos/>
+        
         {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
         {products?.map((ele, index) => (
             <Product

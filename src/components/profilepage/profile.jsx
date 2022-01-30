@@ -62,14 +62,15 @@ function Profile() {
             <p className="title">{user?.phone}</p>
             <p>Harvard University</p>
             <div style={{ margin: '24px 0' }}></div>
-            <p>
+            {/* <p>
               <button className="change_info">Contact</button>
-            </p>
+            </p> */}
           </div>
-        </div>
-        <div className="weather">
+          <div className="card">
         <Weather />
         </div>
+        </div>
+        
         
       </section>
     </div>
