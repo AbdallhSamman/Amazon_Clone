@@ -58,6 +58,7 @@ function Home() {
   };
 
   useEffect(() => {
+   
     db.collection("categories").orderBy('products')
       .get()
       .then((querySnapshot) => {

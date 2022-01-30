@@ -7,12 +7,24 @@ import { useNavigate  } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../../reducer";
-
+import { db } from "../Firebase/firebase";
 const Payment = () => {
 	const [{ basket, user }, dispatch] = useStateValue();
 	const stripe = useStripe();
 	const elements = useElements();
 	const navigate  = useNavigate ();
+
+	const saveOrder=()=>{
+		db.collection("orders")
+        .doc("order - "+ Math.floor(Math.random() * 500))
+        .set({
+			user_email:user.email,
+			status:'completed',
+			products:[...basket]
+		})
+		
+		navigate('/profile')
+	}
 	return (
 		<div className="payment">
 			<div className="payment__container">
@@ -63,7 +75,7 @@ const Payment = () => {
 									prefix={"$"}
 								/>
 							</div>
-							<button onClick={()=> navigate('/orders')}>Buy Now</button>
+							<button onClick={()=> {saveOrder()}}>Buy Now</button>
 					</div>
 				</section>
 			</div>
