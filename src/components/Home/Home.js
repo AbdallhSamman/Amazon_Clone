@@ -58,19 +58,19 @@ function Home() {
   };
 
   useEffect(() => {
-    db.collection("categories")
+    db.collection("categories").orderBy('products')
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-
-        setProducts(product);
-        setProductsFilter(product);
         let searchBar=document.getElementById('search');
         searchBar.addEventListener('change',(e)=>{
           setSearch(e.target.value);
         }); 
+        setProducts(product);
+        setProductsFilter(product);
+      
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -106,7 +106,7 @@ function Home() {
 
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
           {filter_products
-            .slice(0, 2)
+            .slice(0, 4)
             .map((elee, index) => returnProduct(elee))}
 
           <img
@@ -121,18 +121,7 @@ function Home() {
               .map((ele, index) => returnProduct(ele))}
           </div>
 
-          {filter_products.slice(5, products.length).map((ele, index) => (
-            <Product
-              key={ele.product_id}
-              id={ele.product_id}
-              title="iPhone 13 Pro Max"
-              price={ele.product_price}
-              description={ele.product_description}
-              category="Technologies"
-              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-              rating={2}
-            />
-          ))}
+          
         </div>
         <button
           onClick={() => {
