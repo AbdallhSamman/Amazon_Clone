@@ -69,10 +69,12 @@ function Header() {
               </div>
             </NavLink>
           </div>
-
           <div className="link">
-            <p>Returns</p>
+              <NavLink to={'/profile'}>
+              <p>Returns</p>
             <p className="font-extrabold md:text-sm">& Orders</p>
+              </NavLink>
+
           </div>
           <Link to="/checkout">
             <div className="relative link flex items-center">
