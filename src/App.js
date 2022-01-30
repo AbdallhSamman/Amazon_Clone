@@ -14,7 +14,8 @@ import { useStateValue } from "./StateProvider";
 import Payment from "./components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { SearchInputContext } from "./components/Context/SearchInputContext";
+import Videos from './components/Videoes/Videos';
+import Orders from "./components/Orders/Orders";
 
 const promise = loadStripe("pk_test_XFy4Y8Pm6x2kEnAlJNd54d99");
 
@@ -22,7 +23,6 @@ function App() {
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
     auth().onAuthStateChanged((authUser) => {
-      console.log("the user is>", authUser);
       if (authUser) {
         dispatch({
           type: "SET_USER",
@@ -41,8 +41,6 @@ function App() {
     <BrowserRouter>
       <div className="app">
      
-
-     
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -50,6 +48,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path='/orders' element={<Orders/>}></Route>
           <Route path="/store" element={<Store />}></Route>
           <Route
             path="/payment"
@@ -59,7 +58,8 @@ function App() {
               </Elements>
             }
           ></Route>
-        </Routes>
+        </Routes> 
+        <Videos />
         <Footer />
         
       </div>

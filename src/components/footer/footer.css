@@ -119,3 +119,11 @@ footer .middle .flag-icon-us {
 .center {
   text-align: center;
 }
+
+@media (max-width:767px) {
+  footer ul {
+   padding-top: 20px;
+   margin: 0px;
+   display: block;
+  }
+}

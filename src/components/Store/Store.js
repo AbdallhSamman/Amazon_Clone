@@ -1,9 +1,15 @@
 import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
 // import "swiper/css/bundle";
+<<<<<<< HEAD
 // import "./Store.css";
 import "swiper/css/bundle";
 
+=======
+import "./Store.css";
+import "swiper/css/bundle";
+import { CKEditor } from "ckeditor4-react";
+>>>>>>> 54e60bd82ff1e7b1da172e6af31022c2f60890e0
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -51,7 +57,7 @@ function Store() {
             />
           </div>
           <div className="mt-5 md:mt-0">
-            <p>
+            <p className="text-[rgb(0,113,133)]">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
               voluptatibus adipisci nesciunt aspernatur repellat eaque error
               aliquid facere ratione, iure ipsum pariatur temporibus sed quod,
@@ -78,28 +84,33 @@ function Store() {
           </aside>
         </div>
         <hr className="m-10" />
-        <h3 className="text-xl text-red-600">Top rated from our brands</h3>
+        <h3 className="text-[40px] text-red-600">Top rated from our brands</h3>
         <Swiper
+          style={{ marginBottom: "70px" }}
           slidesPerView={4}
           spaceBetween={20}
           pagination={{
             clickable: true,
           }}
           modules={[Pagination]}
-          className="mySwiper"
+          className="mySwiper cursor-pointer"
         >
-          <SwiperSlide className="">
+          <SwiperSlide>
             <div>
               <img
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p className="text-left">
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
               <h5>
                 <sup>$</sup>
                 <strong>500</strong>
@@ -112,12 +123,16 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p>
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
               <h5>
                 <sup>$</sup>
                 <strong>500</strong>
@@ -130,12 +145,16 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p>
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
               <h5>
                 <sup>$</sup>
                 <strong>500</strong>
@@ -148,12 +167,20 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p className="text-left">
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -162,12 +189,20 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p>
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -176,12 +211,20 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p>
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -190,12 +233,20 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p className="text-left">
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -204,16 +255,78 @@ function Store() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p>
+              <p className="text-[rgb(0,113,133)]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
                 inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis, vel est ex cupiditate,
-                magnam corrupti, debitis sunt nostrum!
+                blanditiis aliquam temporibus nobis
               </p>
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
         </Swiper>
-        <h1 className="mb-20">s</h1>
+        <hr className="m-10" />
+        <h3 className="text-[40px] text-red-600 mb-5">Customer reviews</h3>
+        <div className="w-[80%] m-auto">
+          <div>
+            <h3 className="text-xl font-bold">Add your review</h3>
+            <CKEditor data="<p>Hello from CKEditor 4!</p>" />
+            <button className="button mt-4">Add Review</button>
+          </div>
+          <div>
+            <div className="flex items-center mt-20">
+              <img
+                src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                alt=""
+                width={50}
+                height={50}
+              />
+              <p>Haitham Assoli</p>
+            </div>
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <strong> Its pretty and clean looking</strong>
+            <p className="">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
+              sint. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Deleniti, magnam?
+            </p>
+            <img src="https://picsum.photos/200/300" alt="" />
+          </div>
+          <div>
+            <div className="flex items-center mt-20">
+              <img
+                src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                alt=""
+                width={50}
+                height={50}
+              />
+              <p>Haitham Assoli</p>
+            </div>
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            <strong> Its pretty and clean looking</strong>
+            <p className="">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
+              sint. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Deleniti, magnam?
+            </p>
+            <img src="https://picsum.photos/200/300" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   );

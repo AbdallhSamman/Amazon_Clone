@@ -1,6 +1,8 @@
 import React from 'react'
 import '../profilepage/profile.css'
-import { useStateValue } from '../../StateProvider'
+import { useStateValue } from '../../StateProvider';
+import Weather from '../Weather/Weather';
+
 function Profile() {
   const [{ user }] = useStateValue()
   return (
@@ -30,7 +32,7 @@ function Profile() {
                     <span>
                       <strong>product name: </strong>{' '}
                     </span>
-                    <span className="product-price">price: 500$</span>
+                    <span className="product-price">price: $500</span>
                     <span className="product-decs">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Nam, minus esse. Perspiciatis ex quibusdam ullam ducimus
@@ -65,6 +67,10 @@ function Profile() {
             </p>
           </div>
         </div>
+        <div className="weather">
+        <Weather />
+        </div>
+        
       </section>
     </div>
   )

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import "./Header.css";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { auth } from "../Firebase/firebase";
-import { Link } from "react-router-dom";
-import { useStateValue } from "../../StateProvider";
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react'
+import './Header.css'
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
+import { auth } from '../Firebase/firebase'
+import { Link } from 'react-router-dom'
+import { useStateValue } from '../../StateProvider'
+import { NavLink } from 'react-router-dom'
 import {
   MenuIcon,
   SearchIcon,
   ShoppingCartIcon,
-} from "@heroicons/react/outline";
+} from '@heroicons/react/outline'
 
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue()
   const handelAuth = () => {
     if (user) {
-      auth.signOut();
+      auth.signOut()
     }
-  };
+  }
   return (
     <>
       <header className="header">
@@ -41,24 +41,35 @@ function Header() {
           />
           <SearchIcon className="h-12 p-4" />
         </div>
-        
-          <div className="header__nav text-white flex items-center text-xs space-x-6 px-4">
-              <NavLink to={!user && '/login'}
-               style={{
-                color:  '#fff',
-                textDecoration:'none',
-              }}>
-            <div  className="header__option">
-          <NavLink to={user?'/profile':'/login'} 
-          style={ {
-            color: '#fff',
-            textDecoration:'none',
-          }}>
-              <span className="header__optionLineOne">Hello, {user?.email}</span>
-              </NavLink>
-                <span onClick={handelAuth} className="header__optionLineTow">{user?'Sign Out':'Sign In'}</span>
-            </div>
-          </NavLink>
+
+        <div className="header__nav text-white flex items-center text-xs space-x-6 px-4">
+          <div>
+            <NavLink
+              to={user ? '/profile' : '/login'}
+              style={{
+                color: '#fff',
+                textDecoration: 'none',
+              }}
+            >
+              <span className="header__optionLineOne">
+                Hello, {user?.email}
+              </span>
+            </NavLink>
+            <NavLink
+              to={!user && '/login'}
+              style={{
+                color: '#fff',
+                textDecoration: 'none',
+              }}
+            >
+              <div className="header__option">
+                <span onClick={handelAuth} className="header__optionLineTow">
+                  {user ? 'Sign Out' : 'Sign In'}
+                </span>
+              </div>
+            </NavLink>
+          </div>
+
           <div className="link">
             <p>Returns</p>
             <p className="font-extrabold md:text-sm">& Orders</p>
@@ -137,7 +148,7 @@ function Header() {
         <p className="link hidden lg:inline-flex">Health & Personal Care</p>
       </div>
     </>
-  );
+  )
 }
 
-export default Header;
+export default Header
