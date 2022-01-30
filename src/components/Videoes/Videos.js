@@ -22,7 +22,7 @@ function Videos() {
         <h1 className="videos__title">Amazon Related Videos</h1>
         <div className="videos__allVideos">
           <div className="videos__singleVideo">
-            <h2>I am a video</h2>
+            {/* <h2>I am a video</h2> */}
             {videos &&
               (videos.length === 0 ? (
                 <p>No results</p>

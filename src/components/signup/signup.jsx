@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import '../Login/login.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { auth } from '../Firebase/firebase'
-import { padding } from '@mui/system'
+import { auth , db} from '../Firebase/firebase'
+import { useStateValue } from "../../StateProvider";
 
 
-function Login() {
-    
+function Signup() {
+    const [{ basket , user},dispatch] = useStateValue();
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [erorr, setErorr] = useState('')
-  const signIn = (e) => {
+  const register = (e) => {
     e.preventDefault()
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         console.log(auth)
         if (auth) {
@@ -22,10 +22,6 @@ function Login() {
         }
       })
       .catch((error) => setErorr(error.message))
-  }
-  const register = (e) => {
-    e.preventDefault()
-   navigate('/signup')
   }
 
   return (
@@ -38,12 +34,12 @@ function Login() {
       </Link>
 
       <div className="login__container">
-        <h1>Sign-in</h1>
+        <h1>Regester</h1>
         <span className="errorMessage">{erorr}</span>
         <form>
+         
           <h5>E-mail</h5>
           <input
-          
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -54,23 +50,16 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
-          <button
-            type="submit"
-            className="login__signInButton"
-            onClick={signIn}
-          >
-            Sign In
-          </button>
+         
         </form>
 
         <p>
-          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use &
+          By signing-up you agree to the AMAZON FAKE CLONE Conditions of Use &
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
 
-        <button className="login__registerButton" onClick={register}>
+        <button className="login__registerButton1" onClick={register}>
           Create your Amazon Account
         </button>
       </div>
@@ -78,4 +67,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signup
