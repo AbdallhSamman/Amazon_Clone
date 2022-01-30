@@ -25,6 +25,7 @@ function Home() {
   let product = [];
 
   const returnProduct = (element) => {
+    console.log(element)
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
@@ -127,71 +128,6 @@ function Home() {
 
           
         </div>
-        <button
-          onClick={() => {
-            unfilter();
-          }}
-        >
-          Filter
-        </button>
-        <span className="h-5 w-5 stars">
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(1);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(2);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(3);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(4);
-            }}
-          />
-          <StarIcon
-            className="h-5 w-5"
-            onClick={() => {
-              setRateFilter(5);
-            }}
-          />
-        </span>
-
-        <Slider
-          min={0}
-          max={999}
-          defaultValue={50}
-          onChange={(e) => {
-            setPriceFilter(e.target.value);
-          }}
-          aria-label="Default"
-          valueLabelDisplay="auto"
-        />
-        
-        <Videos/>
-        
-        {/* <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52">
-        {products?.map((ele, index) => (
-            <Product
-              key={index}
-              id={ele.product_id}
-              title={ele.product_description}
-              image="https://m.media-amazon.com/images/I/714im+KNaqL._SL1500_.jpg"
-              price={ele.product_price}
-              rating={2}
-            />
-            ))}
-            </div> */}
       </div>
     </div>
   );
