@@ -10,7 +10,7 @@ const Products = () => {
 
 	const [filter_products, setProductsFilter] = useState([]);
 	const [priceFilter, setPriceFilter] = useState(999);
-	const [rateFilter, setRateFilter] = useState(5);
+	const [rateFilter, setRateFilter] = useState(1);
 	let product = [];
 
 	const [rating, setRating] = useState(0);
@@ -58,12 +58,18 @@ const Products = () => {
 
 	return (
 		<div className="grid-container">
-			<div className="fillter">
+      <div>
+        <input  className="m__hidden" type="checkbox"/>
+        <div className="m__hidden m__button">Filter</div>
+
+			<div className="Filter">
 				<div aria-label="Deals filters" className="gridFilterSection">
 					<span>
 						<span aria-label="Price filter">
 							<div className="gridFilterHeader">Category</div>
-							<div className="a-row">{/* {Category} */}</div>
+							<div className="a-row">
+								{/* {Category} */}
+							</div>
 						</span>
 					</span>
 					<span>
@@ -72,8 +78,8 @@ const Products = () => {
 							<div className="a-row">
 								<Slider
 									min={0}
-									max={999}
-									defaultValue={999}
+									max={80}
+									defaultValue={80}
 									onChange={(e) => {
 										setPriceFilter(e.target.value);
 									}}
@@ -118,8 +124,8 @@ const Products = () => {
 					</span>
 				</div>
 			</div>
-
-			<div className="grid grid-flow-row-dense md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 ">
+      </div>
+			<div className="grid products grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 ">
 				{filter_products.map((ele, index) => returnProduct(ele))}
 			</div>
 		</div>
