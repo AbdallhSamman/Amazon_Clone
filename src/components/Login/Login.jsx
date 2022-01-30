@@ -58,7 +58,7 @@ function Login() {
           <button
             type="submit"
             className="login__signInButton"
-            onClick={signIn}
+            
           >
             Sign In
           </button>

@@ -14,6 +14,7 @@ import { useStateValue } from "./StateProvider";
 import Payment from "./components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Videos from './components/Videoes/Videos';
 import Orders from "./components/Orders/Orders";
 import Products from "./components/Products/Products";
 
@@ -40,6 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
+     
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -58,8 +60,10 @@ function App() {
               </Elements>
             }
           ></Route>
-        </Routes>
+        </Routes> 
+        <Videos />
         <Footer />
+        
       </div>
     </BrowserRouter>
   );

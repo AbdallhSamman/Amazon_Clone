@@ -4,7 +4,7 @@
     border: rgb(175, 174, 174) solid 2px;
     border-radius: 10px;
     grid-template-areas: 
-    'left right right'
+    'left right weather'
 }
 .left{
     grid-area: left;
@@ -13,7 +13,9 @@
 .right{
     grid-area: right;
 }
-
+.weather{
+    grid-area: weather;
+}
 .profile_h2{
     text-align: center;
     font-size: 18px;
@@ -135,6 +137,7 @@
         grid-template-areas: 
         'left left left'
         'right right right'
+        'weather weather weather'
     }
     .order-detaile{
        
