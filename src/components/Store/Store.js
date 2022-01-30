@@ -1,12 +1,9 @@
 import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
-<<<<<<< HEAD
 // import "swiper/css/bundle";
 // import "./Store.css";
-=======
 import "swiper/css/bundle";
 
->>>>>>> f5bae07745c1cc4bda8e18de5386cab471b12952
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
