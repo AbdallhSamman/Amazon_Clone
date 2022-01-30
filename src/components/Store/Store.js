@@ -1,7 +1,12 @@
 import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
+<<<<<<< HEAD
 // import "swiper/css/bundle";
 // import "./Store.css";
+=======
+import "swiper/css/bundle";
+
+>>>>>>> f5bae07745c1cc4bda8e18de5386cab471b12952
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -80,14 +85,13 @@ function Store() {
         <Swiper
           slidesPerView={4}
           spaceBetween={20}
-          fadeDuration={0}
           pagination={{
             clickable: true,
           }}
           modules={[Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide style={{ opacity: "1" }}>
+          <SwiperSlide className="">
             <div>
               <img
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
@@ -99,7 +103,10 @@ function Store() {
                 blanditiis aliquam temporibus nobis, vel est ex cupiditate,
                 magnam corrupti, debitis sunt nostrum!
               </p>
-              <sup>$</sup>500
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -114,6 +121,10 @@ function Store() {
                 blanditiis aliquam temporibus nobis, vel est ex cupiditate,
                 magnam corrupti, debitis sunt nostrum!
               </p>
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -128,6 +139,10 @@ function Store() {
                 blanditiis aliquam temporibus nobis, vel est ex cupiditate,
                 magnam corrupti, debitis sunt nostrum!
               </p>
+              <h5>
+                <sup>$</sup>
+                <strong>500</strong>
+              </h5>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -201,7 +216,7 @@ function Store() {
             </div>
           </SwiperSlide>
         </Swiper>
-        <h3>hiiiiiiiiiiiiiiiiiiiiiiiii</h3>
+        <h1 className="mb-20">s</h1>
       </div>
     </div>
   );
