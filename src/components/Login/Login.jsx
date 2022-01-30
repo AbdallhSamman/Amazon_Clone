@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import '../Login/login.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { auth } from '../Firebase/firebase'
 import { padding } from '@mui/system'
-
+import { Wifi } from '@mui/icons-material'
 
 function Login() {
-    
+ 
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -16,16 +16,17 @@ function Login() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log(auth)
         if (auth) {
-          navigate('/')
+       
+            navigate('/')
+          
         }
       })
       .catch((error) => setErorr(error.message))
   }
   const register = (e) => {
     e.preventDefault()
-   navigate('/signup')
+    navigate('/signup')
   }
 
   return (
@@ -43,7 +44,6 @@ function Login() {
         <form>
           <h5>E-mail</h5>
           <input
-          
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

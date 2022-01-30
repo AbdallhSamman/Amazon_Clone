@@ -89,15 +89,17 @@ function Profile() {
             <h1>{user?.email}</h1>
             <p className="title">{user?.phone}</p>
             <p>Harvard University</p>
-            <div style={{ margin: "24px 0" }}></div>
-            <p>
+            <div style={{ margin: '24px 0' }}></div>
+            {/* <p>
               <button className="change_info">Contact</button>
-            </p>
+            </p> */}
           </div>
+          <div className="card">
+        <Weather />
         </div>
-        <div className="weather">
-          <Weather />
         </div>
+        
+        
       </section>
     </div>
   );
