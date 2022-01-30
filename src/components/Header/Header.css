@@ -96,13 +96,3 @@
   align-items: center;
 }
 
-@media (max-width: 767px) {
-  .header__nav {
-    display: none;
-  }
-  .header__navPhone {
-    display: flex;
-    margin: 0 5px;
-    cursor: pointer;
-  }
-}
