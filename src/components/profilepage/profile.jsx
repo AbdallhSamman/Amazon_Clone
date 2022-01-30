@@ -30,7 +30,7 @@ function Profile() {
                     <span>
                       <strong>product name: </strong>{' '}
                     </span>
-                    <span className="product-price">price: 500$</span>
+                    <span className="product-price">price: $500</span>
                     <span className="product-decs">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Nam, minus esse. Perspiciatis ex quibusdam ullam ducimus
