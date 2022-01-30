@@ -1,6 +1,8 @@
 import React from 'react'
 import '../profilepage/profile.css'
-import { useStateValue } from '../../StateProvider'
+import { useStateValue } from '../../StateProvider';
+import Weather from '../Weather/Weather';
+
 function Profile() {
   const [{ user }] = useStateValue()
   return (
@@ -65,6 +67,10 @@ function Profile() {
             </p>
           </div>
         </div>
+        <div className="weather">
+        <Weather />
+        </div>
+        
       </section>
     </div>
   )

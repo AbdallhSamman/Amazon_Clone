@@ -1,0 +1,28 @@
+.video{
+    width: 100%;
+}
+.videos__container{
+    padding: 20px;
+    background-color: #fff;
+    height: max-content;
+}
+
+.videos__title{
+    text-align: center;
+    width: fit-content;
+}
+.videos__items{
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.videos__singleVideo{
+    height: max-content;
+    margin: 0.5rem;
+}
+iframe{
+    display: inline-block;
+}
