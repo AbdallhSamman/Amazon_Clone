@@ -45,7 +45,7 @@ function Product({ id, title, image, price, rating, description, category }) {
 
       <div className="mb-5">
         <h1>{price} $ </h1>
-        <Currency quantity={price} currency="USD" />
+      
       </div>
 
       {/* {hasPrime && (

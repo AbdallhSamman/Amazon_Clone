@@ -9,23 +9,20 @@
 
 .videos__title{
     text-align: center;
-}
-.videos__allVideos{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    width: fit-content;
 }
 .videos__items{
     list-style: none;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     
 }
 .videos__singleVideo{
-    padding: 2rem;
-    width: 350px;
     height: max-content;
-    margin: 1rem;
+    margin: 0.5rem;
+}
+iframe{
+    display: inline-block;
 }
