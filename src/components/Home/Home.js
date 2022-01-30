@@ -25,6 +25,7 @@ function Home() {
   let product = [];
 
   const returnProduct = (element) => {
+    console.log(element)
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
