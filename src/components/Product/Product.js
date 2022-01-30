@@ -2,7 +2,7 @@ import React from "react";
 import "./Product.css";
 import { useStateValue } from "../../StateProvider";
 import { StarIcon } from "@heroicons/react/solid";
-// import Currency from "react-currency-formatter";
+import Currency from "react-currency-format";
 
 function Product({ id, title, image, price, rating, description, category }) {
   const [{ basket }, dispatch] = useStateValue();
@@ -28,7 +28,7 @@ function Product({ id, title, image, price, rating, description, category }) {
         src={image}
         height="200"
         width="200"
-        style={{ objectFit: "contain" }}
+        style={{ objectFit: "contain", margin: "auto" }}
       />
 
       <h4 className="my-3 ">{title}</h4>
@@ -43,9 +43,10 @@ function Product({ id, title, image, price, rating, description, category }) {
 
       <p className="text-xs my-2 line-clamp-2">{description}</p>
 
-      {/* <div className="mb-5">
+      <div className="mb-5">
+        <h1>{price} $ </h1>
         <Currency quantity={price} currency="USD" />
-      </div> */}
+      </div>
 
       {/* {hasPrime && (
       <div className="flex items-center space-x-2 -mt-5">
