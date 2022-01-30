@@ -19,30 +19,30 @@ SwiperCore.use([Navigation]);
 function Home() {
   const [products, setProducts] = useState([]);
   const [filter_products, setProductsFilter] = useState([]);
-  const [priceFilter,setPriceFilter] = useState(999);
-  const [rateFilter,setRateFilter] = useState(5);
+  const [priceFilter, setPriceFilter] = useState(999);
+  const [rateFilter, setRateFilter] = useState(5);
   let product = [];
- 
- 
+
   const returnProduct = (element) => {
     const prod = element.map((elemento, index) => {
-      if (elemento.product_price<=priceFilter) {
-        let proRate = (elemento.product_rating/elemento.product_users_rating)
-        if (proRate<=rateFilter) {
-          
-        
-        return (
-          <Product
-            key={elemento.product_id}
-            id={elemento.product_id}
-            title={elemento.product_name}
-            price={elemento.product_price}
-            description={elemento.product_description}
-            image={elemento.product_images[0]}
-            rating={Math.floor(elemento.product_rating/elemento.product_users_rating)}
-          />
-        )
-      }}
+      if (elemento.product_price <= priceFilter) {
+        let proRate = elemento.product_rating / elemento.product_users_rating;
+        if (proRate <= rateFilter) {
+          return (
+            <Product
+              key={elemento.product_id}
+              id={elemento.product_id}
+              title={elemento.product_name}
+              price={elemento.product_price}
+              description={elemento.product_description}
+              image={elemento.product_images[0]}
+              rating={Math.floor(
+                elemento.product_rating / elemento.product_users_rating
+              )}
+            />
+          );
+        }
+      }
     });
     return prod;
   };
@@ -74,21 +74,21 @@ function Home() {
         <Swiper navigation={true} className="mySwiper">
           <SwiperSlide>
             <img
-              className="home__image"
+              className="home__image swiper-image"
               src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
               alt="home_img"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
-              className="home__image"
+              className="home__image swiper-image"
               src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
               alt="home_img"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
-              className="home__image"
+              className="home__image swiper-image"
               src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
               alt="home_img"
             />
