@@ -16,12 +16,13 @@ const Products = () => {
 
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-
+  let searchBar = document.getElementById("search");
+  let button = document.getElementById("searchButton");
   const returnProduct = (element) => {
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
-        if (proRate >= rateFilter) {
+        if (proRate <= rateFilter) {
           if (
             elemento.product_name
               .toLowerCase()
@@ -67,12 +68,11 @@ const Products = () => {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-        let searchBar = document.getElementById("search");
-        searchBar.addEventListener("click", (e) => {
-          setSearch(e.target.value);
-          setProducts(product);
-          setProductsFilter(product);
+       
+        button.addEventListener("click", (e) => {
+          setSearch(searchBar.value);
         });
+
         setSearch(searchBar.value);
         setProducts(product);
         setProductsFilter(product);
