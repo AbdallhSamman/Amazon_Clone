@@ -31,7 +31,7 @@ function CheckoutProduct({ id, title, image, price, rating }) {
           {Array(rating)
             .fill()
             .map(() => (
-              <StarIcon key={id} className="product__rating--Star" />
+              <StarIcon key={id+Math.floor(Math.random()*50)} className="product__rating--Star" />
             ))}
         </p>
       <button onClick={removeFromBasket}>Remove from basket</button>

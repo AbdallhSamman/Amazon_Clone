@@ -11,9 +11,9 @@ function Profile() {
 
   const returnh1 = (x) => {
     
-    const prod = x.products.map((element) => {
+    const prod = x.products.map((element,i) => {
       return (
-        <div className="order-detaile">
+        <div className="order-detaile" key={i+12000}>
           <img src={element.image} className="order-img" />
           <div className="product-name">
             <span>

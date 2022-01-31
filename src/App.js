@@ -14,8 +14,6 @@ import { useStateValue } from "./StateProvider";
 import Payment from "./components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import Videos from "./components/Videoes/Videos";
-import Orders from "./components/Orders/Orders";
 import Products from "./components/Products/Products";
 import NoMatch from "./components/NoMatch";
 
@@ -49,7 +47,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/orders" element={<Orders />}></Route>
+          
           <Route path="/products" element={<Products />}></Route>
           <Route path="/item/:category/:itemId" element={<Item />}></Route>
           <Route
