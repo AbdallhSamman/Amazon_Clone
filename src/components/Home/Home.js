@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import { db } from "../Firebase/firebase";
 // import Swiper core and required modules
 import SwiperCore, { Navigation } from "swiper";
+import Loading from "../Loading/Loading";
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
@@ -24,6 +25,7 @@ function Home() {
   const [rateFilter, setRateFilter] = useState(5);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   let product = [];
 
   const returnProduct = (element) => {
@@ -90,6 +92,7 @@ function Home() {
         });
         setProducts(product);
         setProductsFilter(product);
+        setLoading(true);
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -124,11 +127,14 @@ function Home() {
         </Swiper>
 
         <div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filter_products
-            .slice(0, 4)
-            .map((elee, index) => returnProduct(elee))}
+          {loading === false ? (
+            <Loading />
+          ) : (
+            filter_products
+              .slice(0, 4)
+              .map((elee, index) => returnProduct(elee))
+          )}
         </div>
-
         <img
           width={"100%"}
           className="md:col-span-full"
@@ -136,9 +142,13 @@ function Home() {
           alt=""
         />
         <div className="product__home__span2 grid grid-flow-row-dense md:col-span-2 sm:grid-cols-2 md:grid-cols-2">
-          {filter_products
-            .slice(0, 1)
-            .map((elee, index) => returnProduct(elee))}
+          {loading === false ? (
+            <Loading />
+          ) : (
+            filter_products
+              .slice(0, 1)
+              .map((elee, index) => returnProduct(elee))
+          )}
         </div>
         <Videos />
       </div>
