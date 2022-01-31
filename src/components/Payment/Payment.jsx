@@ -38,8 +38,8 @@ const Payment = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (auth.currentUser != null) {
-      // saveOrder()
       saveAddress()
+      saveOrder()
     } else navigat('/login')
   }
 
@@ -67,7 +67,6 @@ const Payment = () => {
     let number = document.getElementById('phoneNumber').value;
     let building = document.getElementById('building').value;
     let city = document.getElementById('city').value;
-    alert (form);
     db.collection('users')
       .doc(user.email)
       .set({
