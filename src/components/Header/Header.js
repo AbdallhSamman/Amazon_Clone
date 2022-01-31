@@ -29,11 +29,7 @@ function Header() {
     goToProducts();
   };
   useEffect(() => {
-    const category = localStorage.getItem("category");
-    if (category) {
-      setCata(JSON.parse(category));
-      return;
-    }
+   
 
     let categories = [];
     db.collection("categories")
@@ -43,7 +39,7 @@ function Header() {
           categories.push(docs.data().category_name);
         });
         setCata(categories);
-        localStorage.setItem("category", JSON.stringify(categories));
+      
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
