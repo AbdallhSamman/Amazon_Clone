@@ -27,8 +27,16 @@ function Home() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   let product = [];
-  let searchBar = document.getElementById("search");
-  let button = document.getElementById("searchButton");
+  let searchBar;
+  let button;
+  try{
+     searchBar = document.getElementById("search");
+     button = document.getElementById("searchButton");
+  }catch(error){
+    searchBar = document.getElementById("root");
+    button=document.getElementById("root");
+  }
+
   const returnProduct = (element) => {
     let found = 0;
  
@@ -96,13 +104,13 @@ function Home() {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-      
-        searchBar.addEventListener("change", () => {
-          setSearch(searchBar.value);
-          setProductsFilter(product);
-          setProducts(product);
-          console.log("i am herre")
-        });
+      try{ searchBar.addEventListener("change", () => {
+        setSearch(searchBar.value);
+        setProductsFilter(product);
+        setProducts(product);
+        console.log("i am herre")
+      });}catch(err){console.log(err)}
+       
         setProducts(product);
         localStorage.setItem("items", JSON.stringify(product));
         setProductsFilter(product);

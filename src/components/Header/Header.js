@@ -13,13 +13,14 @@ import {
 } from "@heroicons/react/outline";
 
 function Header() {
-  // console.log = function(){};
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
   const [categories, setCata] = useState([]);
   const handelAuth = () => {
     if (user) {
       auth.signOut();
+      localStorage.clear();
+      sessionStorage.clear();
     }
   };
   const goToProducts = () => {
@@ -30,7 +31,6 @@ function Header() {
     goToProducts();
   };
   useEffect(() => {
-    console.log("i am in use effect");
     const category = sessionStorage.getItem("category");
     if (category) {
       setCata(JSON.parse(category));
