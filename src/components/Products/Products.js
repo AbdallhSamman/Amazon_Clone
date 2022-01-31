@@ -56,7 +56,6 @@ const Products = () => {
   };
 
   useEffect(() => {
-	  console.log("i am in user effect");
     const allItem = localStorage.getItem("allItem");
     // if (allItem) {
     //   setProducts(JSON.parse(allItem));
@@ -68,7 +67,7 @@ const Products = () => {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-       
+
         button.addEventListener("click", (e) => {
           setSearch(searchBar.value);
         });
@@ -78,7 +77,7 @@ const Products = () => {
         setProductsFilter(product);
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        console.log("Error getting documents: ", error.message);
       });
   }, []);
 

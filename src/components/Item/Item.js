@@ -14,37 +14,28 @@ function Item() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [item, setItem] = useState([]);
   const [related, setRelated] = useState([]);
+  const [userComment, setUserComment] = useState("");
   let product = [];
   let slider = [];
   let stars = [];
+  let comments = [];
 
   const params = useParams();
   const itemId = params.itemId;
   const category = params.category;
 
-  // db.collection("categories")
-  // .doc("Tools-Category")
-  // .set({
-  //   category_id: 1,
-  //   category_name: "Tools-Category",
-  //   products: [
-  //     {
-  //       product_id: 11,
-
-  //       product_category: "Tools-Category",
-  //       product_comments: [{ user_comment: "No comment", user_id: 0 }],
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const item_local = localStorage.getItem("item");
-    if (item_local) {
-      setItem(JSON.parse(item_local));
-      setRelated(localStorage.getItem(JSON.parse(slider)));
+    // const item_local = localStorage.getItem("item");
+    // if (item_local) {
+    //   setItem(JSON.parse(item_local));
+    //   setRelated(localStorage.getItem(JSON.parse(slider)));
 
-      return;
-    }
+    //   return;
+    // }
+
     db.collection("categories")
       .where("category_name", "==", category)
       .get()
@@ -109,6 +100,25 @@ function Item() {
     );
   }
 
+  const saveComment = () => {
+    item[0]?.product_comments.map((e) => {
+      comments.push(e);
+      console.log(userComment);
+    });
+    // console.log(edit);
+    // console.log(data);
+    // comments.push(userComment);
+    // db.collection("categories")
+    //   .doc("Electronics-Categories")
+    //   .set({
+    //     products: [
+    //       {
+    //         product_id: itemId,
+    //         product_comments: [{ comments }],
+    //       },
+    //     ],
+    //   });
+  };
   return (
     <div className="bg-white outline outline-[43px] outline-white">
       <div className="mx-5 my-10 bg-white">
@@ -185,8 +195,13 @@ function Item() {
         <div className="w-[80%] m-auto">
           <div>
             <h3 className="text-xl font-bold">Add your review</h3>
-            <CKEditor data="<p>Hello from CKEditor 4!</p>" />
-            <button className="button mt-4">Add Review</button>
+            <CKEditor
+              value={userComment.value}
+              data="<p>Hello from CKEditor 4!</p>"
+            />
+            <button onClick={saveComment} className="button mt-4">
+              Add Review
+            </button>
           </div>
           {item[0]?.product_comments.map((e) => {
             return (

@@ -13,7 +13,7 @@ import {
 } from "@heroicons/react/outline";
 
 function Header() {
-	console.log = function(){};
+  // console.log = function(){};
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
   const [categories, setCata] = useState([]);
@@ -30,7 +30,7 @@ function Header() {
     goToProducts();
   };
   useEffect(() => {
-	  console.log("i am in use effect")
+    console.log("i am in use effect");
     const category = sessionStorage.getItem("category");
     if (category) {
       setCata(JSON.parse(category));
@@ -48,9 +48,9 @@ function Header() {
         sessionStorage.setItem("category", JSON.stringify(categories));
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        console.log("Error getting documents: ", error.message);
       });
-  },[]);
+  }, []);
 
   return (
     <>
@@ -74,7 +74,11 @@ function Header() {
             id="search"
             onKeyPress={goToProducts}
           />
-          <SearchIcon id="searchButton" onClick={goToProducts} className="h-12 p-4" />
+          <SearchIcon
+            id="searchButton"
+            onClick={goToProducts}
+            className="h-12 p-4"
+          />
         </div>
 
         <div className="header__nav text-white flex items-center text-xs space-x-6 px-4">
