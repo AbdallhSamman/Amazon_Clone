@@ -26,12 +26,6 @@ function Item() {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const item_local = localStorage.getItem("item");
-    if (item_local) {
-      setItem(JSON.parse(item_local));
-      setRelated(localStorage.getItem(JSON.parse(slider)));
-      return;
-    }
     db.collection("categories")
       .where("category_name", "==", category)
       .get()
@@ -44,18 +38,16 @@ function Item() {
             if (e.product_id == itemId) {
               product.push(e);
               setItem(product);
-              localStorage.setItem("item", JSON.stringify(product));
             }
           });
         });
-        localStorage.setItem("slider", JSON.stringify(slider));
       });
   }, []);
 
   let sliders = related[0]?.map((e, i) => {
     return (
-      <SwiperSlide key={i + 2000}>
-        <Link to={`/item/${e.product_category}/${e.product_id}`}>
+      <Link to={`/item/${e.product_category}/${e.product_id}`}>
+        <SwiperSlide key={i + 2000}>
           <div>
             <img
               style={{ width: "300px", height: "200px", objectFit: "contain" }}
@@ -82,8 +74,8 @@ function Item() {
               </span>
             </h5>
           </div>
-        </Link>
-      </SwiperSlide>
+        </SwiperSlide>
+      </Link>
     );
   });
 
