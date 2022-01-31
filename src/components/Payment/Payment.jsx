@@ -7,18 +7,23 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format'
 import { getBasketTotal } from '../../reducer'
 import { useEffect } from 'react/cjs/react.development'
-import { auth , db} from '../Firebase/firebase'
+import { auth, db } from '../Firebase/firebase'
 import axios from 'axios'
 
 const Payment = () => {
-
   const [{ basket, user }, dispatch] = useStateValue()
   const stripe = useStripe()
-
+  const [reqErr, setreqErr] = useState('')
   const elements = useElements()
   const navigat = useNavigate()
   const [error, setError] = useState(null)
   const [disabled, setDisabled] = useState(true)
+  const [fullName, setFullName] = useState('')
+  const [street, setStreet] = useState('')
+  const [city, setCity] = useState('')
+  const [zip, setZip] = useState('')
+  const [phone, setPhone] = useState('')
+  const [building, setBuilding] = useState('')
 
   const [succeeded, setSucceeded] = useState(false)
   const [processing, setProcessing] = useState('')
@@ -42,6 +47,17 @@ const Payment = () => {
       saveOrder()
     } else navigat('/login')
   }
+  const handelAddress = (e) => {
+    e.preventDefault()
+
+    if (fullName || city || zip || street || phone || building === '') {
+      setreqErr('all Field is Required')
+      return false
+    } else {
+      setreqErr('')
+      return true
+    }
+  }
 
   const handleChange = (e) => {
     setDisabled(e.empty)
@@ -56,7 +72,6 @@ const Payment = () => {
         products: [...basket],
       })
 
-     
     navigat('/profile')
   }
   
@@ -78,9 +93,7 @@ const Payment = () => {
 
       })
 
-  }
-  
-
+ 
   return (
     <div className="payment">
       {basket.length == 0 ? (
@@ -97,25 +110,82 @@ const Payment = () => {
             </div>
             <section className="payment__section1">
               <div className="address__left">
-                <form id='addressForm'>
+                <form id="addressForm">
                   <h1 className="text-center text-[25px] mb-8 font-bold">
                     Address Form
                   </h1>
+                  <span className="text-center bg-[#F8D7DA] text-[#ff6347] font-bold rounded-lg mb-2">
+                    {reqErr}
+                  </span>
                   <h5>Full name (First and Last name)</h5>
-                  <input id='fullname' type="text" />
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    id="fullname"
+                  />
                   <h5>Phone number</h5>
-                  <input id='phoneNumber' type="number" />
+                  <input
+                    id="phoneNumber"
+                    type="number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Must be a Number"
+                  />
                   <h5>Address</h5>
-                  <input id='streetAddress' placeholder="Street Address" type="text" />
+                  <input
+                    id="streetAddress"
+                    placeholder="Street Address"
+                    type="text"
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                  />
                   <input
                     placeholder="Apt, unit, bulding, floor, etc"
                     type="text"
-                    id='building'
+                    id="building"
+                    value={building}
+                    onChange={(e) => setBuilding(e.target.value)}
                   />
                   <h5>City</h5>
-                  <input id='city' type="text" />
+                  <input
+                    id="city"
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
                   <h5>ZIP Code</h5>
-                  <input id='zip' type="text" />
+                  <input
+                    type="number"
+                    id="zip"
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
+                    placeholder="Must be a Number"
+                  />
+
+                  <div className="payment__details">
+                    <CardElement onChange={handleChange} />
+                    <div className="payment__priceContainer">
+                      <CurrencyFormat
+                        renderText={(value) => <h3>Order Total:{value}</h3>}
+                        decimalScale={2}
+                        value={getBasketTotal(basket)}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'$'}
+                      />
+                      {/* <button className="buyNow" >
+                          <span>{'Buy Now'}</span>
+                        </button> */}
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className="login__signInButton"
+                    onClick={(e) => handleSubmit(e)}
+                  >
+                    Buy Now
+                  </button>
                 </form>
               </div>
 
@@ -125,7 +195,7 @@ const Payment = () => {
                 </h1>
                 {basket.map((item) => (
                   <CheckoutProduct
-                    key={item.id+Math.floor(Math.random()*50)}
+                    key={item.id + Math.floor(Math.random() * 50)}
                     id={item.id}
                     title={item.title}
                     image={item.image}
@@ -137,24 +207,6 @@ const Payment = () => {
                 <section className="payment__section">
                   <div className="payment__title">
                     <h3>Payment method</h3>
-                  </div>
-                  <div className="payment__details">
-                    <form>
-                      <CardElement onChange={handleChange} />
-                      <div className="payment__priceContainer">
-                        <CurrencyFormat
-                          renderText={(value) => <h3>Order Total:{value}</h3>}
-                          decimalScale={2}
-                          value={getBasketTotal(basket)}
-                          displayType={'text'}
-                          thousandSeparator={true}
-                          prefix={'$'}
-                        />
-                        <button className="buyNow" onClick={handleSubmit}>
-                          <span>{'Buy Now'}</span>
-                        </button>
-                      </div>
-                    </form>
                   </div>
                 </section>
               </div>

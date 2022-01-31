@@ -33,7 +33,6 @@
     max-width: 70%;
     margin: auto;
     text-align: center;
-    font-family: arial;
     margin-bottom: 15px;
   }
   .card>img{
@@ -98,8 +97,8 @@
   }
   .order-img{
       grid-area: product-img;
-    
-      object-fit: contain;
+      width: 7rem;
+      height: 7rem;
   }
   .cansel-order{
       grid-area: cancsel;
