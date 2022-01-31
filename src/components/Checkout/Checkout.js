@@ -19,7 +19,6 @@ function Checkout() {
       ):(
         <>
       <div className="checkout__left">
-        <div>
           <h2 className="checkout__title">Your Shopping Basket</h2>
           {basket.map((item) => (
             <CheckoutProduct
@@ -31,14 +30,14 @@ function Checkout() {
               rating={item.rating}
             />
           ))}
-        </div>
-      </div>
-      <div className="checkout__right">
+       </div>
+
+        <div className="checkout__right">
         <Subtotal />
-      </div>
-      </>
+        </div>
+        </>
       )}
-    </div>
+      </div>
   );
 }
 

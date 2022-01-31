@@ -143,8 +143,6 @@ function Header() {
             {ele.split("-")[0]}
           </p>
         ))}
-        {/* <p className="link">Prime Video</p>
-				<p className="link hidden lg:inline-flex">Health & Personal Care</p> */}
       </div>
     </>
   );
