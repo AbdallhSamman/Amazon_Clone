@@ -30,7 +30,7 @@ const Products = () => {
 							description={elemento.product_description}
 							image={elemento.product_images[0]}
 							rating={Math.floor(
-								elemento.product_rating / elemento.product_users_rating
+							elemento.product_rating / elemento.product_users_rating
 							)}
 						/>
 					);
