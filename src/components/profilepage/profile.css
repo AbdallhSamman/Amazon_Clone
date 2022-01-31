@@ -98,8 +98,8 @@
   }
   .order-img{
       grid-area: product-img;
-    
-      object-fit: contain;
+      width: 7rem;
+      height: 7rem;
   }
   .cansel-order{
       grid-area: cancsel;

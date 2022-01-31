@@ -18,7 +18,10 @@ const Payment = () => {
   const navigat = useNavigate()
   const [error, setError] = useState(null)
   const [disabled, setDisabled] = useState(true)
-
+const [fullName,setFullName]=useState('')
+const [street,setStreet]=useState('')
+const [city,setCity]=useState('')
+const [zip,setZip]=useState('')
   const [succeeded, setSucceeded] = useState(false)
   const [processing, setProcessing] = useState('')
 
@@ -56,6 +59,13 @@ const Payment = () => {
 
     navigat('/profile')
   }
+  const handelAddress=(e)=>{
+	  e.preventDefault();
+	  if(fullName===''){
+		window.alert('all field is required')
+	  }
+
+  }
 
   return (
     <div className="payment">
@@ -73,24 +83,24 @@ const Payment = () => {
             </div>
             <section className="payment__section1">
               <div className="address__left">
-                <form>
+                <form onSubmit={handelAddress}> 
                   <h1 className="text-center text-[25px] mb-8 font-bold">
                     Address Form
                   </h1>
                   <h5>Full name (First and Last name)</h5>
-                  <input type="text" />
+                  <input type="text" value={fullName} onChange={(e)=>setFullName(e.target.value)}/>
                   <h5>Phone number</h5>
                   <input type="number" />
                   <h5>Address</h5>
-                  <input placeholder="Street Address" type="text" />
+                  <input placeholder="Street Address" type="text" value={street} onChange={(e)=>setStreet(e.target.value)} />
                   <input
                     placeholder="Apt, unit, bulding, floor, etc"
                     type="text"
                   />
                   <h5>City</h5>
-                  <input type="text" />
+                  <input type="text" value={city} onChange={(e)=>setCity(e.target.value)}/>
                   <h5>ZIP Code</h5>
-                  <input type="text" />
+                  <input type="text" value={zip} onChange={(e)=>setZip(e.target.value)}/>
 
                   <button type="submit" className="login__signInButton">
                     Use this address
