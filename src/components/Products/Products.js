@@ -11,8 +11,9 @@ const Products = () => {
 	const [filter_products, setProductsFilter] = useState([]);
 	const [priceFilter, setPriceFilter] = useState(999);
 	const [rateFilter, setRateFilter] = useState(1);
+	const [search, setSearch] = useState("");
 	let product = [];
-
+	
 	const [rating, setRating] = useState(0);
 	const [hover, setHover] = useState(0);
 
@@ -21,7 +22,15 @@ const Products = () => {
 			if (elemento.product_price <= priceFilter) {
 				let proRate = elemento.product_rating / elemento.product_users_rating;
 				if (proRate >= rateFilter) {
-					return (
+					if (
+						elemento.product_name
+						  .toLowerCase()
+						  .includes(search.toLowerCase()) ||
+						elemento.product_description
+						  .toLowerCase()
+						  .includes(search.toLowerCase())
+					  )
+					{return (
 						<Product
 							key={elemento.product_id}
 							id={elemento.product_id}
@@ -33,7 +42,7 @@ const Products = () => {
 							elemento.product_rating / elemento.product_users_rating
 							)}
 						/>
-					);
+					);}
 				}
 			}
 		});
@@ -47,7 +56,10 @@ const Products = () => {
 				querySnapshot.forEach((docs) => {
 					product.push(docs.data().products);
 				});
-
+				let searchBar = document.getElementById("search");
+				searchBar.addEventListener("keyup", (e) => {
+				  setSearch(e.target.value);
+				});
 				setProducts(product);
 				setProductsFilter(product);
 			})
