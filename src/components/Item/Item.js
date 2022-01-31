@@ -1,12 +1,13 @@
 import { StarIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import "swiper/css/bundle";
 import "./Item.css";
 import "swiper/css/bundle";
 import { CKEditor } from "ckeditor4-react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { db } from "../Firebase/firebase";
+import { useParams } from "react-router-dom";
 // Import Swiper styles
 // import "swiper/css";
 // import "swiper/css/pagination";
@@ -14,6 +15,39 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper";
 function Item() {
+  const [item, setItem] = useState([]);
+  let product = [];
+  let stars = [];
+  const params = useParams();
+  const itemId = params.itemId;
+  const category = params.category;
+
+  useEffect(() => {
+    db.collection("categories")
+      .where("category_name", "==", category)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let products = doc.data().products;
+          products.forEach((e) => {
+            console.log(e.product_comments);
+            if (e.product_id == itemId) {
+              product.push(e);
+              setItem(product);
+            }
+          });
+        });
+      });
+  }, []);
+
+  for (let i = 0; i < item[0]?.product_rating; i++) {
+    stars.push(
+      <span>
+        <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+      </span>
+    );
+  }
+
   return (
     <div className="bg-white outline outline-[43px] outline-white">
       <div className="mx-5 my-10 bg-white">
@@ -51,20 +85,17 @@ function Item() {
             />
           </div>
           <div className="mt-5 md:mt-0">
+            <h1 className="text-[16px] font-semibold">
+              {item[0]?.product_name}
+            </h1>
             <p className="text-[rgb(0,113,133)]">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et
-              voluptatibus adipisci nesciunt aspernatur repellat eaque error
-              aliquid facere ratione, iure ipsum pariatur temporibus sed quod,
-              quae harum soluta numquam fugit.
+              {item[0]?.product_description}
             </p>
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+            {stars}
+            {`(${item[0] ? item[0].product_users_rating : ""})`}
           </div>
           <aside className="border-2 mt-5 md:mt-0 rounded-xl p-5 border-radius-2 bg-white border-neutral-400">
-            <p className="text-red-600">$99.12</p>
+            <p className="text-red-600">{item[0]?.product_price}JOD</p>
             <p className="text-green-600">In Stock.</p>
             <select className="" name="" id="">
               <option value="1">1</option>
@@ -95,11 +126,7 @@ function Item() {
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
+              <p className="text-[rgb(0,113,133)]">{item[0]?.product_name}</p>
               <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
               <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
               <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />

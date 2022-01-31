@@ -51,7 +51,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/orders" element={<Orders />}></Route>
           <Route path="/products" element={<Products />}></Route>
-          <Route path="/item/:itemId" element={<Item />}></Route>
+          <Route path="/item/:category/:itemId" element={<Item />}></Route>
           <Route
             path="/payment"
             element={

@@ -4,11 +4,8 @@ import { db } from "../Firebase/firebase";
 import "./products.css";
 import Slider from "@mui/material/Slider";
 import { StarIcon } from "@heroicons/react/solid";
-import { useParams } from "react-router-dom";
 
 const Products = () => {
-  const params = useParams();
-  const itemId = params.itemId;
   const [products, setProducts] = useState([]);
 
   const [filter_products, setProductsFilter] = useState([]);
