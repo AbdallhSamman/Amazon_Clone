@@ -1,25 +1,25 @@
-import firebase from 'firebase'
+import firebase from "firebase";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyB53LTOXUbSxnUYwfOqK-YTCKYWDCpgkvI",
-  authDomain: "fir-31d46.firebaseapp.com",
-  projectId: "fir-31d46",
-  storageBucket: "fir-31d46.appspot.com",
-  messagingSenderId: "464980655865",
-  appId: "1:464980655865:web:369eb9a65a6eb20ee2ec28"
-}
+  apiKey: "AIzaSyDGCbbhLDtbI28j6x2iYdSdozKf-sUq-ec",
+  authDomain: "fir-9062e.firebaseapp.com",
+  projectId: "fir-9062e",
+  storageBucket: "fir-9062e.appspot.com",
+  messagingSenderId: "746060203763",
+  appId: "1:746060203763:web:bf20e36cd8f4b237645986",
+};
 
-const firebaseApp = firebase.initializeApp(firebaseConfig)
-const db = firebaseApp.firestore()
-const auth = firebase.auth()
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
 
 function generateItems() {
-  db.collection('categories')
-    .doc('Tools-Category')
+  db.collection("categories")
+    .doc("Tools-Category")
     .set({
       category_id: 1,
-      category_name: 'Tools-Category',
-      category_image: 'https://picsum.photos/200',
+      category_name: "Tools-Category",
+      category_image: "https://picsum.photos/200",
       products: [
         {
           product_id: 11,
@@ -32,11 +32,11 @@ function generateItems() {
           product_price: 26.05,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Tools-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Tools-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71bY48eVGKL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/81bw9zi0oRL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71bY48eVGKL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/81bw9zi0oRL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -50,11 +50,11 @@ function generateItems() {
           product_price: 59.49,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Tools-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Tools-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71u-DUwMYCL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/71LLHBWefvL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71u-DUwMYCL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71LLHBWefvL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -69,11 +69,11 @@ function generateItems() {
           product_price: 18.99,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Tools-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Tools-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71rjjsOjvuL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/815JASIIL0L._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71rjjsOjvuL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/815JASIIL0L._AC_SL1500_.jpg",
           ],
         },
         {
@@ -87,12 +87,12 @@ function generateItems() {
           product_price: 10.1,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Tools-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Tools-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/717alcC63DL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/71cxwYOO8YL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/71shh7RwTqL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/717alcC63DL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71cxwYOO8YL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71shh7RwTqL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -107,11 +107,11 @@ function generateItems() {
           product_price: 165.99,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Tools-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Tools-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/511u6Ug1o-L._AC_SL1000_.jpg',
-            'https://m.media-amazon.com/images/I/61dp4mA7GoL._AC_SL1000_.jpg',
+            "https://m.media-amazon.com/images/I/511u6Ug1o-L._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/61dp4mA7GoL._AC_SL1000_.jpg",
           ],
         },
         {
@@ -126,22 +126,22 @@ function generateItems() {
           product_price: 14.44,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Tools-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Tools-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/719F0MJ+52L._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/71oUrM9by+L._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/719F0MJ+52L._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71oUrM9by+L._AC_SL1500_.jpg",
           ],
         },
       ],
-    })
-    //--------------------------------------------------------
-  db.collection('categories')
-    .doc('Electronics-Category')
+    });
+  //--------------------------------------------------------
+  db.collection("categories")
+    .doc("Electronics-Category")
     .set({
       category_id: 2,
-      category_name: 'Electronics-Category',
-      category_image: 'https://picsum.photos/200',
+      category_name: "Electronics-Category",
+      category_image: "https://picsum.photos/200",
       products: [
         {
           product_id: 1,
@@ -157,11 +157,11 @@ function generateItems() {
           product_price: 59.99,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Electronics-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Electronics-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/91fAU6mxFsL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/81zsiJ+JnfL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/91fAU6mxFsL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/81zsiJ+JnfL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -179,11 +179,11 @@ function generateItems() {
           product_price: 226.99,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Electronics-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Electronics-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/61pUul1oDlL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/61pUul1oDlL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/61pUul1oDlL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61pUul1oDlL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -200,11 +200,11 @@ function generateItems() {
           product_price: 78.75,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Electronics-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Electronics-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71iNwni9TsL._AC_UL320_.jpg',
-            'https://m.media-amazon.com/images/I/61eHA-SIfyL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71iNwni9TsL._AC_UL320_.jpg",
+            "https://m.media-amazon.com/images/I/61eHA-SIfyL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -216,15 +216,15 @@ function generateItems() {
           4.6 GHz Max Boost, unlocked for overclocking, 35 MB of cache, DDR-3200 support
           For the advanced Socket AM4 platform, can support PCIe 4.0 on X570 and B550 motherboards`,
           product_name: `AMD Ryzen 5 5600X 6-core, 12-Thread Unlocked Desktop Processor with Wraith Stealth Cooler`,
-          product_price: 299.00,
+          product_price: 299.0,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Electronics-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Electronics-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/61vGQNUEsGL._AC_SL1384_.jpg',
-            'https://m.media-amazon.com/images/I/71KV0V8AxbL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/61uUIygd0JS._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/61vGQNUEsGL._AC_SL1384_.jpg",
+            "https://m.media-amazon.com/images/I/71KV0V8AxbL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61uUIygd0JS._AC_SL1500_.jpg",
           ],
         },
         {
@@ -241,24 +241,23 @@ function generateItems() {
           product_price: 179.99,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Electronics-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Electronics-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/910jyKG9QlL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/91AAJgtUCKL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/910jyKG9QlL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/91AAJgtUCKL._AC_SL1500_.jpg",
           ],
         },
-       
       ],
-    })
+    });
 
   //----------------------------------------------
-  db.collection('categories')
-    .doc('home-Category')
+  db.collection("categories")
+    .doc("home-Category")
     .set({
       category_id: 10,
-      category_name: 'home-Category',
-      category_image: 'https://picsum.photos/200',
+      category_name: "home-Category",
+      category_image: "https://picsum.photos/200",
       products: [
         {
           product_id: 602,
@@ -272,11 +271,11 @@ function generateItems() {
           product_price: 109.99,
           product_rating: 3,
           product_users_rating: 1,
-          product_category: 'home-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "home-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/61pogFeI7PL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/71HNCrPx4dL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/61pogFeI7PL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71HNCrPx4dL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -290,11 +289,11 @@ function generateItems() {
           product_price: 28.89,
           product_rating: 3,
           product_users_rating: 1,
-          product_category: 'home-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "home-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/717CGms8KWL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/81-4jj4b10L._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/717CGms8KWL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/81-4jj4b10L._AC_SL1500_.jpg",
           ],
         },
         {
@@ -311,11 +310,11 @@ function generateItems() {
           product_price: 145.09,
           product_rating: 4,
           product_users_rating: 1,
-          product_category: 'home-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "home-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/91VGmYYrzzL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/914-htizkTL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/91VGmYYrzzL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/914-htizkTL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -331,11 +330,11 @@ function generateItems() {
           product_price: 76.49,
           product_rating: 4,
           product_users_rating: 1,
-          product_category: 'home-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "home-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71ioxwPdmEL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/81SbzQvYYBL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71ioxwPdmEL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/81SbzQvYYBL._AC_SL1500_.jpg",
           ],
         },
         {
@@ -351,21 +350,21 @@ function generateItems() {
           product_price: 149.99,
           product_rating: 4,
           product_users_rating: 1,
-          product_category: 'home-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "home-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71+pKTiBdKS._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/71xpKoanrsL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71+pKTiBdKS._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71xpKoanrsL._AC_SL1500_.jpg",
           ],
         },
       ],
-    })
-  db.collection('categories')
-    .doc('Games-Category')
+    });
+  db.collection("categories")
+    .doc("Games-Category")
     .set({
       category_id: 999,
-      category_name: 'Games-Category',
-      category_image: 'https://picsum.photos/200',
+      category_name: "Games-Category",
+      category_image: "https://picsum.photos/200",
       products: [
         {
           product_id: 602,
@@ -378,11 +377,11 @@ function generateItems() {
           product_price: 24,
           product_rating: 1,
           product_users_rating: 1,
-          product_category: 'Games-Category',
-          product_comments: [{ user_comment: 'Trash Game', user_id: 1 }],
+          product_category: "Games-Category",
+          product_comments: [{ user_comment: "Trash Game", user_id: 1 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/61pBodxv9vL._AC_SX792_SY594_.jpg',
-            'https://m.media-amazon.com/images/I/71w13I3nt2S._AC_SX480_SY360_.jpg',
+            "https://m.media-amazon.com/images/I/61pBodxv9vL._AC_SX792_SY594_.jpg",
+            "https://m.media-amazon.com/images/I/71w13I3nt2S._AC_SX480_SY360_.jpg",
           ],
         },
         {
@@ -397,11 +396,11 @@ function generateItems() {
           product_price: 29.99,
           product_rating: 4,
           product_users_rating: 1,
-          product_category: 'Games-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Games-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/813sJmdG+7S._AC_SX960_SY720_.jpg',
-            'https://m.media-amazon.com/images/I/71pfo-qCwpL._AC_SX480_SY360_.jpg',
+            "https://m.media-amazon.com/images/I/813sJmdG+7S._AC_SX960_SY720_.jpg",
+            "https://m.media-amazon.com/images/I/71pfo-qCwpL._AC_SX480_SY360_.jpg",
           ],
         },
         {
@@ -416,12 +415,12 @@ function generateItems() {
           product_price: 25.99,
           product_rating: 5,
           product_users_rating: 1,
-          product_category: 'Games-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Games-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/91LjyPDhyCL._AC_SX960_SY720_.jpg',
-            'https://m.media-amazon.com/images/I/81BfbuECefL._AC_SX480_SY360_.jpg',
-            'https://m.media-amazon.com/images/I/81RQpDIFZYL._AC_SX480_SY360_.jpg',
+            "https://m.media-amazon.com/images/I/91LjyPDhyCL._AC_SX960_SY720_.jpg",
+            "https://m.media-amazon.com/images/I/81BfbuECefL._AC_SX480_SY360_.jpg",
+            "https://m.media-amazon.com/images/I/81RQpDIFZYL._AC_SX480_SY360_.jpg",
           ],
         },
         {
@@ -435,14 +434,14 @@ function generateItems() {
           product_price: 7.99,
           product_rating: 3,
           product_users_rating: 1,
-          product_category: 'Games-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Games-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/91AFCdHkvoL._AC_SX960_SY720_.jpg',
-            'https://m.media-amazon.com/images/I/81VXAsno2fL._AC_SX480_SY360_.jpg',
+            "https://m.media-amazon.com/images/I/91AFCdHkvoL._AC_SX960_SY720_.jpg",
+            "https://m.media-amazon.com/images/I/81VXAsno2fL._AC_SX480_SY360_.jpg",
           ],
         },
-        
+
         {
           product_id: 7017,
           product_description: `About this item
@@ -456,17 +455,17 @@ function generateItems() {
           product_price: 15.99,
           product_rating: 5,
           product_users_rating: 1,
-          product_category: 'Games-Category',
-          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_category: "Games-Category",
+          product_comments: [{ user_comment: "No comment", user_id: 0 }],
           product_images: [
-            'https://m.media-amazon.com/images/I/71bY48eVGKL._AC_SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/81bw9zi0oRL._AC_SL1500_.jpg',
+            "https://m.media-amazon.com/images/I/71bY48eVGKL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/81bw9zi0oRL._AC_SL1500_.jpg",
           ],
         },
       ],
-    })
+    });
 }
-generateItems();
+// generateItems();
 
 // generateItems();
 // let products = [];
@@ -484,4 +483,4 @@ generateItems();
 //     console.log("Error getting documents: ", error);
 //   });
 
-export { db, auth }
+export { db, auth };

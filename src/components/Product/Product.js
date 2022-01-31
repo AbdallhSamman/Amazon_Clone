@@ -33,7 +33,9 @@ function Product({ id, title, image, price, rating, description, category }) {
           style={{ objectFit: "contain", margin: "auto" , marginTop: "20px" }}
         />
         <h4 className="my-3 ">
-          <span className="bold">{title} </span>
+          <p className="bold" >
+            {title}
+          </p>
         </h4>
 
         <div className="flex">
@@ -49,7 +51,7 @@ function Product({ id, title, image, price, rating, description, category }) {
         </Link>
 
         <button onClick={addToBasket} className="mt-auto button">
-          Add to card
+          Add to cart
         </button>
       </div>
   );
