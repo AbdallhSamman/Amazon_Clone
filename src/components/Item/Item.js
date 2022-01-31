@@ -50,7 +50,7 @@ function Item() {
 
   let sliders = related[0]?.map((e, i) => {
     return (
-      <SwiperSlide key={i}>
+      <SwiperSlide key={i+2000}>
         <div>
           <img
             style={{ width: "300px", height: "200px", objectFit: "contain" }}
@@ -62,7 +62,8 @@ function Item() {
           {Array(Math.floor(e.product_rating / e.product_users_rating))
             .fill()
             .map((_, i) => (
-              <StarIcon className="h-3 inline-block text-yellow-500" />
+              
+              <StarIcon className="h-3 inline-block text-yellow-500" key={i+1001} />
             ))}
           {`(${e ? e.product_users_rating : ""})`}
           <h5>

@@ -36,7 +36,7 @@ const Products = () => {
 					  )
 					{return (
 						<Product
-							key={elemento.product_id}
+							key={elemento.product_id+11000}
 							id={elemento.product_id}
 							title={elemento.product_name}
 							price={elemento.product_price}
@@ -118,7 +118,7 @@ const Products = () => {
                       return (
                         <button
                           type="button"
-                          key={index}
+                          key={index+10000}
                           className={` h-5   w-5  text-yellow-500   ${
                             index <= (hover || rating) ? "on" : "off"
                           }`}
