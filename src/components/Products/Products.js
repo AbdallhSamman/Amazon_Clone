@@ -29,7 +29,10 @@ const Products = () => {
 						  .includes(search.toLowerCase()) ||
 						elemento.product_description
 						  .toLowerCase()
-						  .includes(search.toLowerCase())
+						  .includes(search.toLowerCase()) ||
+						elemento.product_category
+						  .toLowerCase()
+					      .includes(search.toLowerCase())
 					  )
 					{return (
 						<Product
@@ -61,9 +64,13 @@ const Products = () => {
 				let searchBar = document.getElementById("search");
 				searchBar.addEventListener("keyup", (e) => {
 				  setSearch(e.target.value);
+				  setProducts(product);
+			      setProductsFilter(product);
 				});
-				setProducts(product);
-				setProductsFilter(product);
+				setSearch(searchBar.value);
+				  setProducts(product);
+			      setProductsFilter(product);
+				
 			})
 			.catch((error) => {
 				console.log("Error getting documents: ", error);
