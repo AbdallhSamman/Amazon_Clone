@@ -30,8 +30,7 @@ function Item() {
     if (item_local) {
       setItem(JSON.parse(item_local));
       setRelated(localStorage.getItem(JSON.parse(slider)));
-
-      return;
+      return; 
     }
     db.collection("categories")
       .where("category_name", "==", category)

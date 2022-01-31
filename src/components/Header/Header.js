@@ -29,7 +29,12 @@ function Header() {
     goToProducts();
   };
   useEffect(() => {
-   
+	  console.log("i am in use effect")
+    const category = sessionStorage.getItem("category");
+    if (category) {
+      setCata(JSON.parse(category));
+      return;
+    }
 
     let categories = [];
     db.collection("categories")
@@ -39,12 +44,12 @@ function Header() {
           categories.push(docs.data().category_name);
         });
         setCata(categories);
-      
+        sessionStorage.setItem("category", JSON.stringify(categories));
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
-  });
+  },[]);
 
   return (
     <>
