@@ -5,6 +5,7 @@ import { auth } from "../Firebase/firebase";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { NavLink } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import {
 	MenuIcon,
 	SearchIcon,
@@ -13,11 +14,15 @@ import {
 
 function Header() {
 	const [{ basket, user }, dispatch] = useStateValue();
+	const navigate  = useNavigate ();
 	const handelAuth = () => {
 		if (user) {
 			auth.signOut();
 		}
 	};
+	const goToProducts=()=>{
+		navigate('/products')
+	}
 	return (
 		<>
 			<header className="header">
@@ -38,8 +43,9 @@ function Header() {
 						className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
 						type="text"
 						id="search"
+						onKeyPress={goToProducts}
 					/>
-					<SearchIcon className="h-12 p-4" />
+					<SearchIcon onClick={goToProducts} className="h-12 p-4" />
 				</div>
 
 				<div className="header__nav text-white flex items-center text-xs space-x-6 px-4">

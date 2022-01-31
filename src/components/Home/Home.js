@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "@mui/material/Slider";
 import { StarIcon } from "@heroicons/react/solid";
 import Videos from "../Videoes/Videos";
+import { useNavigate } from "react-router-dom";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -22,9 +23,11 @@ function Home() {
   const [priceFilter, setPriceFilter] = useState(999);
   const [rateFilter, setRateFilter] = useState(5);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   let product = [];
 
   const returnProduct = (element) => {
+    let found = 0;
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
@@ -37,6 +40,7 @@ function Home() {
               .toLowerCase()
               .includes(search.toLowerCase())
           ) {
+            found += 1;
             return (
               <Product
                 key={elemento.product_id}
@@ -50,6 +54,15 @@ function Home() {
                   elemento.product_rating / elemento.product_users_rating
                 )}
               />
+            );
+          } else if (found === 0) {
+            return (
+              <div>
+                <h1>
+                  There is no Item found <br></br>Check Spelling please or try
+                  another keyword{" "}
+                </h1>
+              </div>
             );
           }
         }
@@ -128,6 +141,7 @@ function Home() {
             .map((elee, index) => returnProduct(elee))}
         </div>
       </div>
+      <Videos />
     </div>
   );
 }
