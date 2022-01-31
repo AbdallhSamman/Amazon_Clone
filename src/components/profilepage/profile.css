@@ -4,14 +4,17 @@
     border: rgb(175, 174, 174) solid 2px;
     border-radius: 10px;
     grid-template-areas: 
-    'left right weather'
+    'left right right right '
+    
 }
 .left{
     grid-area: left;
     border-right: rgb(175, 174, 174) solid 1px;
+  
 }
 .right{
     grid-area: right;
+    
 }
 .weather{
     grid-area: weather;
@@ -76,7 +79,8 @@
   }
   .order-card >.card-header{
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content: space-between;
       background-color: #F6F6F6;
       padding: 1rem;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

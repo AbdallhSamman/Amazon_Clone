@@ -1,28 +1,14 @@
-.video{
-    width: 100%;
+.videos {
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
 }
-.videos__container{
-    padding: 20px;
-    background-color: #fff;
-    height: max-content;
+.videos__container {
+  background-color: #fff;
+  padding: 1rem 0;
 }
-
-.videos__title{
-    text-align: center;
-    width: fit-content;
-}
-.videos__items{
-    list-style: none;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-}
-.videos__singleVideo{
-    height: max-content;
-    margin: 0.5rem;
-}
-iframe{
-    display: inline-block;
+.videos__title {
+  margin: 1.5rem auto;
+  border-bottom: 1px solid gray;
+  width: fit-content;
 }
