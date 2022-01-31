@@ -55,6 +55,7 @@ const Products = () => {
   };
 
   useEffect(() => {
+	  console.log("i am in user effect");
     const allItem = localStorage.getItem("allItem");
     // if (allItem) {
     //   setProducts(JSON.parse(allItem));
@@ -67,7 +68,7 @@ const Products = () => {
           product.push(docs.data().products);
         });
         let searchBar = document.getElementById("search");
-        searchBar.addEventListener("keyup", (e) => {
+        searchBar.addEventListener("click", (e) => {
           setSearch(e.target.value);
           setProducts(product);
           setProductsFilter(product);
