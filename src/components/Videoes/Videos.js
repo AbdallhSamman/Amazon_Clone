@@ -11,7 +11,22 @@ function Videos() {
       <div className="videos__container">
         <h1 className="videos__title">Amazon Related Videos</h1>
         <ul className="videos__items">
-          <Swiper navigation={true} className="mySwiper">
+          <Swiper
+            navigation={true}
+            className="mySwiper"
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              1120: {
+                slidesPerView: 2,
+              },
+              1440: {
+                slidesPerView: 3,
+              },
+            }}
+          >
             <SwiperSlide>
               <li className="videos__singleVideo" key={1}>
                 <iframe
@@ -19,9 +34,9 @@ function Videos() {
                   height="315"
                   src="https://www.youtube.com/embed/66qOop6J8Q8"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </li>
             </SwiperSlide>
@@ -32,9 +47,9 @@ function Videos() {
                   height="315"
                   src="https://www.youtube.com/embed/YORgJwW9xxQ"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </li>
             </SwiperSlide>
@@ -45,9 +60,9 @@ function Videos() {
                   height="315"
                   src="https://www.youtube.com/embed/DpNJ4DBn-t8"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </li>
             </SwiperSlide>

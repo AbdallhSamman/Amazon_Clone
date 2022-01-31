@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { auth } from "../Firebase/firebase";
+import { auth,db } from "../Firebase/firebase";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { NavLink } from "react-router-dom";
@@ -15,6 +15,7 @@ import {
 function Header() {
 	const [{ basket, user }, dispatch] = useStateValue();
 	const navigate  = useNavigate ();
+	const [categories,setCata] = useState([]);
 	const handelAuth = () => {
 		if (user) {
 			auth.signOut();
@@ -23,6 +24,24 @@ function Header() {
 	const goToProducts=()=>{
 		navigate('/products')
 	}
+	const goCategories=(cata)=>{
+		document.getElementById('search').value=cata
+		goToProducts()
+	}
+	useEffect(()=>{
+		let categories=[];
+		db.collection('categories').get().then((querySnapshot)=>{
+			
+			querySnapshot.forEach((docs) => {
+				categories.push(docs.data().category_name);
+			  });
+			 setCata(categories);
+			})
+			.catch((error) => {
+			  console.log("Error getting documents: ", error);
+			});
+		})
+
 	return (
 		<>
 			<header className="header">
@@ -103,15 +122,9 @@ function Header() {
         <Link to="/products">
         <p className="link">All</p>
         </Link>
-				<p className="link">Prime Video</p>
-				<p className="link">Amazon Business</p>
-				<p className="link">Today's Deals</p>
-				<p className="link hidden lg:inline-flex">Electronics</p>
-				<p className="link hidden lg:inline-flex">Food & Grocery</p>
-				<p className="link hidden lg:inline-flex">Prime</p>
-				<p className="link hidden lg:inline-flex">Buy Again</p>
-				<p className="link hidden lg:inline-flex">Shopper Toolkit</p>
-				<p className="link hidden lg:inline-flex">Health & Personal Care</p>
+		{categories?.map((ele,index)=>(	<p key={index} onClick={()=>{goCategories(ele)}} className="link">{ele}</p>))}
+				{/* <p className="link">Prime Video</p>
+				<p className="link hidden lg:inline-flex">Health & Personal Care</p> */}
 			</div>
 		</>
 	);
