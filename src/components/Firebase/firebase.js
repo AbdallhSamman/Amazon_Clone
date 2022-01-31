@@ -16,10 +16,10 @@ const auth = firebase.auth()
 
 function generateItems() {
   db.collection('categories')
-    .doc('Tools category')
+    .doc('Tools-Category')
     .set({
       category_id: 1,
-      category_name: 'Tools category',
+      category_name: 'Tools-Category',
       category_image: 'https://picsum.photos/200',
       products: [
         {
@@ -33,8 +33,8 @@ function generateItems() {
           product_price: 26.05,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Tools category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Tools-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/71bY48eVGKL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/81bw9zi0oRL._AC_SL1500_.jpg',
@@ -51,8 +51,8 @@ function generateItems() {
           product_price: 59.49,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Tools category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Tools-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/71u-DUwMYCL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/71LLHBWefvL._AC_SL1500_.jpg',
@@ -70,8 +70,8 @@ function generateItems() {
           product_price: 18.99,
           product_rating: 10,
           product_users_rating: 2,
-          product_category: 'Tools category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Tools-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/71rjjsOjvuL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/815JASIIL0L._AC_SL1500_.jpg',
@@ -88,8 +88,8 @@ function generateItems() {
           product_price: 10.1,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Tools category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Tools-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/717alcC63DL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/71cxwYOO8YL._AC_SL1500_.jpg',
@@ -108,8 +108,8 @@ function generateItems() {
           product_price: 165.99,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Tools category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Tools-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/511u6Ug1o-L._AC_SL1000_.jpg',
             'https://m.media-amazon.com/images/I/61dp4mA7GoL._AC_SL1000_.jpg',
@@ -127,8 +127,8 @@ function generateItems() {
           product_price: 14.44,
           product_rating: 5,
           product_users_rating: 10,
-          product_category: 'Tools category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Tools-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/719F0MJ+52L._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/71oUrM9by+L._AC_SL1500_.jpg',
@@ -136,13 +136,129 @@ function generateItems() {
         },
       ],
     })
+    //--------------------------------------------------------
+  db.collection('categories')
+    .doc('Electronics-Category')
+    .set({
+      category_id: 2,
+      category_name: 'Electronics-Category',
+      category_image: 'https://picsum.photos/200',
+      products: [
+        {
+          product_id: 1,
+          product_description: `About this item
+          OUTSTANDING VISUALS – This FHD display with IPS technology gives you brilliant visuals and unforgettable quality; with a maximum resolution of 1920 x 1080 at 75 Hz, you’ll experience the image accuracy and wide-viewing spectrums of premium tablets and mobile devices
+          MORE SCREEN, LESS SPACE – Enjoy more desk space than you thought possible with an attractive and ultra-slim design
+          PANORAMIC VIEWING – Vibrant detail from practically any position with consistent color and image clarity maintained across an ultra-wide 178° horizontal and vertical viewing angles
+          MICRO-EDGE DISPLAY – With virtually no bezel encircling the display on three sides, an ultra-wide viewing experience provides for seamless multi-monitor setups
+          EASY CONNECTIVITY – Get the picture quality you’ve been looking for without the additional dongles; easily connect to your PC, gaming console, and peripherals for big-screen entertainment with a broad range of ports, including HDMI, DisplayPort, and VGA ports
+          BUILT-IN SPEAKERS – Experience incredible sound and more immersive entertainment with two built-in 2W speakers
+          LOW BLUE LIGHT – Put less strain on your eyes as a Low Blue Light mode shifts colors to a warmer spectrum and makes whites more natural`,
+          product_name: `Height/Tilt Adjustment for Ergonomic Viewing - HDMI and DisplayPort - (1D0J9AA#ABA)`,
+          product_price: 59.99,
+          product_rating: 10,
+          product_users_rating: 2,
+          product_category: 'Electronics-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/91fAU6mxFsL._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/81zsiJ+JnfL._AC_SL1500_.jpg',
+          ],
+        },
+        {
+          product_id: 2,
+          product_description: `About this item
+          Reliable Plug and Play: The USB receiver provides a reliable wireless connection up to 33 ft (1), so you can forget about drop-outs and delays and you can take it wherever you use your computer
+          Type in Comfort: The design of this keyboard creates a comfortable typing experience thanks to the low-profile, quiet keys and standard layout with full-size F-keys, number pad, and arrow keys
+          Durable and Resilient: This full-size wireless keyboard features a spill-resistant design (2), durable keys and sturdy tilt legs with adjustable height
+          Long Battery Life: MK270 combo features a 36-month keyboard and 12-month mouse battery life (3), along with on/off switches allowing you to go months without the hassle of changing batteries
+          Easy to Use: This wireless keyboard and mouse combo features 8 multimedia hotkeys for instant access to the Internet, email, play/pause, and volume so you can easily check out your favorite sites
+          Comfortable Mouse: This compact wireless mouse is designed to be equally comfortable for both left- and right-handed users, plus its smooth cursor control allows easy navigation on most surfaces
+          Favorite Wireless Combo: MK270 brings together familiar typing, wireless freedom, and long battery life; no wonder this is the world's top-selling combo(4)
+          Upgrade to Logitech MK540 Combo: Experience increased comfort with the MK540 combo, featuring scooped keys, palm rest, full-size mouse with soft rubber grips, and customizable shortcuts`,
+          product_name: `MK270 Wireless Keyboard and Mouse Combo`,
+          product_price: 226.99,
+          product_rating: 10,
+          product_users_rating: 2,
+          product_category: 'Electronics-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/61pUul1oDlL._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/61pUul1oDlL._AC_SL1500_.jpg',
+          ],
+        },
+        {
+          product_id: 3,
+          product_description: `About this item
+          Webcam comes with a 3-month XSplit VCam license and no privacy shutter. XSplit VCam lets you remove, replace and blur your background without a Green Screen.
+          Full HD 1080p video calling and recording at 30 fps - You’ll make a strong impression when it counts with crisp, clearly detailed and vibrantly colored video.
+          Stereo audio with dual mics - Capture natural sound on calls and recorded videos.
+          Advanced capture software – Create and share video content easily with Logitech Capture.
+          HD lighting adjustment and autofocus - The C920x automatically fine-tunes to the lighting conditions to produce bright, razor-sharp images even if you’re in a low-light setting.
+          Mic range - Up to 3 feet (1m)`,
+          product_name: `Logitech C920x HD Pro Webcam, Full HD 1080p/30fps Video Calling, Clear Stereo Audio, HD Light Correction,
+          Works with Skype, Zoom, FaceTime, Hangouts, PC/Mac/Laptop/Macbook/Tablet - Black`,
+          product_price: 78.75,
+          product_rating: 10,
+          product_users_rating: 2,
+          product_category: 'Electronics-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/71iNwni9TsL._AC_UL320_.jpg',
+            'https://m.media-amazon.com/images/I/61eHA-SIfyL._AC_SL1500_.jpg',
+          ],
+        },
+        {
+          product_id: 14,
+          product_description: `【About this item
+          AMD's fastest 6 core processor for mainstream desktop, with 12 processing threads
+          Can deliver elite 100+ FPS performance in the world's most popular games
+          Bundled with the quiet, capable AMD Wraith Stealth cooler. System Memory Type: DDR4
+          4.6 GHz Max Boost, unlocked for overclocking, 35 MB of cache, DDR-3200 support
+          For the advanced Socket AM4 platform, can support PCIe 4.0 on X570 and B550 motherboards`,
+          product_name: `AMD Ryzen 5 5600X 6-core, 12-Thread Unlocked Desktop Processor with Wraith Stealth Cooler`,
+          product_price: 299.00,
+          product_rating: 5,
+          product_users_rating: 10,
+          product_category: 'Electronics-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/61vGQNUEsGL._AC_SL1384_.jpg',
+            'https://m.media-amazon.com/images/I/71KV0V8AxbL._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/61uUIygd0JS._AC_SL1500_.jpg',
+          ],
+        },
+        {
+          product_id: 5,
+          product_description: `About this item
+          Support for 3rd Gen AMD Ryzen processors and future AMD Ryzen processors with BIOS update
+          Supports dual channel DDR4 memory up to 128 GB (4866 MHz)
+          On-board dual LAN: 2.5G LAN plus Gigabit LAN
+          Mystic Light: RGB LED lighting and extendable pin headers – 16.8 million colors / 29 effects
+          Audio Boost rewards your ears with studio grade sound quality for immersive gaming experiences
+          Premium Thermal Solution: Aluminum Cover with additional choke thermal pad rated for 7W/mk and PCB with 2 ounce thickened copper
+          Lightning Fast Game Experience: PCIe 4.0, Lightning Gen 4 M.2 with M.2 Shield Frozr, AMD Turbo USB 3.2 GEN 2`,
+          product_name: `MSI MAG B550 TOMAHAWK Gaming Motherboard (AMD AM4, DDR4, PCIe 4.0, SATA 6Gb/s, M.2, USB 3.2 Gen 2, HDMI/DP, ATX, AMD Ryzen 5000 Series processors)`,
+          product_price: 179.99,
+          product_rating: 5,
+          product_users_rating: 10,
+          product_category: 'Electronics-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/910jyKG9QlL._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/91AAJgtUCKL._AC_SL1500_.jpg',
+          ],
+        },
+       
+      ],
+    })
 
   //----------------------------------------------
   db.collection('categories')
-    .doc('home category')
+    .doc('home-Category')
     .set({
       category_id: 10,
-      category_name: 'home category',
+      category_name: 'home-Category',
       category_image: 'https://picsum.photos/200',
       products: [
         {
@@ -157,11 +273,29 @@ function generateItems() {
           product_price: 109.99,
           product_rating: 3,
           product_users_rating: 1,
-          product_category: 'home category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'home-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/61pogFeI7PL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/71HNCrPx4dL._AC_SL1500_.jpg',
+          ],
+        },
+        {
+          product_id: 765,
+          product_description: `2 in 1 heater fan: This ceramic heater provides two heat levels, 1500W or 750W and one cool air fan, you can use it both for winter and summer. Thermostat control of the heater will turn the heater off when it reaches a preset temperature and turn the heater back on when the temperature dips below the thermostat setting. It will cycle on and off. Adjust the setting of thermostat from 0℉ to 158℉ to keep room comfortable
+          Multi protection safety system: These heaters are made of flame retardant material avoiding any fire hazard. Automatic safety shutoff system will shut the heater off when the heater overheat. The tip over protection system will also shut the heater off when the heater was knocked over by accident and it will come back on automatically if it is up righted
+          Compact and powerful: 7.9 inch x 6.2 inch x 10.2 inch, 2.9 pounds portable mini heater with build in carry handle helps to reinforce the potential of rather low electrical bills by using at the place where you need when you don't want to warm the full house with other centralized heaters
+          Quiet and fast heating: The noise this ceramic heater makes is lower than 45 decibels, quiet enough for most people to use in a bedroom while sleeping. With PTC ceramic heating tech and high speed fan, this heater put out tons of heat to heat up 200 square feet in seconds
+          Upgrade abs material: Upgrade abs material applied, which is more flame resident. The room heater with six feet lead cord and 2 prong connection has a long lasting life`,
+          product_name: `Portable Electric Space Heater with Thermostat, 1500W/750W Safe and Quiet Ceramic Heater Fan, Heat Up 200 Square Feet for Office Room Desk Indoor Use`,
+          product_price: 28.89,
+          product_rating: 3,
+          product_users_rating: 1,
+          product_category: 'home-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/717CGms8KWL._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/81-4jj4b10L._AC_SL1500_.jpg',
           ],
         },
         {
@@ -178,20 +312,60 @@ function generateItems() {
           product_price: 145.09,
           product_rating: 4,
           product_users_rating: 1,
-          product_category: 'home category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'home-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/91VGmYYrzzL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/914-htizkTL._AC_SL1500_.jpg',
           ],
         },
+        {
+          product_id: 125,
+          product_description: `About this item
+          🥩12 PRESET COOKING MODES: The CROWNFUL Air Fryer makes life easier with its 7-quart large capacity and 12 preset cooking menu. That includes: Fish, Cake, Chicken Leg, French Fries, Bacon, Pork Chops, Chicken, Steak, Shrimp, Toast, Vegetables, Keep Warm. It also has an option to adjust the time and temperature according to your recipe requirement.
+          🍟HEALTHY EATING LIFESTYLE: This air fryer uses rapid air technology to cook your favorite meals, which using only little to no oil, it reduces oil or fat intake for up to 80% so it is ideal for health-conscious and active individuals who want to cook healthy foods faster and easier.
+          🍕STURDY AND EASY TO CLEAN: This air fryer made with highly durable material and comes with a detachable basket and nonstick grill plate that you can easily wash after cooking. The digital control panel is easy to operate - start cooking with just a touch of a button. It's efficient and convenient.
+          🍤STYLISH DESIGN WITH MATTE FINISHED BODY: The exterior design looks nice and simple. The matte finished body makes it easy to clean and dry. It's a great appliance that blends in any kitchen counter.
+          🍖LIFETIME SUPPORT AND WARRANTY: CROWNFUL offers 1-year warranty and friendly customer support, dedicated to provide you with an excellent and satisfying experience with the products and service.
+          `,
+          product_name: `CROWNFUL 7 Quart Air Fryer, Oilless Electric Cooker with 12 Cooking Functions, LCD Digital Touch Screen with Precise Temperature Control, Nonstick Basket,...`,
+          product_price: 76.49,
+          product_rating: 4,
+          product_users_rating: 1,
+          product_category: 'home-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/71ioxwPdmEL._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/81SbzQvYYBL._AC_SL1500_.jpg',
+          ],
+        },
+        {
+          product_id: 827,
+          product_description: `About this item
+          HIGH PRESSURE ESPRESSO MACHINE - Yabano espresso machine with 15 bar pressure, easy to use, you can be a barista and brew favourite espresso at home.
+          PRESSURE GAUGES - Built in pressure gauges, you can know the accurate pressure and help you in consistently brewing great Espresso.
+          BUILTED IN STEAM WAND - Espresso maker comes with steam wand, you can enjoy cappuccino and latte with creamy and rich foam at any time at home!
+          LARGE WATER TANK - 37oz large and transparent water tank with detachable design, makes it easy to fill water. Detachable frothing nozzle and drip tray for easy cleaning. Compact design won’t take too much space.
+          WHAT YOU GET: Espresso Machine x 1, Portafilter x 1, Stainless Steel Filter x 1, Manual. (Glass cup and milk picther are not included). IF you receive defective item or not satisfied with our product, please contact us, we will try our best to help you and give you the best solution.
+          `,
+          product_name: `Yabano Espresso Machine, 15 Bar Espresso Maker with Milk Frother Wand and Compact Design, Professional Manual Espresso Coffee Machine for Cappuccino and Latte`,
+          product_price: 149.99,
+          product_rating: 4,
+          product_users_rating: 1,
+          product_category: 'home-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
+          product_images: [
+            'https://m.media-amazon.com/images/I/71+pKTiBdKS._AC_SL1500_.jpg',
+            'https://m.media-amazon.com/images/I/71xpKoanrsL._AC_SL1500_.jpg',
+          ],
+        },
       ],
     })
   db.collection('categories')
-    .doc('Games category')
+    .doc('Games-Category')
     .set({
       category_id: 999,
-      category_name: 'Games category',
+      category_name: 'Games-Category',
       category_image: 'https://picsum.photos/200',
       products: [
         {
@@ -205,8 +379,8 @@ function generateItems() {
           product_price: 24,
           product_rating: 1,
           product_users_rating: 1,
-          product_category: 'Games category',
-          product_comments: { user_comment: 'Trash Game', user_id: 1 },
+          product_category: 'Games-Category',
+          product_comments: [{ user_comment: 'Trash Game', user_id: 1 }],
           product_images: [
             'https://m.media-amazon.com/images/I/61pBodxv9vL._AC_SX792_SY594_.jpg',
             'https://m.media-amazon.com/images/I/71w13I3nt2S._AC_SX480_SY360_.jpg',
@@ -224,8 +398,8 @@ function generateItems() {
           product_price: 29.99,
           product_rating: 4,
           product_users_rating: 1,
-          product_category: 'Games category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Games-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/813sJmdG+7S._AC_SX960_SY720_.jpg',
             'https://m.media-amazon.com/images/I/71pfo-qCwpL._AC_SX480_SY360_.jpg',
@@ -243,8 +417,8 @@ function generateItems() {
           product_price: 25.99,
           product_rating: 5,
           product_users_rating: 1,
-          product_category: 'Games category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Games-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/91LjyPDhyCL._AC_SX960_SY720_.jpg',
             'https://m.media-amazon.com/images/I/81BfbuECefL._AC_SX480_SY360_.jpg',
@@ -262,8 +436,8 @@ function generateItems() {
           product_price: 7.99,
           product_rating: 3,
           product_users_rating: 1,
-          product_category: 'Games category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Games-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/91AFCdHkvoL._AC_SX960_SY720_.jpg',
             'https://m.media-amazon.com/images/I/81VXAsno2fL._AC_SX480_SY360_.jpg',
@@ -283,8 +457,8 @@ function generateItems() {
           product_price: 15.99,
           product_rating: 5,
           product_users_rating: 1,
-          product_category: 'Games category',
-          product_comments: { user_comment: 'No comment', user_id: 0 },
+          product_category: 'Games-Category',
+          product_comments: [{ user_comment: 'No comment', user_id: 0 }],
           product_images: [
             'https://m.media-amazon.com/images/I/71bY48eVGKL._AC_SL1500_.jpg',
             'https://m.media-amazon.com/images/I/81bw9zi0oRL._AC_SL1500_.jpg',
