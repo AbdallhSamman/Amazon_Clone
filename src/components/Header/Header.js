@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { auth,db } from "../Firebase/firebase";
+import { auth, db } from "../Firebase/firebase";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { NavLink } from "react-router-dom";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
 	MenuIcon,
 	SearchIcon,
@@ -14,33 +14,34 @@ import {
 
 function Header() {
 	const [{ basket, user }, dispatch] = useStateValue();
-	const navigate  = useNavigate ();
-	const [categories,setCata] = useState([]);
+	const navigate = useNavigate();
+	const [categories, setCata] = useState([]);
 	const handelAuth = () => {
 		if (user) {
 			auth.signOut();
 		}
 	};
-	const goToProducts=()=>{
-		navigate('/products')
-	}
-	const goCategories=(cata)=>{
-		document.getElementById('search').value=cata
-		goToProducts()
-	}
-	useEffect(()=>{
-		let categories=[];
-		db.collection('categories').get().then((querySnapshot)=>{
-			
-			querySnapshot.forEach((docs) => {
-				categories.push(docs.data().category_name);
-			  });
-			 setCata(categories);
+	const goToProducts = () => {
+		navigate("/products");
+	};
+	const goCategories = (cata) => {
+		document.getElementById("search").value = cata;
+		goToProducts();
+	};
+	useEffect(() => {
+		let categories = [];
+		db.collection("categories")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((docs) => {
+					categories.push(docs.data().category_name);
+				});
+				setCata(categories);
 			})
 			.catch((error) => {
-			  console.log("Error getting documents: ", error);
+				console.log("Error getting documents: ", error);
 			});
-		})
+	});
 
 	return (
 		<>
@@ -105,7 +106,7 @@ function Header() {
 					</Link>
 				</div>
 			</header>
-      <div className="flex items-center  bg-amazon_blue-light text-white text-sm">
+			<div className="flex items-center  bg-amazon_blue-light text-white text-sm">
 				<div className="d-flex items-center h-10 flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500">
 					<input
 						className="p-2 h-full w-6 flex-grow flex-shrink  focus:outline-none px-4"
@@ -114,17 +115,25 @@ function Header() {
 					/>
 					<SearchIcon className="h-12 p-4" />
 				</div>
-        </div>
+			</div>
 			<div className="flex d__hidden items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm">
 				<p className="link flex items-center">
 					<MenuIcon className="h-6 mr-1" />
 				</p>
-        <Link to="/products">
-        <p className="link">All</p>
-        </Link>
-		{categories?.map((ele,index)=>(	<p key={index} onClick={()=>{goCategories(ele)}} className="link">{ele}</p>))}
-				{/* <p className="link">Prime Video</p>
-				<p className="link hidden lg:inline-flex">Health & Personal Care</p> */}
+				<Link to="/products">
+					<p className="link">All</p>
+				</Link>
+				{categories?.map((ele, index) => (
+					<p
+						key={index}
+						onClick={() => {
+							goCategories(ele);
+						}}
+						className="link"
+					>
+						{ele}
+					</p>
+				))}
 			</div>
 		</>
 	);
