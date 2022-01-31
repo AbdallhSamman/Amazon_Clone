@@ -6,6 +6,7 @@ import { db } from "../Firebase/firebase";
 function Profile() {
   const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
+
   let products = [];
 
   const returnh1 = (x) => {
@@ -51,8 +52,9 @@ function Profile() {
   };
 
   useEffect(() => {
+    (!sessionStorage.getItem('email'))?sessionStorage.setItem('email',user?.email):sessionStorage.getItem('email')
     db.collection("orders")
-      .where("user_email", "==", user?.email)
+      .where("user_email", "==", sessionStorage.getItem('email'))
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
