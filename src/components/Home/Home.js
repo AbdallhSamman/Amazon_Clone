@@ -31,6 +31,7 @@ function Home() {
   const returnProduct = (element) => {
     let found = 0;
     const prod = element.map((elemento, index) => {
+
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
         if (proRate <= rateFilter) {
@@ -44,8 +45,9 @@ function Home() {
           ) {
             found += 1;
             return (
+
               <Product
-                key={elemento.product_id}
+                key={elemento.product_id+3000}
                 id={elemento.product_id}
                 category={elemento.product_category}
                 title={elemento.product_name}

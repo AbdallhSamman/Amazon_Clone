@@ -122,7 +122,7 @@ function Header() {
         <Link to="/products">
         <p className="link">All</p>
         </Link>
-		{categories?.map((ele,index)=>(	<p key={index} onClick={()=>{goCategories(ele)}} className="link">{ele}</p>))}
+		{categories?.map((ele,index)=>(	<p key={index} onClick={()=>{goCategories(ele)}} className="link">{ele.split('-')[0]}</p>))}
 				{/* <p className="link">Prime Video</p>
 				<p className="link hidden lg:inline-flex">Health & Personal Care</p> */}
 			</div>

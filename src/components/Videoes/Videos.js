@@ -11,22 +11,7 @@ function Videos() {
       <div className="videos__container">
         <h1 className="videos__title">Amazon Related Videos</h1>
         <ul className="videos__items">
-          <Swiper
-            navigation={true}
-            className="mySwiper"
-            slidesPerView={1}
-            breakpoints={{
-              640: {
-                slidesPerView: 1,
-              },
-              1120: {
-                slidesPerView: 2,
-              },
-              1440: {
-                slidesPerView: 3,
-              },
-            }}
-          >
+          <Swiper navigation={true} className="mySwiper">
             <SwiperSlide>
               <li className="videos__singleVideo" key={1}>
                 <iframe
