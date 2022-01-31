@@ -83,7 +83,10 @@ const Products = () => {
         setProductsFilter(product);
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error.message);
+        // console.log("Error getting documents: ", error.message);
+		setSearch("");
+        setProducts(product);
+        setProductsFilter(product);
       });
   }, []);
 
