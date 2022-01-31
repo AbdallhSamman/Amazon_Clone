@@ -103,13 +103,13 @@ const Payment = () => {
         </div>
       ) : (
         <div className="payment__container">
-          <div className="payment__right">
+          <div className="payment__right pb-8">
             <div className="payment__title flex justify-center mb-8 font-bold text-[40px]">
               <h3>Review item and delivery</h3>
             </div>
             <section className="payment__section1">
               <div className="address__left">
-                <form id="addressForm">
+                <form id="addressForm" >
                   <h1 className="text-center text-[25px] mb-8 font-bold">
                     Address Form
                   </h1>
@@ -203,11 +203,7 @@ const Payment = () => {
                   />
                 ))}
 
-                <section className="payment__section">
-                  <div className="payment__title">
-                    <h3>Payment method</h3>
-                  </div>
-                </section>
+               
               </div>
             </section>
           </div>
