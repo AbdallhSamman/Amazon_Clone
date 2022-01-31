@@ -92,8 +92,7 @@ const Payment = () => {
         address:address
 
       })
-
- 
+    }
   return (
     <div className="payment">
       {basket.length == 0 ? (
