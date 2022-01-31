@@ -1,21 +1,19 @@
 import { StarIcon } from "@heroicons/react/solid";
 import React, { useState, useEffect } from "react";
-// import "swiper/css/bundle";
 import "./Item.css";
 import "swiper/css/bundle";
 import { CKEditor } from "ckeditor4-react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { db } from "../Firebase/firebase";
 import { useParams } from "react-router-dom";
-// Import Swiper styles
-// import "swiper/css";
-// import "swiper/css/pagination";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { Pagination, FreeMode, Navigation, Thumbs } from "swiper";
 
-// import required modules
-
-import { Pagination } from "swiper";
 function Item() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [item, setItem] = useState([]);
   const [related, setRelated] = useState([]);
   let product = [];
@@ -92,35 +90,47 @@ function Item() {
         <div className="md:grid md:gap-10 md:grid-cols-3">
           <div className="flex">
             <div>
-              <img
-                className="object-contain"
-                width={50}
-                height={50}
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <img
-                className="object-contain"
-                width={50}
-                height={50}
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <img
-                className="object-contain"
-                width={50}
-                height={50}
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
+              <Swiper
+                style={{
+                  "--swiper-navigation-color": "#fff",
+                  "--swiper-pagination-color": "#fff",
+                }}
+                spaceBetween={10}
+                navigation={true}
+                thumbs={{ swiper: thumbsSwiper }}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper2"
+              >
+                {item[0]?.product_images.map((e) => {
+                  return (
+                    <>
+                      <SwiperSlide>
+                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                      </SwiperSlide>
+                    </>
+                  );
+                })}
+              </Swiper>
+              <Swiper
+                onSwiper={setThumbsSwiper}
+                spaceBetween={10}
+                slidesPerView={4}
+                freeMode={true}
+                watchSlidesProgress={true}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper"
+              >
+                {item[0]?.product_images.map((e) => {
+                  return (
+                    <>
+                      <SwiperSlide>
+                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                      </SwiperSlide>
+                    </>
+                  );
+                })}
+              </Swiper>
             </div>
-            <img
-              className="flex-1 object-contain"
-              width={50}
-              height={50}
-              src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-              alt="item"
-            />
           </div>
           <div className="mt-5 md:mt-0">
             <h1 className="text-[16px] font-semibold">
@@ -170,52 +180,27 @@ function Item() {
             <CKEditor data="<p>Hello from CKEditor 4!</p>" />
             <button className="button mt-4">Add Review</button>
           </div>
-          <div>
-            <div className="flex items-center mt-20">
-              <img
-                src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-                alt=""
-                width={50}
-                height={50}
-              />
-              <p>Haitham Assoli</p>
-            </div>
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <strong> Its pretty and clean looking</strong>
-            <p className="">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-              sint. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Deleniti, magnam?
-            </p>
-            <img src="https://picsum.photos/200/300" alt="" />
-          </div>
-          <div>
-            <div className="flex items-center mt-20">
-              <img
-                src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-                alt=""
-                width={50}
-                height={50}
-              />
-              <p>Haitham Assoli</p>
-            </div>
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-            <strong> Its pretty and clean looking</strong>
-            <p className="">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-              sint. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Deleniti, magnam?
-            </p>
-            <img src="https://picsum.photos/200/300" alt="" />
-          </div>
+          {item[0]?.product_comments.map((e) => {
+            return (
+              <div>
+                <div className="flex items-center mt-20">
+                  <img
+                    src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                    alt=""
+                    width={50}
+                    height={50}
+                  />
+                  <p>Haitham Assoli</p>
+                </div>
+                <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+                <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+                <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+                <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+                <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+                <p className="">{e.user_comment}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

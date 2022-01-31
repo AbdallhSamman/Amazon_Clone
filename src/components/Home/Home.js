@@ -140,8 +140,8 @@ function Home() {
             .slice(0, 1)
             .map((elee, index) => returnProduct(elee))}
         </div>
+        <Videos />
       </div>
-      <Videos />
     </div>
   );
 }
