@@ -1,7 +1,7 @@
 import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
 // import "swiper/css/bundle";
-import "./Store.css";
+import "./Item.css";
 import "swiper/css/bundle";
 import { CKEditor } from "ckeditor4-react";
 // Import Swiper React components
@@ -13,9 +13,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // import required modules
 import { Pagination } from "swiper";
-function Store() {
+function Item() {
   return (
-    <div className="bg-white">
+    <div className="bg-white outline outline-[43px] outline-white">
       <div className="mx-5 my-10 bg-white">
         <div className="md:grid md:gap-10 md:grid-cols-3">
           <div className="flex">
@@ -326,4 +326,4 @@ function Store() {
   );
 }
 
-export default Store;
+export default Item;

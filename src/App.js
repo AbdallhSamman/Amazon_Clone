@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Checkout from "./components/Checkout/Checkout";
-import Store from "./components/Store/Store";
+import Item from "./components/Item/Item";
 import Login from "./components/Login/Login";
 import { auth } from "firebase";
 import Footer from "./components/footer/footer";
@@ -14,9 +14,10 @@ import { useStateValue } from "./StateProvider";
 import Payment from "./components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import Videos from './components/Videoes/Videos';
+import Videos from "./components/Videoes/Videos";
 import Orders from "./components/Orders/Orders";
 import Products from "./components/Products/Products";
+import NoMatch from "./components/NoMatch";
 
 const promise = loadStripe("pk_test_XFy4Y8Pm6x2kEnAlJNd54d99");
 
@@ -41,7 +42,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-     
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -49,9 +49,9 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path='/orders' element={<Orders/>}></Route>
-          <Route path='/Products' element={<Products/>}></Route>
-          <Route path="/store" element={<Store />}></Route>
+          <Route path="/orders" element={<Orders />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/item/:itemId" element={<Item />}></Route>
           <Route
             path="/payment"
             element={
@@ -60,10 +60,10 @@ function App() {
               </Elements>
             }
           ></Route>
-        </Routes> 
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
         {/* <Videos /> */}
         <Footer />
-        
       </div>
     </BrowserRouter>
   );

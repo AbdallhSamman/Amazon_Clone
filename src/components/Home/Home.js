@@ -5,7 +5,7 @@ import "./Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "@mui/material/Slider";
 import { StarIcon } from "@heroicons/react/solid";
-import Videos from '../Videoes/Videos'
+import Videos from "../Videoes/Videos";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -25,13 +25,19 @@ function Home() {
   let product = [];
 
   const returnProduct = (element) => {
-    console.log(element)
+    console.log(element);
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
         if (proRate <= rateFilter) {
-          
-          if(elemento.product_name.toLowerCase().includes(search.toLowerCase()) || elemento.product_description.toLowerCase().includes(search.toLowerCase())){
+          if (
+            elemento.product_name
+              .toLowerCase()
+              .includes(search.toLowerCase()) ||
+            elemento.product_description
+              .toLowerCase()
+              .includes(search.toLowerCase())
+          ) {
             return (
               <Product
                 key={elemento.product_id}
@@ -46,7 +52,6 @@ function Home() {
               />
             );
           }
-      
         }
       }
     });
@@ -59,20 +64,19 @@ function Home() {
   };
 
   useEffect(() => {
-   
-    db.collection("categories").orderBy('products')
+    db.collection("categories")
+      .orderBy("products")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-        let searchBar=document.getElementById('search');
-        searchBar.addEventListener('change',(e)=>{
+        let searchBar = document.getElementById("search");
+        searchBar.addEventListener("change", (e) => {
           setSearch(e.target.value);
-        }); 
+        });
         setProducts(product);
         setProductsFilter(product);
-      
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -83,9 +87,6 @@ function Home() {
     <div className="home">
       <div className="home__container">
         <Swiper navigation={true} className="mySwiper">
-        
-           
-          
           <SwiperSlide>
             <img
               className="home__image swiper-image"
@@ -115,6 +116,7 @@ function Home() {
             .map((elee, index) => returnProduct(elee))}
 
           <img
+            width={"100%"}
             className="md:col-span-full"
             src="https://links.papareact.com/dyz"
             alt=""
@@ -125,8 +127,6 @@ function Home() {
               .slice(4, 5)
               .map((ele, index) => returnProduct(ele))}
           </div>
-
-          
         </div>
       </div>
     </div>
