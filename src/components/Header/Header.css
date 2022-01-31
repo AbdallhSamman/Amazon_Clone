@@ -6,8 +6,17 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  display: flex;
+  justify-content: space-between;
 }
-
+.d-flex {
+  display: flex;
+  color: #000;
+}
+@media (min-width: 639px) {
+  .d-flex {
+    display: none;
+  }}
 .categories {
   height: 40px;
   display: flex;
