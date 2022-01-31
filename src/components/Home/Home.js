@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "@mui/material/Slider";
 import { StarIcon } from "@heroicons/react/solid";
 import Videos from "../Videoes/Videos";
+import { useNavigate } from "react-router-dom";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -17,47 +18,58 @@ import SwiperCore, { Navigation } from "swiper";
 SwiperCore.use([Navigation]);
 
 function Home() {
-	const [products, setProducts] = useState([]);
-	const [filter_products, setProductsFilter] = useState([]);
-	const [priceFilter, setPriceFilter] = useState(999);
-	const [rateFilter, setRateFilter] = useState(5);
-	const [search, setSearch] = useState("");
-	let product = [];
+  const [products, setProducts] = useState([]);
+  const [filter_products, setProductsFilter] = useState([]);
+  const [priceFilter, setPriceFilter] = useState(999);
+  const [rateFilter, setRateFilter] = useState(5);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  let product = [];
 
-	const returnProduct = (element) => {
-		console.log(element);
-		const prod = element.map((elemento, index) => {
-			if (elemento.product_price <= priceFilter) {
-				let proRate = elemento.product_rating / elemento.product_users_rating;
-				if (proRate <= rateFilter) {
-					if (
-						elemento.product_name
-							.toLowerCase()
-							.includes(search.toLowerCase()) ||
-						elemento.product_description
-							.toLowerCase()
-							.includes(search.toLowerCase())
-					) {
-						return (
-							<Product
-								key={elemento.product_id}
-								id={elemento.product_id}
-								category={elemento.product_category}
-								title={elemento.product_name}
-								price={elemento.product_price}
-								description={elemento.product_description}
-								image={elemento.product_images[0]}
-								rating={Math.floor(
-									elemento.product_rating / elemento.product_users_rating
-								)}
-							/>
-						);
-					}
-				}
-			}
-		});
-		return prod;
-	};
+  const returnProduct = (element) => {
+    let found = 0;
+    const prod = element.map((elemento, index) => {
+      if (elemento.product_price <= priceFilter) {
+        let proRate = elemento.product_rating / elemento.product_users_rating;
+        if (proRate <= rateFilter) {
+          if (
+            elemento.product_name
+              .toLowerCase()
+              .includes(search.toLowerCase()) ||
+            elemento.product_description
+              .toLowerCase()
+              .includes(search.toLowerCase())
+          ) {
+            found += 1;
+            return (
+              <Product
+                key={elemento.product_id}
+                id={elemento.product_id}
+                category={elemento.product_category}
+                title={elemento.product_name}
+                price={elemento.product_price}
+                description={elemento.product_description}
+                image={elemento.product_images[0]}
+                rating={Math.floor(
+                  elemento.product_rating / elemento.product_users_rating
+                )}
+              />
+            );
+          } else if (found === 0) {
+            return (
+              <div>
+                <h1>
+                  There is no Item found <br></br>Check Spelling please or try
+                  another keyword{" "}
+                </h1>
+              </div>
+            );
+          }
+        }
+      }
+    });
+    return prod;
+  };
 
 	const unfilter = () => {
 		setPriceFilter(999);

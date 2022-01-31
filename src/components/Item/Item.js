@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 // import "swiper/css/pagination";
 
 // import required modules
+
 import { Pagination } from "swiper";
 function Item() {
   const [item, setItem] = useState([]);
@@ -26,6 +27,9 @@ function Item() {
   const category = params.category;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     db.collection("categories")
       .where("category_name", "==", category)
       .get()
@@ -34,7 +38,6 @@ function Item() {
           let products = doc.data().products;
           slider.push(products);
           setRelated(slider);
-          // console.log(e.product_rating.split(""));
           products.forEach((e) => {
             if (e.product_id == itemId) {
               product.push(e);
@@ -70,8 +73,6 @@ function Item() {
       </SwiperSlide>
     );
   });
-
-  console.log(related[0]);
 
   for (
     let i = 0;

@@ -8,54 +8,67 @@ import { StarIcon } from "@heroicons/react/solid";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  const [filter_products, setProductsFilter] = useState([]);
-  const [priceFilter, setPriceFilter] = useState(999);
-  const [rateFilter, setRateFilter] = useState(1);
-  let product = [];
+	const [filter_products, setProductsFilter] = useState([]);
+	const [priceFilter, setPriceFilter] = useState(999);
+	const [rateFilter, setRateFilter] = useState(1);
+	const [search, setSearch] = useState("");
+	let product = [];
+	
+	const [rating, setRating] = useState(0);
+	const [hover, setHover] = useState(0);
 
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
+	
+	const returnProduct = (element) => {
+		const prod = element.map((elemento, index) => {
+			if (elemento.product_price <= priceFilter) {
+				let proRate = elemento.product_rating / elemento.product_users_rating;
+				if (proRate >= rateFilter) {
+					if (
+						elemento.product_name
+						  .toLowerCase()
+						  .includes(search.toLowerCase()) ||
+						elemento.product_description
+						  .toLowerCase()
+						  .includes(search.toLowerCase())
+					  )
+					{return (
+						<Product
+							key={elemento.product_id}
+							id={elemento.product_id}
+							title={elemento.product_name}
+							price={elemento.product_price}
+							description={elemento.product_description}
+							category={elemento.product_category}
+							image={elemento.product_images[0]}
+							rating={Math.floor(
+							elemento.product_rating / elemento.product_users_rating
+							)}
+						/>
+					);}
+				}
+			}
+		});
+		return prod;
+	};
 
-  const returnProduct = (element) => {
-    const prod = element.map((elemento, index) => {
-      if (elemento.product_price <= priceFilter) {
-        let proRate = elemento.product_rating / elemento.product_users_rating;
-        if (proRate >= rateFilter) {
-          return (
-            <Product
-              key={elemento.product_id}
-              id={elemento.product_id}
-              title={elemento.product_name}
-              category={elemento.product_category}
-              price={elemento.product_price}
-              description={elemento.product_description}
-              image={elemento.product_images[0]}
-              rating={Math.floor(
-                elemento.product_rating / elemento.product_users_rating
-              )}
-            />
-          );
-        }
-      }
-    });
-    return prod;
-  };
-
-  useEffect(() => {
-    db.collection("categories")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((docs) => {
-          product.push(docs.data().products);
-        });
-
-        setProducts(product);
-        setProductsFilter(product);
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-  }, []);
+	useEffect(() => {
+		db.collection("categories")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((docs) => {
+					product.push(docs.data().products);
+				});
+				let searchBar = document.getElementById("search");
+				searchBar.addEventListener("keyup", (e) => {
+				  setSearch(e.target.value);
+				});
+				setProducts(product);
+				setProductsFilter(product);
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
+			});
+	}, []);
 
   return (
     <div className="grid-container">
