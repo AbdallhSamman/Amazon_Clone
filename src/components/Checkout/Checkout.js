@@ -9,7 +9,6 @@ function Checkout() {
   const [{ basket , user},dispatch] = useStateValue();
     
   return (
-    
     <div className="checkout">
       {basket.length == 0 ? (
         <div className="bg-[#EAEDED]">
