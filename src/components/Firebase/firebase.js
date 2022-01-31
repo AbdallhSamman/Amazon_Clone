@@ -466,7 +466,7 @@ function generateItems() {
       ],
     })
 }
-// generateItems()
+generateItems();
 
 // generateItems();
 // let products = [];
