@@ -22,6 +22,18 @@ function Item() {
   const itemId = params.itemId;
   const category = params.category;
 
+  // db.collection("categories")
+  // .doc("Tools-Category")
+  // .set({
+  //   category_id: 1,
+  //   category_name: "Tools-Category",
+  //   products: [
+  //     {
+  //       product_id: 11,
+
+  //       product_category: "Tools-Category",
+  //       product_comments: [{ user_comment: "No comment", user_id: 0 }],
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
