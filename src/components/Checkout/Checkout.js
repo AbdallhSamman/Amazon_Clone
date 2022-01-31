@@ -9,7 +9,15 @@ function Checkout() {
   const [{ basket , user},dispatch] = useStateValue();
     
   return (
+    
     <div className="checkout">
+      {basket.length == 0 ? (
+        <div className="bg-[#EAEDED]">
+          <h1 className="text-[75px] flex justify-center m-64 ">
+            your cart is empty
+          </h1>
+        </div>
+      ):(
       <div className="checkout__left">
         <div>
           <h2 className="checkout__title">Your Shopping Basket</h2>
@@ -24,10 +32,11 @@ function Checkout() {
             />
           ))}
         </div>
-      </div>
       <div className="checkout__right">
         <Subtotal />
       </div>
+      </div>
+      )}
     </div>
   );
 }
