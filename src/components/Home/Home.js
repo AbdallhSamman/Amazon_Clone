@@ -43,7 +43,7 @@ function Home() {
             found += 1;
             return (
               <Product
-                key={elemento.product_id}
+                key={elemento.product_id + 3000}
                 id={elemento.product_id}
                 category={elemento.product_category}
                 title={elemento.product_name}
@@ -145,5 +145,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

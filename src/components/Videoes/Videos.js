@@ -19,9 +19,9 @@ function Videos() {
                   height="315"
                   src="https://www.youtube.com/embed/66qOop6J8Q8"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </li>
             </SwiperSlide>
@@ -32,9 +32,9 @@ function Videos() {
                   height="315"
                   src="https://www.youtube.com/embed/YORgJwW9xxQ"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </li>
             </SwiperSlide>
@@ -45,9 +45,9 @@ function Videos() {
                   height="315"
                   src="https://www.youtube.com/embed/DpNJ4DBn-t8"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </li>
             </SwiperSlide>

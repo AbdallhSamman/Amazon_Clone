@@ -29,11 +29,14 @@ const Products = () => {
 						  .includes(search.toLowerCase()) ||
 						elemento.product_description
 						  .toLowerCase()
-						  .includes(search.toLowerCase())
+						  .includes(search.toLowerCase()) ||
+						elemento.product_category
+						  .toLowerCase()
+					      .includes(search.toLowerCase())
 					  )
 					{return (
 						<Product
-							key={elemento.product_id}
+							key={elemento.product_id+11000}
 							id={elemento.product_id}
 							title={elemento.product_name}
 							price={elemento.product_price}
@@ -61,9 +64,13 @@ const Products = () => {
 				let searchBar = document.getElementById("search");
 				searchBar.addEventListener("keyup", (e) => {
 				  setSearch(e.target.value);
+				  setProducts(product);
+			      setProductsFilter(product);
 				});
-				setProducts(product);
-				setProductsFilter(product);
+				setSearch(searchBar.value);
+				  setProducts(product);
+			      setProductsFilter(product);
+				
 			})
 			.catch((error) => {
 				console.log("Error getting documents: ", error);
@@ -111,7 +118,7 @@ const Products = () => {
                       return (
                         <button
                           type="button"
-                          key={index}
+                          key={index+10000}
                           className={` h-5   w-5  text-yellow-500   ${
                             index <= (hover || rating) ? "on" : "off"
                           }`}
