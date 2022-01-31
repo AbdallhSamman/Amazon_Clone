@@ -79,6 +79,11 @@ function Home() {
   };
 
   useEffect(() => {
+    const items = localStorage.getItem("items");
+    // if (items) {
+    //   setProducts(JSON.parse(items));
+    //   return;
+    // }
     db.collection("categories")
       .orderBy("products")
       .get()
@@ -91,6 +96,7 @@ function Home() {
           setSearch(e.target.value);
         });
         setProducts(product);
+        localStorage.setItem("items", JSON.stringify(product));
         setProductsFilter(product);
         setLoading(true);
       })
