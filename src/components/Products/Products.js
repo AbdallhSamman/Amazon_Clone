@@ -10,11 +10,17 @@ const Products = () => {
 
   const [filter_products, setProductsFilter] = useState([]);
   const [priceFilter, setPriceFilter] = useState(999);
-  const [rateFilter, setRateFilter] = useState(1);
+  const [rateFilter, setRateFilter] = useState(5);
   const [search, setSearch] = useState("");
   let product = [];
+  let categories=[]
+  try{
+	categories = JSON.parse(sessionStorage.getItem("category"));
+  }catch(error){
+	  console.log(error)
+  }
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(5);
   const [hover, setHover] = useState(0);
   let searchBar = document.getElementById("search");
   let button = document.getElementById("searchButton");
@@ -93,7 +99,11 @@ const Products = () => {
             <span>
               <span aria-label="Price filter">
                 <div className="gridFilterHeader">Category</div>
-                <div className="a-row">{/* {Category} */}</div>
+				{categories?.map((ele)=>(
+					  <div onClick={()=>{
+						  searchBar.value=ele; setSearch(searchBar.value)}} className="a-row">{ele.split('-')[0]}</div>
+				))}
+              
               </span>
             </span>
             <span>

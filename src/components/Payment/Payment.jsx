@@ -43,10 +43,8 @@ const Payment = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (auth.currentUser != null) {
-      if (handelAddress(e)) {
-        saveOrder()
-        saveAddress()
-      }
+      saveAddress()
+      saveOrder()
     } else navigat('/login')
   }
   const handelAddress = (e) => {
@@ -76,23 +74,26 @@ const Payment = () => {
 
     navigat('/profile')
   }
-
+  
   const saveAddress = () => {
-    let form = document.getElementById('addressForm')
-    let name = document.getElementById('fullname').value
-    let address = document.getElementById('streetAddress').value
-    let number = document.getElementById('phoneNumber').value
-    let building = document.getElementById('building').value
-    let city = document.getElementById('city').value
-    // alert (form);
-    db.collection('users').doc(user.email).set({
-      fullName: name,
-      building: building,
-      phoneNumber: number,
-      city: city,
-      address: address,
-    })
-  }
+    let form = document.getElementById('addressForm');
+    let name = document.getElementById('fullname').value;
+    let address = document.getElementById('streetAddress').value;
+    let number = document.getElementById('phoneNumber').value;
+    let building = document.getElementById('building').value;
+    let city = document.getElementById('city').value;
+    db.collection('users')
+      .doc(user.email)
+      .set({
+        fullName:name,
+        building:building,
+        phoneNumber:number,
+        city:city,
+        address:address
+
+      })
+
+ 
   return (
     <div className="payment">
       {basket.length == 0 ? (

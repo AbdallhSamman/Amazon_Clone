@@ -6,10 +6,12 @@ import { db } from "../Firebase/firebase";
 function Profile() {
   const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
-
+  const [orderNumber, setOrderNumber] = useState([]);
+  const [change, setChange] = useState('change');
+  
   let products = [];
-
-  const returnh1 = (x) => {
+  let orderNum=[];
+  const returnh1 = (x,index) => {
     
     const prod = x.products.map((element,i) => {
       return (
@@ -45,14 +47,28 @@ function Profile() {
           <div className="card-body">
             <div className="order-details p-8">
               {prod}
-              <button className="cansel-order">cancel Order</button>
+              <button id={orderNumber[index]} onClick={()=>{cancelOrder(orderNumber[index])}} className="cansel-order">Cancel Order</button>
             </div>
           </div>
         
       </section>
     );
   };
+const cancelOrder=(x)=>{
+  db.collection("orders").doc(x).delete().then(() => {
+    console.log("Document successfully deleted!");
+    setChange('change me')
+    changeColor(x)
+}).catch((error) => {
+    console.error("Error removing document: ", error);
+});
+console.log('i am here');
+}
 
+function changeColor(x){
+  document.getElementById(x).textContent="deleted";
+  document.getElementById(x).style.color="red";
+}
   useEffect(() => {
     (!sessionStorage.getItem('email'))?sessionStorage.setItem('email',user?.email):sessionStorage.getItem('email')
     db.collection("orders")
@@ -61,9 +77,12 @@ function Profile() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           products.push(doc.data());
+          orderNum.push(doc.id);
+          
         });
 
         setOrders(products);
+        setOrderNumber(orderNum)
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -75,8 +94,8 @@ function Profile() {
         <div className="right flex-row ">
           <h2 className="profile_h2">Your Order's</h2>
 
-          {orders.map((ele) => {
-            return returnh1(ele);
+          {orders.map((ele,inde) => {
+            return returnh1(ele,inde);
           })}
         </div>
         <div className="left">
