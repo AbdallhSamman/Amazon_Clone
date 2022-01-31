@@ -42,6 +42,7 @@ function Home() {
               <Product
                 key={elemento.product_id}
                 id={elemento.product_id}
+                category={elemento.product_category}
                 title={elemento.product_name}
                 price={elemento.product_price}
                 description={elemento.product_description}

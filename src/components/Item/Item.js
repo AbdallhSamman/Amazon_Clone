@@ -16,8 +16,11 @@ import { useParams } from "react-router-dom";
 import { Pagination } from "swiper";
 function Item() {
   const [item, setItem] = useState([]);
+  const [related, setRelated] = useState([]);
   let product = [];
+  let slider = [];
   let stars = [];
+
   const params = useParams();
   const itemId = params.itemId;
   const category = params.category;
@@ -29,8 +32,10 @@ function Item() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           let products = doc.data().products;
+          slider.push(products);
+          setRelated(slider);
+          // console.log(e.product_rating.split(""));
           products.forEach((e) => {
-            console.log(e.product_comments);
             if (e.product_id == itemId) {
               product.push(e);
               setItem(product);
@@ -40,7 +45,39 @@ function Item() {
       });
   }, []);
 
-  for (let i = 0; i < item[0]?.product_rating; i++) {
+  let sliders = related[0]?.map((e, i) => {
+    return (
+      <SwiperSlide key={i}>
+        <div>
+          <img
+            style={{ width: "300px", height: "200px", objectFit: "contain" }}
+            className="object-contain"
+            src={e.product_images[0]}
+            alt="item"
+          />
+          <p className="text-[rgb(0,113,133)]">{e?.product_name}</p>
+          {Array(Math.floor(e.product_rating / e.product_users_rating))
+            .fill()
+            .map((_, i) => (
+              <StarIcon className="h-3 inline-block text-yellow-500" />
+            ))}
+          {`(${e ? e.product_users_rating : ""})`}
+          <h5>
+            <sup>JOD</sup>
+            <strong>{e?.product_price}</strong>
+          </h5>
+        </div>
+      </SwiperSlide>
+    );
+  });
+
+  console.log(related[0]);
+
+  for (
+    let i = 0;
+    i < item[0]?.product_rating / item[0]?.product_users_rating;
+    i++
+  ) {
     stars.push(
       <span>
         <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
@@ -55,21 +92,21 @@ function Item() {
           <div className="flex">
             <div>
               <img
-                className=""
+                className="object-contain"
                 width={50}
                 height={50}
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
               <img
-                className=""
+                className="object-contain"
                 width={50}
                 height={50}
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
                 alt="item"
               />
               <img
-                className=""
+                className="object-contain"
                 width={50}
                 height={50}
                 src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
@@ -77,7 +114,7 @@ function Item() {
               />
             </div>
             <img
-              className="flex-1"
+              className="flex-1 object-contain"
               width={50}
               height={50}
               src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
@@ -95,7 +132,9 @@ function Item() {
             {`(${item[0] ? item[0].product_users_rating : ""})`}
           </div>
           <aside className="border-2 mt-5 md:mt-0 rounded-xl p-5 border-radius-2 bg-white border-neutral-400">
-            <p className="text-red-600">{item[0]?.product_price}JOD</p>
+            <p className="text-red-600">
+              <sup>JOD</sup> {item[0]?.product_price}
+            </p>
             <p className="text-green-600">In Stock.</p>
             <select className="" name="" id="">
               <option value="1">1</option>
@@ -120,178 +159,7 @@ function Item() {
           modules={[Pagination]}
           className="mySwiper cursor-pointer"
         >
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">{item[0]?.product_name}</p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <img
-                src="https://m.media-amazon.com/images/I/71DMWqowTxS._AC_SL1000_.jpg"
-                alt="item"
-              />
-              <p className="text-[rgb(0,113,133)]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                inventore nulla ea mollitia atque cumque consequuntur alias
-                blanditiis aliquam temporibus nobis
-              </p>
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-              <h5>
-                <sup>$</sup>
-                <strong>500</strong>
-              </h5>
-            </div>
-          </SwiperSlide>
+          {sliders}
         </Swiper>
         <hr className="m-10" />
         <h3 className="text-[40px] text-red-600 mb-5">Customer reviews</h3>
