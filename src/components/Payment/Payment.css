@@ -51,7 +51,7 @@ width: 100%;
 } */
 .payment__items{
 	grid-area: items;
-width: 100%;
+max-width: 30rem;
 justify-self: center;
 }
 .buyNow{
