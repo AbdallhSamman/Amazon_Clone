@@ -148,13 +148,9 @@ function Home() {
           alt=""
         />
         <div className="product__home__span2 grid grid-flow-row-dense md:col-span-2 sm:grid-cols-2 md:grid-cols-2">
-          {loading === false ? (
-            <Loading />
-          ) : (
-            filter_products
-              .slice(0, 1)
-              .map((elee, index) => returnProduct(elee))
-          )}
+          {filter_products
+            .slice(0, 1)
+            .map((elee, index) => returnProduct(elee))}
         </div>
         <Videos />
       </div>
