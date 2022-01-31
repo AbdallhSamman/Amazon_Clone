@@ -11,6 +11,7 @@ import { auth , db} from '../Firebase/firebase'
 import axios from 'axios'
 
 const Payment = () => {
+
   const [{ basket, user }, dispatch] = useStateValue()
   const stripe = useStripe()
 
@@ -37,7 +38,8 @@ const Payment = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (auth.currentUser != null) {
-      saveOrder()
+      // saveOrder()
+      saveAddress()
     } else navigat('/login')
   }
 
@@ -54,8 +56,31 @@ const Payment = () => {
         products: [...basket],
       })
 
+     
     navigat('/profile')
   }
+  
+  const saveAddress = () => {
+    let form = document.getElementById('addressForm');
+    let name = document.getElementById('fullname').value;
+    let address = document.getElementById('streetAddress').value;
+    let number = document.getElementById('phoneNumber').value;
+    let building = document.getElementById('building').value;
+    let city = document.getElementById('city').value;
+    alert (form);
+    db.collection('users')
+      .doc(user.email)
+      .set({
+        fullName:name,
+        building:building,
+        phoneNumber:number,
+        city:city,
+        address:address
+
+      })
+
+  }
+  
 
   return (
     <div className="payment">
@@ -73,28 +98,25 @@ const Payment = () => {
             </div>
             <section className="payment__section1">
               <div className="address__left">
-                <form>
+                <form id='addressForm'>
                   <h1 className="text-center text-[25px] mb-8 font-bold">
                     Address Form
                   </h1>
                   <h5>Full name (First and Last name)</h5>
-                  <input type="text" />
+                  <input id='fullname' type="text" />
                   <h5>Phone number</h5>
-                  <input type="number" />
+                  <input id='phoneNumber' type="number" />
                   <h5>Address</h5>
-                  <input placeholder="Street Address" type="text" />
+                  <input id='streetAddress' placeholder="Street Address" type="text" />
                   <input
                     placeholder="Apt, unit, bulding, floor, etc"
                     type="text"
+                    id='building'
                   />
                   <h5>City</h5>
-                  <input type="text" />
+                  <input id='city' type="text" />
                   <h5>ZIP Code</h5>
-                  <input type="text" />
-
-                  <button type="submit" className="login__signInButton">
-                    Use this address
-                  </button>
+                  <input id='zip' type="text" />
                 </form>
               </div>
 

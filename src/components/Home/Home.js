@@ -27,9 +27,11 @@ function Home() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   let product = [];
-
+  let searchBar = document.getElementById("search");
+  let button = document.getElementById("searchButton");
   const returnProduct = (element) => {
     let found = 0;
+ 
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
@@ -40,7 +42,10 @@ function Home() {
               .includes(search.toLowerCase()) ||
             elemento.product_description
               .toLowerCase()
-              .includes(search.toLowerCase())
+              .includes(search.toLowerCase())||
+              elemento.product_category
+                .toLowerCase()
+                .includes(search.toLowerCase())
           ) {
             found += 1;
             return (
@@ -91,9 +96,12 @@ function Home() {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-        let searchBar = document.getElementById("search");
-        searchBar.addEventListener("change", (e) => {
-          setSearch(e.target.value);
+      
+        searchBar.addEventListener("change", () => {
+          setSearch(searchBar.value);
+          setProductsFilter(product);
+          setProducts(product);
+          console.log("i am herre")
         });
         setProducts(product);
         localStorage.setItem("items", JSON.stringify(product));

@@ -13,6 +13,7 @@ import {
 } from "@heroicons/react/outline";
 
 function Header() {
+	console.log = function(){};
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
   const [categories, setCata] = useState([]);
@@ -73,7 +74,7 @@ function Header() {
             id="search"
             onKeyPress={goToProducts}
           />
-          <SearchIcon onClick={goToProducts} className="h-12 p-4" />
+          <SearchIcon id="searchButton" onClick={goToProducts} className="h-12 p-4" />
         </div>
 
         <div className="header__nav text-white flex items-center text-xs space-x-6 px-4">
