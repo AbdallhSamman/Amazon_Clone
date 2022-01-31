@@ -75,7 +75,7 @@ const Payment = () => {
               <div className="address__left">
                 <form>
                   <h1 className="text-center text-[25px] mb-8 font-bold">
-                    Adress Form
+                    Address Form
                   </h1>
                   <h5>Full name (First and Last name)</h5>
                   <input type="text" />

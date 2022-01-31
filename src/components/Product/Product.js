@@ -51,7 +51,7 @@ function Product({ id, title, image, price, rating, description, category }) {
         </Link>
 
         <button onClick={addToBasket} className="mt-auto button">
-          Add to card
+          Add to cart
         </button>
       </div>
   );
