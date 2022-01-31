@@ -58,7 +58,7 @@ const Products = () => {
 
 	return (
 		<div className="grid-container">
-      <div>
+      <div className="relative">
         <input  className="m__hidden" type="checkbox"/>
         <div className="m__hidden m__button">Filter</div>
 

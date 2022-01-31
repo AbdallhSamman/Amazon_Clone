@@ -36,21 +36,6 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    // 	setProcessing(true);
-    // 	const payload = await stripe
-    // 		.confirmCardPayment(clientSecret, {
-    // 			payment_method: {
-    // 				card: elements.getElement(CardElement),
-    // 			},
-    // 		})
-    // 		.then(({ PaymentIntent }) => {
-    // 	setSucceeded(true)
-    // 	setError(null)
-    // 	setProcessing(false)
-    // 	navigator.replace('/orders')
-    //   });
-    // console.log(auth.currentUser.email)
     if (auth.currentUser != null) {
       saveOrder()
     } else navigat('/login')
@@ -147,7 +132,6 @@ const Payment = () => {
                           <span>{'Buy Now'}</span>
                         </button>
                       </div>
-                      {/* {error & <div>{error}</div>} */}
                     </form>
                   </div>
                 </section>
