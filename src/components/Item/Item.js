@@ -6,11 +6,9 @@ import { CKEditor } from "ckeditor4-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { db } from "../Firebase/firebase";
 import { useParams } from "react-router-dom";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import { Pagination, FreeMode, Navigation, Thumbs } from "swiper";
+import { Link } from "react-router-dom";
+
+import { Pagination } from "swiper";
 
 function Item() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -28,6 +26,13 @@ function Item() {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
+    const item_local = localStorage.getItem("item");
+    if (item_local) {
+      setItem(JSON.parse(item_local));
+      setRelated(localStorage.getItem(JSON.parse(slider)));
+
+      return;
+    }
     db.collection("categories")
       .where("category_name", "==", category)
       .get()
@@ -36,39 +41,46 @@ function Item() {
           let products = doc.data().products;
           slider.push(products);
           setRelated(slider);
+
           products.forEach((e) => {
             if (e.product_id == itemId) {
               product.push(e);
               setItem(product);
+              localStorage.setItem("item", JSON.stringify(product));
             }
           });
         });
+        localStorage.setItem("slider", JSON.stringify(slider));
       });
   }, []);
 
   let sliders = related[0]?.map((e, i) => {
     return (
-      <SwiperSlide key={i+2000}>
-        <div>
-          <img
-            style={{ width: "300px", height: "200px", objectFit: "contain" }}
-            className="object-contain"
-            src={e.product_images[0]}
-            alt="item"
-          />
-          <p className="text-[rgb(0,113,133)]">{e?.product_name}</p>
-          {Array(Math.floor(e.product_rating / e.product_users_rating))
-            .fill()
-            .map((_, i) => (
-              
-              <StarIcon className="h-3 inline-block text-yellow-500" key={i+1001} />
-            ))}
-          {`(${e ? e.product_users_rating : ""})`}
-          <h5>
-            <sup>JOD</sup>
-            <strong>{e?.product_price}</strong>
-          </h5>
-        </div>
+      <SwiperSlide key={i + 2000}>
+        <Link to={`/item/${e.product_category}/${e.product_id}`}>
+          <div>
+            <img
+              style={{ width: "300px", height: "200px", objectFit: "contain" }}
+              className="object-contain"
+              src={e.product_images[0]}
+              alt="item"
+            />
+            <p className="text-[rgb(0,113,133)]">{e?.product_name}</p>
+            {Array(Math.floor(e.product_rating / e.product_users_rating))
+              .fill()
+              .map((_, i) => (
+                <StarIcon
+                  className="h-3 inline-block text-yellow-500"
+                  key={i + 1001}
+                />
+              ))}
+            {`(${e ? e.product_users_rating : ""})`}
+            <h5>
+              <sup>JOD</sup>
+              <strong>{e?.product_price}</strong>
+            </h5>
+          </div>
+        </Link>
       </SwiperSlide>
     );
   });
@@ -95,37 +107,20 @@ function Item() {
                 style={{
                   "--swiper-navigation-color": "#fff",
                   "--swiper-pagination-color": "#fff",
+                  width: "300px",
                 }}
-                spaceBetween={10}
-                navigation={true}
-                thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2"
+                slidesPerView={1}
+                spaceBetween={20}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]}
               >
                 {item[0]?.product_images.map((e) => {
                   return (
                     <>
                       <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                      </SwiperSlide>
-                    </>
-                  );
-                })}
-              </Swiper>
-              <Swiper
-                onSwiper={setThumbsSwiper}
-                spaceBetween={10}
-                slidesPerView={4}
-                freeMode={true}
-                watchSlidesProgress={true}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper"
-              >
-                {item[0]?.product_images.map((e) => {
-                  return (
-                    <>
-                      <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                        <img src={e} />
                       </SwiperSlide>
                     </>
                   );
