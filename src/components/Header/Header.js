@@ -80,6 +80,16 @@ function Header() {
 					</Link>
 				</div>
 			</header>
+      <div className="flex items-center  bg-amazon_blue-light text-white text-sm">
+				<div className="d-flex items-center h-10 flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500">
+					<input
+						className="p-2 h-full w-6 flex-grow flex-shrink  focus:outline-none px-4"
+						type="text"
+						id="search"
+					/>
+					<SearchIcon className="h-12 p-4" />
+				</div>
+        </div>
 			<div className="flex d__hidden items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm">
 				<p className="link flex items-center">
 					<MenuIcon className="h-6 mr-1" />
