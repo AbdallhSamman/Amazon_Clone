@@ -61,3 +61,7 @@ body {
     display: none;
   }
 }
+.text-yellow-400,.text-yellow-500 {
+  --tw-text-opacity: 1;
+  color: #ffa41c;
+}
