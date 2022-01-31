@@ -13,6 +13,10 @@
 .videos__container {
   margin-bottom: 150px;
 }
+/* .videos__singleVideo{
+    width: 100vw;
+    height: 100%;
+} */
 @media (max-width: 425px) {
   .videos {
     display: none;

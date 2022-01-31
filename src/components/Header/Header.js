@@ -38,7 +38,7 @@ function Header() {
 			 setCata(categories);
 			})
 			.catch((error) => {
-			  console.log("Error getting documents: ", error);
+			  console.log("Error getting documents: ", error.message);
 			});
 		})
 

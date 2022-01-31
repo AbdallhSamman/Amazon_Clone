@@ -33,9 +33,9 @@ function Product({ id, title, image, price, rating, description, category }) {
           style={{ objectFit: "contain", margin: "auto" , marginTop: "20px" }}
         />
         <h4 className="my-3 ">
-          <a className="bold" href="#">
+          <p className="bold" >
             {title}
-          </a>
+          </p>
         </h4>
 
         <div className="flex">
