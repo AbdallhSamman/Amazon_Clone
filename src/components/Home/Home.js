@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "@mui/material/Slider";
 import { StarIcon } from "@heroicons/react/solid";
 import Videos from "../Videoes/Videos";
+import { useNavigate } from "react-router-dom";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
@@ -22,10 +23,11 @@ function Home() {
   const [priceFilter, setPriceFilter] = useState(999);
   const [rateFilter, setRateFilter] = useState(5);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   let product = [];
 
   const returnProduct = (element) => {
-    console.log(element);
+    let found = 0;
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
@@ -38,6 +40,7 @@ function Home() {
               .toLowerCase()
               .includes(search.toLowerCase())
           ) {
+            found += 1;
             return (
               <Product
                 key={elemento.product_id}
@@ -51,6 +54,15 @@ function Home() {
                   elemento.product_rating / elemento.product_users_rating
                 )}
               />
+            );
+          } else if (found === 0) {
+            return (
+              <div>
+                <h1>
+                  There is no Item found <br></br>Check Spelling please or try
+                  another keyword{" "}
+                </h1>
+              </div>
             );
           }
         }
@@ -86,35 +98,35 @@ function Home() {
 
   return (
     <div className="home">
-    <div className="home__container">
-      <Swiper navigation={true} className="mySwiper">
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-      </Swiper>
+      <div className="home__container">
+        <Swiper navigation={true} className="mySwiper">
+          <SwiperSlide>
+            <img
+              className="home__image swiper-image"
+              src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+              alt="home_img"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="home__image swiper-image"
+              src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+              alt="home_img"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="home__image swiper-image"
+              src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+              alt="home_img"
+            />
+          </SwiperSlide>
+        </Swiper>
 
-      <div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filter_products
-          .slice(0, 4)
-          .map((elee, index) => returnProduct(elee))}
+        <div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filter_products
+            .slice(0, 4)
+            .map((elee, index) => returnProduct(elee))}
         </div>
 
         <img
@@ -127,11 +139,10 @@ function Home() {
           {filter_products
             .slice(0, 1)
             .map((elee, index) => returnProduct(elee))}
-        
+        </div>
+      <Videos />
       </div>
-    <Videos />
     </div>
-  </div>
   );
 }
 
