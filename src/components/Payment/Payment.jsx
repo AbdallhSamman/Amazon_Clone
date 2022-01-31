@@ -7,7 +7,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format'
 import { getBasketTotal } from '../../reducer'
 import { useEffect } from 'react/cjs/react.development'
-import { auth } from '../Firebase/firebase'
+import { auth , db} from '../Firebase/firebase'
 import axios from 'axios'
 
 const Payment = () => {
@@ -52,13 +52,24 @@ const Payment = () => {
     //   });
     // console.log(auth.currentUser.email)
     if (auth.currentUser != null) {
-      navigat('/orders')
+      saveOrder()
     } else navigat('/login')
   }
 
   const handleChange = (e) => {
     setDisabled(e.empty)
     setError(e.error ? e.error.message : '')
+  }
+  const saveOrder = () => {
+    db.collection('orders')
+      .doc('order - ' + Math.floor(Math.random() * 500))
+      .set({
+        user_email: user.email,
+        status: 'completed',
+        products: [...basket],
+      })
+
+    navigat('/profile')
   }
 
   return (
