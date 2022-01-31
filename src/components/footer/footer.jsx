@@ -5,7 +5,7 @@ import '../footer/footer.css';
   return <div>
 <footer>
     <div className="top text-center">
-      <a href="#root">Back to top</a>
+      <Link to="#root">Back to top</Link>
     </div>
 
     <div className="middle">

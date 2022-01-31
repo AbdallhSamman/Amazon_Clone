@@ -65,11 +65,11 @@ function Login() {
         </form>
 
         <p>
-          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use &
-          Sale. Please see our Privacy Notice, our Cookies Notice and our
-          Interest-Based Ads Notice.
+        By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.
         </p>
 
+       
+        <div className="a-divider a-divider-break"><h5>New to Amazon?</h5></div>
         <button className="login__registerButton" onClick={register}>
           Create your Amazon Account
         </button>
