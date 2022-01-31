@@ -55,3 +55,9 @@ body {
 .off {
   color: #ccc;
 }
+@media screen and (max-width: 639px) {
+  .d__hidden 
+ {
+    display: none;
+  }
+}

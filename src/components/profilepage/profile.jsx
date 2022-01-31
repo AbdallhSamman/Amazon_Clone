@@ -29,24 +29,26 @@ function Profile() {
       );
     });
     return (
-      <section className="order-card">
-        <div className="card-header">
-          <span>Order Placed</span>
-          <span>22/2/2022</span>
-
-          <div className="card-body">
-            <div className="order-details">
-              <div className="order-method">
+      <section className="order-card ">
+        <div className="card-header ">
+          <div className="p-4">
+          <div>Order Placed</div>
+          <div>22/2/2022</div>
+          </div>
+          <div className="order-method">
                 <h1>Pre-order</h1>
                 <h3>
                   order within : <strong>5days</strong>{" "}
                 </h3>
               </div>
+          </div>
+          <div className="card-body">
+            <div className="order-details p-8">
               {prod}
               <button className="cansel-order">cancel Order</button>
             </div>
           </div>
-        </div>
+        
       </section>
     );
   };
@@ -70,7 +72,7 @@ function Profile() {
   return (
     <div>
       <section className="profile_section">
-        <div className="right">
+        <div className="right flex-row ">
           <h2 className="profile_h2">Your Order's</h2>
 
           {orders.map((ele) => {
