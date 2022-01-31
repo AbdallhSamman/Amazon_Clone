@@ -25,7 +25,6 @@ function Home() {
   let product = [];
 
   const returnProduct = (element) => {
-    console.log(element);
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
@@ -86,35 +85,35 @@ function Home() {
 
   return (
     <div className="home">
-    <div className="home__container">
-      <Swiper navigation={true} className="mySwiper">
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-      </Swiper>
+      <div className="home__container">
+        <Swiper navigation={true} className="mySwiper">
+          <SwiperSlide>
+            <img
+              className="home__image swiper-image"
+              src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+              alt="home_img"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="home__image swiper-image"
+              src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+              alt="home_img"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="home__image swiper-image"
+              src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+              alt="home_img"
+            />
+          </SwiperSlide>
+        </Swiper>
 
-      <div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filter_products
-          .slice(0, 4)
-          .map((elee, index) => returnProduct(elee))}
+        <div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filter_products
+            .slice(0, 4)
+            .map((elee, index) => returnProduct(elee))}
         </div>
 
         <img
@@ -127,10 +126,9 @@ function Home() {
           {filter_products
             .slice(0, 1)
             .map((elee, index) => returnProduct(elee))}
-        
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 

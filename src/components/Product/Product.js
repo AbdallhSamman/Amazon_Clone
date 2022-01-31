@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Product({ id, title, image, price, rating, description, category }) {
   const [{ basket }, dispatch] = useStateValue();
   let id_star = 0;
-  console.log(category);
+
   const addToBasket = () => {
     dispatch({
       type: "ADD_TO_BASKET",
@@ -21,8 +21,8 @@ function Product({ id, title, image, price, rating, description, category }) {
     localStorage.setItem("cart", JSON.stringify(basket));
   };
   return (
-    <Link to={`/item/${category}/${id}`}>
-      <div className="relative flex flex-col m-1 bg-white z-30 p-5 rounded-sm product__border">
+    <div className="relative flex flex-col m-1 bg-white z-30 p-5 rounded-sm product__border">
+      <Link to={`/item/${category}/${id}`}>
         <p className="absolute top-2 right-2 text-xs text-gray-800">
           {category}
         </p>
@@ -38,22 +38,21 @@ function Product({ id, title, image, price, rating, description, category }) {
             {title}
           </a>
         </h4>
-
-        <div className="flex">
-          {Array(rating)
-            .fill()
-            .map((_, i) => (
-              <StarIcon className="h-3 text-yellow-500" />
-            ))}
-        </div>
-        <div className="mb-5">
-          <h1>{price} JOD </h1>
-        </div>
-        <button onClick={addToBasket} className="mt-auto button">
-          Add to card
-        </button>
+      </Link>
+      <div className="flex">
+        {Array(rating)
+          .fill()
+          .map((_, i) => (
+            <StarIcon className="h-3 text-yellow-500" />
+          ))}
       </div>
-    </Link>
+      <div className="mb-5">
+        <h1>{price} JOD </h1>
+      </div>
+      <button onClick={addToBasket} className="mt-auto button">
+        Add to card
+      </button>
+    </div>
   );
 }
 
