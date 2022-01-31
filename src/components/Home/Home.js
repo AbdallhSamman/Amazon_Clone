@@ -17,122 +17,120 @@ import SwiperCore, { Navigation } from "swiper";
 SwiperCore.use([Navigation]);
 
 function Home() {
-  const [products, setProducts] = useState([]);
-  const [filter_products, setProductsFilter] = useState([]);
-  const [priceFilter, setPriceFilter] = useState(999);
-  const [rateFilter, setRateFilter] = useState(5);
-  const [search, setSearch] = useState("");
-  let product = [];
+	const [products, setProducts] = useState([]);
+	const [filter_products, setProductsFilter] = useState([]);
+	const [priceFilter, setPriceFilter] = useState(999);
+	const [rateFilter, setRateFilter] = useState(5);
+	const [search, setSearch] = useState("");
+	let product = [];
 
-  const returnProduct = (element) => {
-    console.log(element);
-    const prod = element.map((elemento, index) => {
-      if (elemento.product_price <= priceFilter) {
-        let proRate = elemento.product_rating / elemento.product_users_rating;
-        if (proRate <= rateFilter) {
-          if (
-            elemento.product_name
-              .toLowerCase()
-              .includes(search.toLowerCase()) ||
-            elemento.product_description
-              .toLowerCase()
-              .includes(search.toLowerCase())
-          ) {
-            return (
-              <Product
-                key={elemento.product_id}
-                id={elemento.product_id}
-                category={elemento.product_category}
-                title={elemento.product_name}
-                price={elemento.product_price}
-                description={elemento.product_description}
-                image={elemento.product_images[0]}
-                rating={Math.floor(
-                  elemento.product_rating / elemento.product_users_rating
-                )}
-              />
-            );
-          }
-        }
-      }
-    });
-    return prod;
-  };
+	const returnProduct = (element) => {
+		console.log(element);
+		const prod = element.map((elemento, index) => {
+			if (elemento.product_price <= priceFilter) {
+				let proRate = elemento.product_rating / elemento.product_users_rating;
+				if (proRate <= rateFilter) {
+					if (
+						elemento.product_name
+							.toLowerCase()
+							.includes(search.toLowerCase()) ||
+						elemento.product_description
+							.toLowerCase()
+							.includes(search.toLowerCase())
+					) {
+						return (
+							<Product
+								key={elemento.product_id}
+								id={elemento.product_id}
+								category={elemento.product_category}
+								title={elemento.product_name}
+								price={elemento.product_price}
+								description={elemento.product_description}
+								image={elemento.product_images[0]}
+								rating={Math.floor(
+									elemento.product_rating / elemento.product_users_rating
+								)}
+							/>
+						);
+					}
+				}
+			}
+		});
+		return prod;
+	};
 
-  const unfilter = () => {
-    setPriceFilter(999);
-    setRateFilter(5);
-  };
+	const unfilter = () => {
+		setPriceFilter(999);
+		setRateFilter(5);
+	};
 
-  useEffect(() => {
-    db.collection("categories")
-      .orderBy("products")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((docs) => {
-          product.push(docs.data().products);
-        });
-        let searchBar = document.getElementById("search");
-        searchBar.addEventListener("change", (e) => {
-          setSearch(e.target.value);
-        });
-        setProducts(product);
-        setProductsFilter(product);
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-  }, []);
+	useEffect(() => {
+		db.collection("categories")
+			.orderBy("products")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((docs) => {
+					product.push(docs.data().products);
+				});
+				let searchBar = document.getElementById("search");
+				searchBar.addEventListener("change", (e) => {
+					setSearch(e.target.value);
+				});
+				setProducts(product);
+				setProductsFilter(product);
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
+			});
+	}, []);
 
-  return (
-    <div className="home">
-    <div className="home__container">
-      <Swiper navigation={true} className="mySwiper">
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="home__image swiper-image"
-            src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
-            alt="home_img"
-          />
-        </SwiperSlide>
-      </Swiper>
+	return (
+		<div className="home">
+			<div className="home__container">
+				<Swiper navigation={true} className="mySwiper">
+					<SwiperSlide>
+						<img
+							className="home__image swiper-image"
+							src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+							alt="home_img"
+						/>
+					</SwiperSlide>
+					<SwiperSlide>
+						<img
+							className="home__image swiper-image"
+							src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+							alt="home_img"
+						/>
+					</SwiperSlide>
+					<SwiperSlide>
+						<img
+							className="home__image swiper-image"
+							src="https://m.media-amazon.com/images/I/51r+YpWo9rL._SX1500_.jpg"
+							alt="home_img"
+						/>
+					</SwiperSlide>
+				</Swiper>
 
-      <div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filter_products
-          .slice(0, 4)
-          .map((elee, index) => returnProduct(elee))}
-        </div>
+				<div className="product__home product__home__span2  grid grid-flow-row-dense sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+					{filter_products
+						.slice(0, 4)
+						.map((elee, index) => returnProduct(elee))}
+				</div>
 
-        <img
-          width={"100%"}
-          className="md:col-span-full"
-          src="https://links.papareact.com/dyz"
-          alt=""
-        />
-        <div className="product__home__span2 grid grid-flow-row-dense md:col-span-2 sm:grid-cols-2 md:grid-cols-2">
-          {filter_products
-            .slice(0, 1)
-            .map((elee, index) => returnProduct(elee))}
-        
-      </div>
-    <Videos />
-    </div>
-  </div>
-  );
+				<img
+					width={"100%"}
+					className="md:col-span-full"
+					src="https://links.papareact.com/dyz"
+					alt=""
+				/>
+				<div className="product__home__span2 grid grid-flow-row-dense md:col-span-2 sm:grid-cols-2 md:grid-cols-2">
+					{filter_products
+						.slice(0, 1)
+						.map((elee, index) => returnProduct(elee))}
+				</div>
+        <Videos />
+			</div>
+		</div>
+	);
 }
-
 export default Home;
