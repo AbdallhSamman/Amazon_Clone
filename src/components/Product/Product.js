@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Product.css";
 import { useStateValue } from "../../StateProvider";
 import { StarIcon } from "@heroicons/react/solid";
@@ -6,8 +6,7 @@ import Currency from "react-currency-format";
 
 function Product({ id, title, image, price, rating, description, category }) {
   const [{ basket }, dispatch] = useStateValue();
-  let id_star = 0;
-
+  const storedItems = JSON.parse(localStorage.getItem('cart'));
   const addToBasket = () => {
     dispatch({
       type: "ADD_TO_BASKET",
@@ -18,10 +17,10 @@ function Product({ id, title, image, price, rating, description, category }) {
         price: price,
         rating: rating,
       },
-      
     });
-    localStorage.setItem('cart',JSON.stringify(basket))
+      localStorage.setItem('cart', JSON.stringify(basket));
   };
+
   return (
     <div className="relative flex flex-col m-5 bg-white z-30 p-10 rounded-sm shadow-md">
       <p className="absolute top-2 right-2 text-xs text-gray-800">{category}</p>
@@ -47,7 +46,6 @@ function Product({ id, title, image, price, rating, description, category }) {
 
       <div className="mb-5">
         <h1>{price} $ </h1>
-      
       </div>
 
       {/* {hasPrime && (

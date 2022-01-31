@@ -7,7 +7,7 @@ function Videos() {
 
   // useEffect(() => {
   //   fetch(
-  //     "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=amazon%20news&type=video&key=AIzaSyCEmjT-G4dPIcb3gGksj4WSgsD-3MCxgcE"
+  //     "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=amazon%20news&type=video&key=AIzaSyCn54O9Ervufd1JbkUToX39sUb79K6b8OI"
   //   )
   //     .then((result) => result.json())
   //     .then((data) => {
