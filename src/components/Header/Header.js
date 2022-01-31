@@ -13,15 +13,14 @@ import {
 } from "@heroicons/react/outline";
 
 function Header() {
-	
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
   const [categories, setCata] = useState([]);
   const handelAuth = () => {
     if (user) {
       auth.signOut();
-	  localStorage.clear()
-	  sessionStorage.clear()
+      localStorage.clear();
+      sessionStorage.clear();
     }
   };
   const goToProducts = () => {
@@ -32,7 +31,6 @@ function Header() {
     goToProducts();
   };
   useEffect(() => {
-	  
     const category = sessionStorage.getItem("category");
     if (category) {
       setCata(JSON.parse(category));
@@ -50,9 +48,9 @@ function Header() {
         sessionStorage.setItem("category", JSON.stringify(categories));
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        console.log("Error getting documents: ", error.message);
       });
-  },[]);
+  }, []);
 
   return (
     <>
@@ -76,7 +74,11 @@ function Header() {
             id="search"
             onKeyPress={goToProducts}
           />
-          <SearchIcon id="searchButton" onClick={goToProducts} className="h-12 p-4" />
+          <SearchIcon
+            id="searchButton"
+            onClick={goToProducts}
+            className="h-12 p-4"
+          />
         </div>
 
         <div className="header__nav text-white flex items-center text-xs space-x-6 px-4">
