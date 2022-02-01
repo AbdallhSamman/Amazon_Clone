@@ -5,11 +5,11 @@ import "swiper/css/bundle";
 import { CKEditor } from "ckeditor4-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { db } from "../Firebase/firebase";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { Pagination } from "swiper";
-
+// Navigate
 function Item() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [item, setItem] = useState([]);
@@ -17,7 +17,7 @@ function Item() {
   let product = [];
   let slider = [];
   let stars = [];
-
+  const navigate = useNavigate();
   const params = useParams();
   const itemId = params.itemId;
   const category = params.category;
@@ -46,36 +46,38 @@ function Item() {
 
   let sliders = related[0]?.map((e, i) => {
     return (
-      <Link to={`/item/${e.product_category}/${e.product_id}`}>
-        <SwiperSlide key={i + 2000}>
-          <div>
-            <img
-              style={{ width: "300px", height: "200px", objectFit: "contain" }}
-              className="object-contain"
-              src={e.product_images[0]}
-              alt="item"
-            />
-            <p className="text-[rgb(0,113,133)] mt-4">{e?.product_name}</p>
-            {Array(Math.floor(e.product_rating / e.product_users_rating))
-              .fill()
-              .map((_, i) => (
-                <StarIcon
-                  className="h-3 inline-block text-yellow-500"
-                  key={i + 1001}
-                />
-              ))}
-            <span className="blue__green">
-              {" "}
-              {`(${e ? e.product_users_rating : ""})`}
+      <SwiperSlide
+        to={`/item/${e.product_category}/${e.product_id}`}
+        key={i + 2000}
+      >
+        <div style={{ zIndex: "1000" }}>
+          <img
+            style={{ width: "300px", height: "200px", objectFit: "contain" }}
+            className="object-contain"
+            src={e.product_images[0]}
+            alt="item"
+          />
+          <p className="text-[rgb(0,113,133)] mt-4">{e?.product_name}</p>
+          {Array(Math.floor(e.product_rating / e.product_users_rating))
+            .fill()
+            .map((_, i) => (
+              <StarIcon
+                className="h-3 inline-block text-yellow-500"
+                key={i + 1001}
+              />
+            ))}
+          <span className="blue__green">
+            {" "}
+            {`(${e ? e.product_users_rating : ""})`}
+          </span>
+          <h5>
+            <span className="color__single a-size-medium">
+              {e?.product_price} JOD
             </span>
-            <h5>
-              <span className="color__single a-size-medium">
-                {e?.product_price} JOD
-              </span>
-            </h5>
-          </div>
-        </SwiperSlide>
-      </Link>
+          </h5>
+        </div>
+      </SwiperSlide>
+      // </Link>
     );
   });
 
