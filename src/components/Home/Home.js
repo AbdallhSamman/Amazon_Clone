@@ -15,6 +15,7 @@ import { db } from "../Firebase/firebase";
 // import Swiper core and required modules
 import SwiperCore, { Navigation } from "swiper";
 import Loading from "../Loading/Loading";
+import { width } from "@mui/system";
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
@@ -29,17 +30,17 @@ function Home() {
   let product = [];
   let searchBar;
   let button;
-  try{
-     searchBar = document.getElementById("search");
-     button = document.getElementById("searchButton");
-  }catch(error){
+  try {
+    searchBar = document.getElementById("search");
+    button = document.getElementById("searchButton");
+  } catch (error) {
     searchBar = document.getElementById("root");
-    button=document.getElementById("root");
+    button = document.getElementById("root");
   }
 
   const returnProduct = (element) => {
     let found = 0;
- 
+
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
@@ -50,10 +51,10 @@ function Home() {
               .includes(search.toLowerCase()) ||
             elemento.product_description
               .toLowerCase()
-              .includes(search.toLowerCase())||
-              elemento.product_category
-                .toLowerCase()
-                .includes(search.toLowerCase())
+              .includes(search.toLowerCase()) ||
+            elemento.product_category
+              .toLowerCase()
+              .includes(search.toLowerCase())
           ) {
             found += 1;
             return (
