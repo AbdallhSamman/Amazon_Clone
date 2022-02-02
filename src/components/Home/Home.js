@@ -108,7 +108,7 @@ function Home() {
         setSearch(searchBar.value);
         setProductsFilter(product);
         setProducts(product);
-        console.log("i am herre")
+        // console.log("i am herre")
       });}catch(err){console.log(err)}
        
         setProducts(product);

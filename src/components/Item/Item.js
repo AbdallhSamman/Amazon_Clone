@@ -4,7 +4,7 @@ import "./Item.css";
 import "swiper/css/bundle";
 import { CKEditor } from "ckeditor4-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { db } from "../Firebase/firebase";
+import { db,auth } from "../Firebase/firebase";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,12 @@ import { Pagination } from "swiper";
 
 function Item() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   const [item, setItem] = useState([]);
+  const [comment, setComment] = useState("hheeeeeeeeeeey");
+  const [Allcomment, setAllComment] = useState([]);
+  const [myId, setMyId] = useState(0);
+
   const [related, setRelated] = useState([]);
   let product = [];
   let slider = [];
@@ -34,13 +39,15 @@ function Item() {
           let products = doc.data().products;
           slider.push(products);
           setRelated(slider);
-          products.forEach((e) => {
+          products.forEach((e,inde) => {
             if (e.product_id == itemId) {
+              setMyId(inde);
               product.push(e);
               setItem(product);
             }
           });
         });
+        getComemnt();
       });
   }, []);
 
@@ -91,24 +98,43 @@ function Item() {
     );
   }
 
+  const getComemnt=()=>{
+    let myComment = [];
+    try{ db.collection('comments')
+    .get()
+    .then((querySnapshot)=>{
+      querySnapshot.forEach((doc) => {
+        
+        if(doc.id===related[0][myId].product_name){
+         
+          myComment.push(doc.data().comments)
+        }
+        setAllComment(myComment);
+        console.log('-------');
+      })
+    })}catch(err){console.log('fe error hoon');}
+   
+  }
   const saveComment = () => {
-    item[0]?.product_comments.map((e) => {
-      // comments.push(e);
-      // console.log(userComment);
-    });
-    // console.log(edit);
-    // console.log(data);
-    // comments.push(userComment);
-    // db.collection("categories")
-    //   .doc("Electronics-Categories")
-    //   .set({
-    //     products: [
-    //       {
-    //         product_id: itemId,
-    //         product_comments: [{ comments }],
-    //       },
-    //     ],
-    //   });
+   console.log('i enterd here');
+    let product_name = related[0][myId].product_name;
+    let product_comments=[];
+    Allcomment.map((e)=>{
+      product_comments.push(e);
+
+    })
+
+    console.log('before',product_comments)
+    product_comments[0].push({user_email:auth.currentUser.email,user_comemnt:comment});
+    setAllComment(product_comments)
+    console.log('after',product_comments)
+  
+    db.collection("comments")
+      .doc(product_name)
+      .set({
+        comments:(product_comments[0])
+      });   
+    
   };
   return (
     <div className="bg-white outline outline-[43px] outline-white">
@@ -193,7 +219,10 @@ function Item() {
           <h3 className="secHeader a-size-medium">Customer reviews</h3>
           <div className="md:grid md:gap-10 md:grid-cols-2">
             <div className="rightt">
-              {item[0]?.product_comments.map((e) => {
+              {
+            
+              Allcomment[0]?.map((e) => {
+                
                 return (
                   <div>
                     <div className="flex items-center">
@@ -203,22 +232,26 @@ function Item() {
                         width={50}
                         height={50}
                       />
-                      <p>Haitham Assoli</p>
+                      <p>{e.user_email}</p>
                     </div>
                     <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                     <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                     <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                     <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                     <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-                    <p className="">{e.user_comment}</p>
+                    <p className="">{e.user_comemnt}</p>
                   </div>
                 );
               })}
             </div>
             <div className="">
+             
+
               <h3 className="text-xl font-bold">Add your review</h3>
-              <CKEditor data="<p>Hello from CKEditor 4!</p>" />
-              <button className="button mt-4">Add Review</button>
+              <CKEditor className="editor"
+                  onChange={(e)=>{setComment(e.editor.getData())}} data="<p>Hello from CKEditor 4!</p>" />
+              <button onClick={()=>{saveComment()}} className="button mt-4">Add Review</button>
+            
             </div>
           </div>
         </div>
