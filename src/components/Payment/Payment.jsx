@@ -39,25 +39,21 @@ const Payment = () => {
     };
     getClientSecret();
   }, [basket]);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (auth.currentUser != null) {
+    if ((fullName || city || street ||  building || phone || zip )=== "" ){
+      setreqErr("all Field is Required"); 
+    if (auth.currentUser == null) {
+      {navigat("/login")};
+    } 
+     } else {
+      setreqErr("");
       saveAddress();
       saveOrder();
-    } else navigat("/login");
-  };
-  const handelAddress = (e) => {
-    e.preventDefault();
-
-    if (fullName || city || zip || street || phone || building === "") {
-      setreqErr("all Field is Required");
-      return false;
-    } else {
-      setreqErr("");
-      return true;
+      navigat("/profile");
     }
-  };
+  }
 
   const handleChange = (e) => {
     setDisabled(e.empty);
