@@ -6,7 +6,6 @@ import { CKEditor } from "ckeditor4-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { db, auth } from "../Firebase/firebase";
 import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { Pagination } from "swiper";
 import Loading from "../Loading/Loading";
@@ -59,8 +58,6 @@ function Item() {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-  useEffect(() => {
     db.collection("categories")
       .where("category_name", "==", category)
       .get()
@@ -88,7 +85,6 @@ function Item() {
         to={`/item/${e.product_category}/${e.product_id}`}
         key={i + 2000}
       >
-        {/* <a href={`/item/${e.product_category}/${e.product_id}`}> */}
         <div
           style={{ zIndex: "1000" }}
           onClick={() =>
@@ -120,9 +116,7 @@ function Item() {
             </span>
           </h5>
         </div>
-        {/* </a> */}
       </SwiperSlide>
-      // </Link>
     );
   });
 
