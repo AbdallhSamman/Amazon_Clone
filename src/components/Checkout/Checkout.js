@@ -5,12 +5,10 @@ import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
 import { useStateValue } from "../../StateProvider";
 
 function Checkout() {
-  console.log = function(){};
   const [{ basket , user},dispatch] = useStateValue();
-    
   return (
     <div className="checkout">
-      {basket.length == 0 ? (
+      {JSON.parse(localStorage.getItem('basket')).length == 0 ? (
         <div className="bg-[#EAEDED]">
           <h1 className="text-[75px] flex justify-center m-64 ">
             your cart is empty
@@ -20,7 +18,7 @@ function Checkout() {
         <>
       <div className="checkout__left">
           <h2 className="checkout__title">Your Shopping Basket</h2>
-          {basket.map((item) => (
+          {JSON.parse(localStorage.getItem('basket')).map((item) => (
             <CheckoutProduct
             key={item.id+Math.floor(Math.random()*50)}
               id={item.id}

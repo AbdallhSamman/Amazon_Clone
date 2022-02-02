@@ -109,7 +109,7 @@ function Header() {
           <Link to="/checkout">
             <div className="relative link flex items-center">
               <span className="absolute right-0 top-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
-                {basket.length}
+                { JSON.parse(localStorage.getItem('basket')).length}
               </span>
               <ShoppingCartIcon className="h-10" />
               <p className="hidden md:inline font-extrabold md:text-sm mt-2">

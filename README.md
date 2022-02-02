@@ -24,7 +24,7 @@
 4. Git & Github.
 
 ## Wireframe
-
+https://www.figma.com/file/40f8zUwUpu4aXFjACfnLl7/Amazon?node-id=0%3A1
 ## Mockup
 
 ## Trello
