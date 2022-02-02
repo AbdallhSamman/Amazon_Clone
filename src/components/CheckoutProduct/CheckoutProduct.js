@@ -4,13 +4,13 @@ import StarIcon from "@mui/icons-material/Star";
 import { useStateValue } from "../../StateProvider";
 
 function CheckoutProduct({ id, title, image, price, rating }) {
-    const [{ basket }, dispatch] = useStateValue();
-    const removeFromBasket = ()=>{
-         dispatch({
-             type:"REMOVE_FROM_BASKET",
-             id:id,
-         })
-    }
+  const [{ basket }, dispatch] = useStateValue();
+  const removeFromBasket = () => {
+    dispatch({
+      type: "REMOVE_FROM_BASKET",
+      id: id,
+    });
+  };
 
   return (
     <div className="checkoutProduct">
@@ -24,16 +24,18 @@ function CheckoutProduct({ id, title, image, price, rating }) {
         <p className="checkoutProduct__price">
           <strong>{price}</strong>
           <small>JOD</small>
-
         </p>
         <p className="checkoutProduct__rating">
           {Array(rating)
             .fill()
             .map(() => (
-              <StarIcon key={id+Math.floor(Math.random()*50)} className="product__rating--Star" />
+              <StarIcon
+                key={id + Math.floor(Math.random() * 50)}
+                className="product__rating--Star"
+              />
             ))}
         </p>
-      <button onClick={removeFromBasket}>Remove from basket</button>
+        <button onClick={removeFromBasket}>Remove from basket</button>
       </div>
     </div>
   );

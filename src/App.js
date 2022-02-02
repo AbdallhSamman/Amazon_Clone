@@ -25,6 +25,11 @@ function App() {
   if (!localStorage.getItem("basket")) {
     localStorage.setItem("basket", JSON.stringify([]));
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     auth().onAuthStateChanged((authUser) => {
       if (authUser) {

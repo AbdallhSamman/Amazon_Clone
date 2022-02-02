@@ -23,7 +23,7 @@ const reducer = (state, action) => {
       const index = JSON.parse(localStorage.getItem("basket")).findIndex(
         (e) => e.id == action.id
       );
-      let newBasket = [...state.basket];
+      let newBasket = [...JSON.parse(localStorage.getItem("basket"))];
       if (index >= 0) {
         newBasket.splice(index, 1);
       } else {
