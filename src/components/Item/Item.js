@@ -74,8 +74,8 @@ function Item() {
             }
             setLoading(true);
           });
+          getComemnt();
         });
-        getComemnt();
       });
   }, [navigate]);
 
@@ -163,9 +163,23 @@ function Item() {
     setAllComment(product_comments);
     console.log("after", product_comments);
 
+<<<<<<< Updated upstream
     db.collection("comments").doc(product_name).set({
       comments: product_comments[0],
     });
+=======
+    console.log('before',product_comments)
+    product_comments.push({user_email:auth.currentUser.email,user_comemnt:comment});
+    setAllComment(product_comments)
+    console.log('after',product_comments)
+  
+    db.collection("comments")
+      .doc(product_name)
+      .set({
+        comments:(product_comments[0])
+      });   
+    
+>>>>>>> Stashed changes
   };
   return (
     <div className="bg-white outline outline-[43px] outline-white">
@@ -259,6 +273,7 @@ function Item() {
               modules={[Pagination]}
               className="mySwiper cursor-pointer "
             >
+<<<<<<< Updated upstream
               {sliders}
             </Swiper>
           </div>
@@ -285,6 +300,57 @@ function Item() {
                       <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                       <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                       <p className="">{e.user_comemnt}</p>
+=======
+              Add to Cart
+            </button>
+            <button
+              id="buy"
+              className="button w-full rounded-2xl"
+              onClick={buynow}
+            >
+              Buy Now
+            </button>
+            <p className="text-sm text-gray-500 mt-2">Ships from Amazon.com</p>
+          </aside>
+        </div>
+
+        <hr className="hr__singe" />
+        <div className="conHeader">
+          <h3 className="secHeader a-size-medium">Top rated from our brands</h3>
+          <Swiper
+            style={{ marginBottom: "70px" }}
+            slidesPerView={4}
+            spaceBetween={10}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper cursor-pointer "
+          >
+            {sliders}
+          </Swiper>
+        </div>
+        <hr className="hr__singe" />
+        <div className="conHeader">
+          <h3 className="secHeader a-size-medium">Customer reviews</h3>
+          <div className="md:grid md:gap-10 md:grid-cols-2">
+            <div className="rightt">
+
+              {
+            
+              Allcomment?.map((e) => {
+                
+                return (
+                  <div>
+                    <div className="flex items-center">
+                      <img
+                        src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                        alt=""
+                        width={50}
+                        height={50}
+                      />
+                      <p>{e.user_email}</p>
+>>>>>>> Stashed changes
                     </div>
                   );
                 })}
