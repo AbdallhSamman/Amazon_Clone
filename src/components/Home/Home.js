@@ -104,7 +104,10 @@ function Home() {
         setProductsFilter(product);
         setProducts(product);
       });}catch(err){}
-       
+      console.log(`<!--       _
+      .__(.)< (MEOW)
+       \___)   
+~~~~~~~~~~~~~~~~~~-->`);
         setProducts(product);
         localStorage.setItem("items", JSON.stringify(product));
         setProductsFilter(product);
