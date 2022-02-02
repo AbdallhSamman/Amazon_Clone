@@ -80,7 +80,7 @@ function Item() {
         });
         getComemnt();
       });
-  }, []);
+  }, [navigate]);
 
   let sliders = related[0]?.map((e, i) => {
     return (
@@ -88,34 +88,39 @@ function Item() {
         to={`/item/${e.product_category}/${e.product_id}`}
         key={i + 2000}
       >
-        <a href={`/item/${e.product_category}/${e.product_id}`}>
-          <div style={{ zIndex: "1000" }}>
-            <img
-              style={{ width: "300px", height: "200px", objectFit: "contain" }}
-              className="object-contain"
-              src={e.product_images[0]}
-              alt="item"
-            />
-            <p className="text-[rgb(0,113,133)] mt-4">{e?.product_name}</p>
-            {Array(Math.floor(e.product_rating / e.product_users_rating))
-              .fill()
-              .map((_, i) => (
-                <StarIcon
-                  className="h-3 inline-block text-yellow-500"
-                  key={i + 1001}
-                />
-              ))}
-            <span className="blue__green">
-              {" "}
-              {`(${e ? e.product_users_rating : ""})`}
+        {/* <a href={`/item/${e.product_category}/${e.product_id}`}> */}
+        <div
+          style={{ zIndex: "1000" }}
+          onClick={() =>
+            navigate(`/item/${e.product_category}/${e.product_id}`)
+          }
+        >
+          <img
+            style={{ width: "300px", height: "200px", objectFit: "contain" }}
+            className="object-contain"
+            src={e.product_images[0]}
+            alt="item"
+          />
+          <p className="text-[rgb(0,113,133)] mt-4">{e?.product_name}</p>
+          {Array(Math.floor(e.product_rating / e.product_users_rating))
+            .fill()
+            .map((_, i) => (
+              <StarIcon
+                className="h-3 inline-block text-yellow-500"
+                key={i + 1001}
+              />
+            ))}
+          <span className="blue__green">
+            {" "}
+            {`(${e ? e.product_users_rating : ""})`}
+          </span>
+          <h5>
+            <span className="color__single a-size-medium">
+              {e?.product_price} JOD
             </span>
-            <h5>
-              <span className="color__single a-size-medium">
-                {e?.product_price} JOD
-              </span>
-            </h5>
-          </div>
-        </a>
+          </h5>
+        </div>
+        {/* </a> */}
       </SwiperSlide>
       // </Link>
     );
