@@ -81,10 +81,7 @@ function Item() {
 
   let sliders = related[0]?.map((e, i) => {
     return (
-      <SwiperSlide
-        to={`/item/${e.product_category}/${e.product_id}`}
-        key={i + 2000}
-      >
+      <SwiperSlide key={i + 2000}>
         <div
           style={{ zIndex: "1000" }}
           onClick={() =>
