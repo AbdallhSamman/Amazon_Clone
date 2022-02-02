@@ -1,101 +1,98 @@
-import React, { useState } from 'react'
-import './Payment.css'
-import { useStateValue } from '../../StateProvider'
-import CheckoutProduct from '../CheckoutProduct/CheckoutProduct'
-import { Link, useNavigate } from 'react-router-dom'
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import CurrencyFormat from 'react-currency-format'
-import { getBasketTotal } from '../../reducer'
-import { useEffect } from 'react/cjs/react.development'
-import { auth, db } from '../Firebase/firebase'
-import axios from 'axios'
+import React, { useState } from "react";
+import "./Payment.css";
+import { useStateValue } from "../../StateProvider";
+import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
+import { Link, useNavigate } from "react-router-dom";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import CurrencyFormat from "react-currency-format";
+import { getBasketTotal } from "../../reducer";
+import { useEffect } from "react/cjs/react.development";
+import { auth, db } from "../Firebase/firebase";
+import axios from "axios";
 
 const Payment = () => {
-  const [{ basket, user }, dispatch] = useStateValue()
-  const stripe = useStripe()
-  const [reqErr, setreqErr] = useState('')
-  const elements = useElements()
-  const navigat = useNavigate()
-  const [error, setError] = useState(null)
-  const [disabled, setDisabled] = useState(true)
-  const [fullName, setFullName] = useState('')
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
-  const [zip, setZip] = useState('')
-  const [phone, setPhone] = useState('')
-  const [building, setBuilding] = useState('')
+  const [{ basket, user }, dispatch] = useStateValue();
+  const stripe = useStripe();
+  const [reqErr, setreqErr] = useState("");
+  const elements = useElements();
+  const navigat = useNavigate();
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [fullName, setFullName] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [zip, setZip] = useState("");
+  const [phone, setPhone] = useState("");
+  const [building, setBuilding] = useState("");
 
-  const [succeeded, setSucceeded] = useState(false)
-  const [processing, setProcessing] = useState('')
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
 
-  const [clientSecret, setClientSecret] = useState(true)
+  const [clientSecret, setClientSecret] = useState(true);
   useEffect(() => {
     const getClientSecret = async () => {
       const response = await axios({
-        method: 'post',
+        method: "post",
         url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
-      })
-      setClientSecret(response.data.clientSecret)
-    }
-    getClientSecret()
-  }, [basket])
+      });
+      setClientSecret(response.data.clientSecret);
+    };
+    getClientSecret();
+  }, [basket]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (auth.currentUser != null) {
-      saveAddress()
-      saveOrder()
-    } else navigat('/login')
-  }
+      saveAddress();
+      saveOrder();
+    } else navigat("/login");
+  };
   const handelAddress = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (fullName || city || zip || street || phone || building === '') {
-      setreqErr('all Field is Required')
-      return false
+    if (fullName || city || zip || street || phone || building === "") {
+      setreqErr("all Field is Required");
+      return false;
     } else {
-      setreqErr('')
-      return true
+      setreqErr("");
+      return true;
     }
-  }
+  };
 
   const handleChange = (e) => {
-    setDisabled(e.empty)
-    setError(e.error ? e.error.message : '')
-  }
+    setDisabled(e.empty);
+    setError(e.error ? e.error.message : "");
+  };
   const saveOrder = () => {
-    db.collection('orders')
-      .doc('order - ' + Math.floor(Math.random() * 500))
+    db.collection("orders")
+      .doc("order - " + Math.floor(Math.random() * 500))
       .set({
         user_email: user.email,
-        status: 'completed',
+        status: "completed",
         products: [...basket],
-      })
+      });
 
-    navigat('/profile')
-  }
-  
+    navigat("/profile");
+  };
+
   const saveAddress = () => {
-    let form = document.getElementById('addressForm');
-    let name = document.getElementById('fullname').value;
-    let address = document.getElementById('streetAddress').value;
-    let number = document.getElementById('phoneNumber').value;
-    let building = document.getElementById('building').value;
-    let city = document.getElementById('city').value;
-    db.collection('users')
-      .doc(user.email)
-      .set({
-        fullName:name,
-        building:building,
-        phoneNumber:number,
-        city:city,
-        address:address
-
-      })
-    }
+    let form = document.getElementById("addressForm");
+    let name = document.getElementById("fullname").value;
+    let address = document.getElementById("streetAddress").value;
+    let number = document.getElementById("phoneNumber").value;
+    let building = document.getElementById("building").value;
+    let city = document.getElementById("city").value;
+    db.collection("users").doc(user.email).set({
+      fullName: name,
+      building: building,
+      phoneNumber: number,
+      city: city,
+      address: address,
+    });
+  };
   return (
     <div className="payment">
-      {basket.length == 0 ? (
+      {JSON.parse(localStorage.getItem("basket")).length == 0 ? (
         <div className="bg-[#EAEDED]">
           <h1 className="text-[75px] flex justify-center m-64 ">
             your cart is empty
@@ -109,7 +106,7 @@ const Payment = () => {
             </div>
             <section className="payment__section1">
               <div className="address__left">
-                <form id="addressForm" >
+                <form id="addressForm">
                   <h1 className="text-center text-[25px] mb-8 font-bold">
                     Address Form
                   </h1>
@@ -169,9 +166,9 @@ const Payment = () => {
                         renderText={(value) => <h3>Order Total:{value}</h3>}
                         decimalScale={2}
                         value={getBasketTotal(basket)}
-                        displayType={'text'}
+                        displayType={"text"}
                         thousandSeparator={true}
-                        prefix={'$'}
+                        prefix={"$"}
                       />
                       {/* <button className="buyNow" >
                           <span>{'Buy Now'}</span>
@@ -190,9 +187,13 @@ const Payment = () => {
 
               <div className="payment__items">
                 <h1 className="text-center mb-5 font-bold text-[25px]">
-                  Checkout (<Link to="/checkout">{basket?.length} items</Link>)
+                  Checkout (
+                  <Link to="/checkout">
+                    {JSON.parse(localStorage.getItem("basket")).length} items
+                  </Link>
+                  )
                 </h1>
-                {basket.map((item) => (
+                {JSON.parse(localStorage.getItem("basket")).map((item) => (
                   <CheckoutProduct
                     key={item.id + Math.floor(Math.random() * 50)}
                     id={item.id}
@@ -202,15 +203,13 @@ const Payment = () => {
                     rating={item.rating}
                   />
                 ))}
-
-               
               </div>
             </section>
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Payment
+export default Payment;

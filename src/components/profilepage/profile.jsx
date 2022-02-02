@@ -56,13 +56,10 @@ function Profile() {
   };
 const cancelOrder=(x)=>{
   db.collection("orders").doc(x).delete().then(() => {
-    console.log("Document successfully deleted!");
-    setChange('change me')
     changeColor(x)
 }).catch((error) => {
-    console.error("Error removing document: ", error);
+    console.error("Error removing document: ", error.message);
 });
-console.log('i am here');
 }
 
 function changeColor(x){
@@ -84,9 +81,7 @@ function changeColor(x){
         setOrders(products);
         setOrderNumber(orderNum)
       })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+      .catch((error) => {});
   }, []);
   return (
     <div>

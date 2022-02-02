@@ -92,11 +92,6 @@ function Home() {
   };
 
   useEffect(() => {
-    const items = localStorage.getItem("items");
-    // if (items) {
-    //   setProducts(JSON.parse(items));
-    //   return;
-    // }
     db.collection("categories")
       .orderBy("products")
       .get()
@@ -108,8 +103,7 @@ function Home() {
         setSearch(searchBar.value);
         setProductsFilter(product);
         setProducts(product);
-        // console.log("i am herre")
-      });}catch(err){console.log(err)}
+      });}catch(err){}
        
         setProducts(product);
         localStorage.setItem("items", JSON.stringify(product));
@@ -117,7 +111,7 @@ function Home() {
         setLoading(true);
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        console.log("Error getting documents: ", error.message);
       });
   }, []);
 

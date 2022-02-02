@@ -19,7 +19,7 @@ function Subtotal() {
         renderText={(value) => (
           <>
             <p>
-              Subtotal ({basket.length} items):
+              Subtotal ({JSON.parse(localStorage.getItem('basket')).length} items):
               <strong> {value} JOD</strong>
             </p>
           </>

@@ -2,10 +2,8 @@ import "./Product.css";
 import { useStateValue } from "../../StateProvider";
 import { StarIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
-function Product({ id, title, image, price, rating, description, category }) {
+function Product({ id, title, image, price, rating, category }) {
   const [{ basket }, dispatch] = useStateValue();
-  let id_star = 0;
-  // console.log = function(){};
   const addToBasket = () => {
     dispatch({
       type: "ADD_TO_BASKET",

@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import '../Login/login.css'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { auth } from '../Firebase/firebase'
-import { padding } from '@mui/system'
-import { Wifi } from '@mui/icons-material'
+
 
 function Login() {
  

@@ -21,6 +21,15 @@ const promise = loadStripe("pk_test_XFy4Y8Pm6x2kEnAlJNd54d99");
 
 function App() {
   const [{}, dispatch] = useStateValue();
+
+  if (!localStorage.getItem("basket")) {
+    localStorage.setItem("basket", JSON.stringify([]));
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     auth().onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -47,7 +56,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          
+
           <Route path="/products" element={<Products />}></Route>
           <Route path="/item/:category/:itemId" element={<Item />}></Route>
           <Route
