@@ -1,36 +1,36 @@
-import { StarIcon } from "@heroicons/react/solid";
-import React, { useState, useEffect } from "react";
-import "./Item.css";
-import "swiper/css/bundle";
-import { CKEditor } from "ckeditor4-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { db,auth } from "../Firebase/firebase";
-import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useStateValue } from "../../StateProvider";
-import { Pagination } from "swiper";
+import { StarIcon } from '@heroicons/react/solid'
+import React, { useState, useEffect } from 'react'
+import './Item.css'
+import 'swiper/css/bundle'
+import { CKEditor } from 'ckeditor4-react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { db, auth } from '../Firebase/firebase'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useStateValue } from '../../StateProvider'
+import { Pagination } from 'swiper'
 
 function Item() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [{ basket }, dispatch] = useStateValue();
-  const [item, setItem] = useState([]);
-  const [comment, setComment] = useState("hheeeeeeeeeeey");
-  const [Allcomment, setAllComment] = useState([]);
-  const [myId, setMyId] = useState(0);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [{ basket }, dispatch] = useStateValue()
+  const [item, setItem] = useState([])
+  const [comment, setComment] = useState('hheeeeeeeeeeey')
+  const [Allcomment, setAllComment] = useState([])
+  const [myId, setMyId] = useState(0)
 
-  const [related, setRelated] = useState([]);
-  let product = [];
-  let slider = [];
-  let stars = [];
-  const navigate = useNavigate();
+  const [related, setRelated] = useState([])
+  let product = []
+  let slider = []
+  let stars = []
+  const navigate = useNavigate()
 
-  const params = useParams();
-  const itemId = params.itemId;
-  const category = params.category;
+  const params = useParams()
+  const itemId = params.itemId
+  const category = params.category
 
   const addToBasket = () => {
     dispatch({
-      type: "ADD_TO_BASKET",
+      type: 'ADD_TO_BASKET',
       item: {
         id: item[0].product_id,
         title: item[0].product_name,
@@ -38,13 +38,13 @@ function Item() {
         price: item[0].product_price,
         rating: item[0].product_rating / item[0].product_users_rating,
       },
-    });
+    })
     // let buy=document.querySelector('#buy')
-    localStorage.setItem("cart", JSON.stringify(basket));
-  };
+    localStorage.setItem('cart', JSON.stringify(basket))
+  }
   const buynow = () => {
     dispatch({
-      type: "ADD_TO_BASKET",
+      type: 'ADD_TO_BASKET',
       item: {
         id: item[0].product_id,
         title: item[0].product_name,
@@ -52,43 +52,47 @@ function Item() {
         price: item[0].product_price,
         rating: item[0].product_rating / item[0].product_users_rating,
       },
-    });
-    localStorage.setItem("cart", JSON.stringify(basket));
-    navigate("/payment");
-  };
+    })
+    localStorage.setItem('cart', JSON.stringify(basket))
+    navigate('/payment')
+  }
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
   useEffect(() => {
-    db.collection("categories")
-      .where("category_name", "==", category)
+    db.collection('categories')
+      .where('category_name', '==', category)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          let products = doc.data().products;
-          slider.push(products);
-          setRelated(slider);
-          products.forEach((e,inde) => {
+          let products = doc.data().products
+          slider.push(products)
+          setRelated(slider)
+          products.forEach((e, inde) => {
             if (e.product_id == itemId) {
-              setMyId(inde);
-              product.push(e);
-              setItem(product);
+              setMyId(inde)
+              product.push(e)
+              setItem(product)
             }
-          });
-        });
-        getComemnt();
-      });
-  }, []);
-
+          })
+        })
+        getComemnt()
+      })
+    }, [])
+    const handelSwap=(e)=>{
+      navigate(`/item/${e.product_category}/${e.product_id}`)
+    }
+    
   let sliders = related[0]?.map((e, i) => {
     return (
       <SwiperSlide
-        to={`/item/${e.product_category}/${e.product_id}`}
+        // to={`/item/${e.product_category}/${e.product_id}`}
         key={i + 2000}
       >
-        <div style={{ zIndex: "1000" }}>
+      <div style={{ zIndex: '1000' }} onClick={(e)=>handelSwap}>
+          
           <img
-            style={{ width: "300px", height: "200px", objectFit: "contain" }}
+            style={{ width: '300px', height: '200px', objectFit: 'contain' }}
             className="object-contain"
             src={e.product_images[0]}
             alt="item"
@@ -103,8 +107,8 @@ function Item() {
               />
             ))}
           <span className="blue__green">
-            {" "}
-            {`(${e ? e.product_users_rating : ""})`}
+            {' '}
+            {`(${e ? e.product_users_rating : ''})`}
           </span>
           <h5>
             <span className="color__single a-size-medium">
@@ -114,8 +118,8 @@ function Item() {
         </div>
       </SwiperSlide>
       // </Link>
-    );
-  });
+    )
+  })
 
   for (
     let i = 0;
@@ -125,48 +129,48 @@ function Item() {
     stars.push(
       <span>
         <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-      </span>
-    );
+      </span>,
+    )
   }
 
-  const getComemnt=()=>{
-    let myComment = [];
-    try{ db.collection('comments')
-    .get()
-    .then((querySnapshot)=>{
-      querySnapshot.forEach((doc) => {
-        
-        if(doc.id===related[0][myId].product_name){
-         
-          myComment.push(doc.data().comments)
-        }
-        setAllComment(myComment);
-        console.log('-------');
-      })
-    })}catch(err){console.log('fe error hoon');}
-   
+  const getComemnt = () => {
+    let myComment = []
+    try {
+      db.collection('comments')
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (doc.id === related[0][myId].product_name) {
+              myComment.push(doc.data().comments)
+            }
+            setAllComment(myComment)
+            console.log('-------')
+          })
+        })
+    } catch (err) {
+      console.log('fe error hoon')
+    }
   }
   const saveComment = () => {
-   console.log('i enterd here');
-    let product_name = related[0][myId].product_name;
-    let product_comments=[];
-    Allcomment.map((e)=>{
-      product_comments.push(e);
-
+    console.log('i enterd here')
+    let product_name = related[0][myId].product_name
+    let product_comments = []
+    Allcomment.map((e) => {
+      product_comments.push(e)
     })
 
-    console.log('before',product_comments)
-    product_comments[0].push({user_email:auth.currentUser.email,user_comemnt:comment});
+    console.log('before', product_comments)
+    product_comments[0].push({
+      user_email: auth.currentUser.email,
+      user_comemnt: comment,
+    })
     setAllComment(product_comments)
-    console.log('after',product_comments)
-  
-    db.collection("comments")
-      .doc(product_name)
-      .set({
-        comments:(product_comments[0])
-      });   
-    
-  };
+    console.log('after', product_comments)
+
+    db.collection('comments').doc(product_name).set({
+      comments: product_comments[0],
+    })
+  }
   return (
     <div className="bg-white outline outline-[43px] outline-white">
       <div className="mx-5 my-10 bg-white">
@@ -175,9 +179,9 @@ function Item() {
             <div>
               <Swiper
                 style={{
-                  "--swiper-navigation-color": "#fff",
-                  "--swiper-pagination-color": "#fff",
-                  width: "300px",
+                  '--swiper-navigation-color': '#fff',
+                  '--swiper-pagination-color': '#fff',
+                  width: '300px',
                 }}
                 slidesPerView={1}
                 spaceBetween={20}
@@ -193,7 +197,7 @@ function Item() {
                         <img src={e} />
                       </SwiperSlide>
                     </>
-                  );
+                  )
                 })}
               </Swiper>
             </div>
@@ -205,7 +209,7 @@ function Item() {
             <div className="mb-2">
               {stars}
               <span className="blue__green">{`(${
-                item[0] ? item[0].product_users_rating : ""
+                item[0] ? item[0].product_users_rating : ''
               })`}</span>
             </div>
             <hr />
@@ -243,7 +247,7 @@ function Item() {
         <div className="conHeader">
           <h3 className="secHeader a-size-medium">Top rated from our brands</h3>
           <Swiper
-            style={{ marginBottom: "70px" }}
+            style={{ marginBottom: '70px' }}
             slidesPerView={4}
             spaceBetween={10}
             pagination={{
@@ -260,10 +264,7 @@ function Item() {
           <h3 className="secHeader a-size-medium">Customer reviews</h3>
           <div className="md:grid md:gap-10 md:grid-cols-2">
             <div className="rightt">
-              {
-            
-              Allcomment[0]?.map((e) => {
-                
+              {Allcomment[0]?.map((e) => {
                 return (
                   <div>
                     <div className="flex items-center">
@@ -282,23 +283,32 @@ function Item() {
                     <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
                     <p className="">{e.user_comemnt}</p>
                   </div>
-                );
+                )
               })}
             </div>
             <div className="">
-             
-
               <h3 className="text-xl font-bold">Add your review</h3>
-              <CKEditor className="editor"
-                  onChange={(e)=>{setComment(e.editor.getData())}} data="<p>Hello from CKEditor 4!</p>" />
-              <button onClick={()=>{saveComment()}} className="button mt-4">Add Review</button>
-            
+              <CKEditor
+                className="editor"
+                onChange={(e) => {
+                  setComment(e.editor.getData())
+                }}
+                data="<p>Hello from CKEditor 4!</p>"
+              />
+              <button
+                onClick={() => {
+                  saveComment()
+                }}
+                className="button mt-4"
+              >
+                Add Review
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Item;
+export default Item
