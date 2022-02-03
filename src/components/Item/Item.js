@@ -65,7 +65,7 @@ function Item() {
         querySnapshot.forEach((doc) => {
           let products = doc.data().products;
           slider.push(products);
-        
+
           products.forEach((e, inde) => {
             if (e.product_id == itemId) {
               setMyId(inde);
@@ -73,18 +73,20 @@ function Item() {
               setItem(product);
             }
             setLoading(true);
-         
           });
-          setRelated(slider)
+          setRelated(slider);
           getComemnt();
-        
         });
+        getComemnt();
       });
   }, [navigate]);
 
   let sliders = related[0]?.map((e, i) => {
     return (
-      <SwiperSlide key={i + 2000}>
+      <SwiperSlide
+        to={`/item/${e.product_category}/${e.product_id}`}
+        key={i + 2000}
+      >
         <div
           style={{ zIndex: "1000" }}
           onClick={() =>
@@ -133,7 +135,6 @@ function Item() {
   }
 
   const getComemnt = () => {
-   
     try {
       db.collection("comments")
         .get()
@@ -144,19 +145,16 @@ function Item() {
               myComment.push(doc.data().comments);
               setAllComment(myComment);
             }
-           
-           console.log(Allcomment);
+
+            console.log(Allcomment);
           });
         });
-    } catch (err) {
-    
-    }
+    } catch (err) {}
   };
   const saveComment = () => {
-    
     let product_name = related[0][myId].product_name;
     let product_comments = [];
-  
+
     Allcomment.map((e) => {
       product_comments.push(e);
     });
@@ -213,7 +211,9 @@ function Item() {
               </h1>
               <div className="mb-2">
                 {stars}
-                <span className="blue__green">{`(${item[0] ? item[0].product_users_rating : ""})`}</span>
+                <span className="blue__green">{`(${
+                  item[0] ? item[0].product_users_rating : ""
+                })`}</span>
               </div>
               <hr />
               <div className="a-size-medium color__single mt-4">
@@ -283,7 +283,7 @@ function Item() {
                         />
                         <p>{e.user_email}</p>
                       </div>
-                     
+
                       <p className="">{e.user_comemnt}</p>
                     </div>
                   );
