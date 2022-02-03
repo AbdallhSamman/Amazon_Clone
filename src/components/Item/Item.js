@@ -267,7 +267,7 @@ function Item() {
             </Swiper>
           </div>
           <hr className="hr__singe" />
-          <div className="conHeader">
+          {/* <div className="conHeader">
             <h3 className="secHeader a-size-medium">Customer reviews</h3>
             <div className="md:grid md:gap-10 md:grid-cols-2">
               <div className="rightt">
@@ -307,8 +307,8 @@ function Item() {
                   Add Review
                 </button>
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       )}
     </div>
