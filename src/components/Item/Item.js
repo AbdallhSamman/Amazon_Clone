@@ -40,7 +40,7 @@ function Item() {
       },
     });
     // let buy=document.querySelector('#buy')
-    localStorage.setItem("cart", JSON.stringify(basket));
+    // localStorage.setItem("cart", JSON.stringify(basket));
   };
   const buynow = () => {
     dispatch({
@@ -53,7 +53,7 @@ function Item() {
         rating: item[0].product_rating / item[0].product_users_rating,
       },
     });
-    localStorage.setItem("cart", JSON.stringify(basket));
+    // localStorage.setItem("cart", JSON.stringify(basket));
     navigate("/payment");
   };
   useEffect(() => {

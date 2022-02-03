@@ -15,7 +15,7 @@ function Product({ id, title, image, price, rating, category }) {
         rating: rating,
       },
     });
-    localStorage.setItem("cart", JSON.stringify(basket));
+    // localStorage.setItem("cart", JSON.stringify(basket));
   };
   return (
       <div className="relative flex flex-col m-1 bg-white z-30 p-5 rounded-sm product__border">
