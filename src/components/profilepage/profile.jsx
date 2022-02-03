@@ -7,15 +7,14 @@ function Profile() {
   const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
   const [orderNumber, setOrderNumber] = useState([]);
-  const [change, setChange] = useState('change');
-  
+  const [change, setChange] = useState("change");
+
   let products = [];
-  let orderNum=[];
-  const returnh1 = (x,index) => {
-    
-    const prod = x.products.map((element,i) => {
+  let orderNum = [];
+  const returnh1 = (x, index) => {
+    const prod = x.products.map((element, i) => {
       return (
-        <div className="order-detaile" key={i+12000}>
+        <div className="order-detaile" key={i + 12000}>
           <img src={element.image} className="order-img" />
           <div className="product-name">
             <span>
@@ -25,8 +24,6 @@ function Profile() {
             <span className="product-price">price: ${element.price}</span>
             <span className="product-decs">Status {x.status}</span>
           </div>
-
-          
         </div>
       );
     });
@@ -34,52 +31,64 @@ function Profile() {
       <section className="order-card ">
         <div className="card-header ">
           <div className="p-4">
-          <div>Order Placed</div>
-          <div>22/2/2022</div>
+            <div>Order Placed</div>
+            <div>22/2/2022</div>
           </div>
           <div className="order-method">
-                <h1>Pre-order</h1>
-                <h3>
-                  order within : <strong>5days</strong>{" "}
-                </h3>
-              </div>
+            <h1>Pre-order</h1>
+            <h3>
+              order within : <strong>5days</strong>{" "}
+            </h3>
           </div>
-          <div className="card-body">
-            <div className="order-details p-8">
-              {prod}
-              <button id={orderNumber[index]} onClick={()=>{cancelOrder(orderNumber[index])}} className="cansel-order">Cancel Order</button>
-            </div>
+        </div>
+        <div className="card-body">
+          <div className="order-details p-8">
+            {prod}
+            <button
+              id={orderNumber[index]}
+              onClick={() => {
+                cancelOrder(orderNumber[index]);
+              }}
+              className="cansel-order"
+            >
+              Cancel Order
+            </button>
           </div>
-        
+        </div>
       </section>
     );
   };
-const cancelOrder=(x)=>{
-  db.collection("orders").doc(x).delete().then(() => {
-    changeColor(x)
-}).catch((error) => {
-    console.error("Error removing document: ", error.message);
-});
-}
-
-function changeColor(x){
-  document.getElementById(x).textContent="deleted";
-  document.getElementById(x).style.color="red";
-}
-  useEffect(() => {
-    (!sessionStorage.getItem('email'))?sessionStorage.setItem('email',user?.email):sessionStorage.getItem('email')
+  const cancelOrder = (x) => {
     db.collection("orders")
-      .where("user_email", "==", sessionStorage.getItem('email'))
+      .doc(x)
+      .delete()
+      .then(() => {
+        changeColor(x);
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error.message);
+      });
+  };
+
+  function changeColor(x) {
+    document.getElementById(x).textContent = "deleted";
+    document.getElementById(x).style.color = "red";
+  }
+  useEffect(() => {
+    !sessionStorage.getItem("email")
+      ? sessionStorage.setItem("email", user?.email)
+      : sessionStorage.getItem("email");
+    db.collection("orders")
+      .where("user_email", "==", sessionStorage.getItem("email"))
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           products.push(doc.data());
           orderNum.push(doc.id);
-          
         });
 
         setOrders(products);
-        setOrderNumber(orderNum)
+        setOrderNumber(orderNum);
       })
       .catch((error) => {});
   }, []);
@@ -89,8 +98,8 @@ function changeColor(x){
         <div className="right flex-row ">
           <h2 className="profile_h2">Your Order's</h2>
 
-          {orders.map((ele,inde) => {
-            return returnh1(ele,inde);
+          {orders.map((ele, inde) => {
+            return returnh1(ele, inde);
           })}
         </div>
         <div className="left">
@@ -107,17 +116,15 @@ function changeColor(x){
             <h1>{user?.email}</h1>
             <p className="title">{user?.phone}</p>
             <p>Harvard University</p>
-            <div style={{ margin: '24px 0' }}></div>
+            <div style={{ margin: "24px 0" }}></div>
             {/* <p>
               <button className="change_info">Contact</button>
             </p> */}
           </div>
           <div className="card">
-        <Weather />
+            <Weather />
+          </div>
         </div>
-        </div>
-        
-        
       </section>
     </div>
   );
