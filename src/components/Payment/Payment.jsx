@@ -8,6 +8,7 @@ import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../../reducer";
 import { useEffect } from "react/cjs/react.development";
 import { auth, db } from "../Firebase/firebase";
+import ReactPaginate from "react-paginate";
 import axios from "axios";
 
 const Payment = () => {
@@ -29,6 +30,30 @@ const Payment = () => {
   const [processing, setProcessing] = useState("");
 
   const [clientSecret, setClientSecret] = useState(true);
+
+
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const productsPerPage = 2;
+  const pagesVisited = pageNumber * productsPerPage;
+
+  const displayProducts = JSON.parse(localStorage.getItem('basket'))
+    .slice(pagesVisited, pagesVisited + productsPerPage)
+    .map((item) => (
+      <CheckoutProduct
+        key={item.id + Math.floor(Math.random() * 50)}
+        id={item.id}
+        title={item.title}
+        image={item.image}
+        price={item.price}
+        rating={item.rating}
+      />
+    ));
+    const pageCount = Math.ceil(basket.length / productsPerPage);
+    const changePage = ({selected})=>{
+      setPageNumber(selected);
+    }
+
   useEffect(() => {
     const getClientSecret = async () => {
       const response = await axios({
@@ -189,17 +214,20 @@ const Payment = () => {
                   </Link>
                   )
                 </h1>
-                {JSON.parse(localStorage.getItem("basket")).map((item) => (
-                  <CheckoutProduct
-                    key={item.id + Math.floor(Math.random() * 50)}
-                    id={item.id}
-                    title={item.title}
-                    image={item.image}
-                    price={item.price}
-                    rating={item.rating}
-                  />
-                ))}
+                {displayProducts}
+                <ReactPaginate 
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName="paginitionBtns"
+            previousLinkClassName="previousBtns"
+            nextLinkClassName="nextBtns"
+            disabledLinkClassName="paginationDisabled"
+            activeClassName="paginationActive"
+            />
               </div>
+             
             </section>
           </div>
         </div>
