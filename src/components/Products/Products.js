@@ -28,7 +28,7 @@ const Products = () => {
     const prod = element.map((elemento, index) => {
       if (elemento.product_price <= priceFilter) {
         let proRate = elemento.product_rating / elemento.product_users_rating;
-        if (proRate <= rateFilter) {
+        if (proRate === rateFilter) {
           if (
             elemento.product_name
               .toLowerCase()

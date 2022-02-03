@@ -2,16 +2,12 @@
   text-align: center;
   font-size: 2rem;
   background: #fff;
-}
-.videos__title {
-  margin: 0px auto 20px;
-  border-bottom: 1px solid gray;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 20px;
+  padding: 50px;
+  margin-bottom: 4rem;
 }
 .videos__container {
   margin-bottom: 150px;
+  /* padding: 50px; */
 }
 /* .videos__singleVideo{
     width: 100vw;

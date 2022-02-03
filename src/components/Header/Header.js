@@ -17,9 +17,14 @@ function Header() {
   const navigate = useNavigate();
   const [categories, setCata] = useState([]);
   const handelAuth = () => {
+    dispatch({
+      type:'REMOVE_ALL'
+      
+    })
+    
     if (user) {
       auth.signOut();
-      localStorage.clear();
+      localStorage.setItem("basket",JSON.stringify([]))
       sessionStorage.clear();
     }
   };

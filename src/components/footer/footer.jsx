@@ -1,11 +1,11 @@
-import { Link } from '@mui/material';
+import { Link } from "react-router-dom";
 import React from 'react';
 import '../footer/footer.css';
  function Footer() {
   return <div>
 <footer>
     <div className="top text-center">
-      <Link to="#root">Back to top</Link>
+      <a href="#root">Back to top</a>
     </div>
 
     <div className="middle">

@@ -32,6 +32,11 @@ const reducer = (state, action) => {
       }
       localStorage.setItem("basket", JSON.stringify(newBasket));
       return { ...state, basket: newBasket };
+      case "REMOVE_ALL":
+        return{
+          ...state,basket:[]
+        }
+        
     case "SET_USER":
       return {
         ...state,

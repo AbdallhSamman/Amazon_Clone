@@ -100,14 +100,15 @@ function Home() {
         querySnapshot.forEach((docs) => {
           product.push(docs.data().products);
         });
-        try {
-          searchBar.addEventListener("change", () => {
-            setSearch(searchBar.value);
-            setProductsFilter(product);
-            setProducts(product);
-          });
-        } catch (err) {}
-
+      try{ searchBar.addEventListener("change", () => {
+        setSearch(searchBar.value);
+        setProductsFilter(product);
+        setProducts(product);
+      });}catch(err){}
+      console.log(`<!--       _
+      .__(.)< (MEOW)
+       \___)   
+~~~~~~~~~~~~~~~~~~-->`);
         setProducts(product);
         localStorage.setItem("items", JSON.stringify(product));
         setProductsFilter(product);

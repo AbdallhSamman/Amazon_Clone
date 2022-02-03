@@ -14,7 +14,7 @@ function Item() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [{ basket }, dispatch] = useStateValue();
   const [item, setItem] = useState([]);
-  const [comment, setComment] = useState("hheeeeeeeeeeey");
+  const [comment, setComment] = useState("");
   const [Allcomment, setAllComment] = useState([]);
   const [myId, setMyId] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,7 @@ function Item() {
       },
     });
     // let buy=document.querySelector('#buy')
-    localStorage.setItem("cart", JSON.stringify(basket));
+    // localStorage.setItem("cart", JSON.stringify(basket));
   };
   const buynow = () => {
     dispatch({
@@ -53,7 +53,7 @@ function Item() {
         rating: item[0].product_rating / item[0].product_users_rating,
       },
     });
-    localStorage.setItem("cart", JSON.stringify(basket));
+    // localStorage.setItem("cart", JSON.stringify(basket));
     navigate("/payment");
   };
   useEffect(() => {
@@ -65,7 +65,7 @@ function Item() {
         querySnapshot.forEach((doc) => {
           let products = doc.data().products;
           slider.push(products);
-          setRelated(slider);
+
           products.forEach((e, inde) => {
             if (e.product_id == itemId) {
               setMyId(inde);
@@ -74,6 +74,8 @@ function Item() {
             }
             setLoading(true);
           });
+          setRelated(slider);
+          getComemnt();
         });
         getComemnt();
       });
@@ -133,33 +135,32 @@ function Item() {
   }
 
   const getComemnt = () => {
-    let myComment = [];
     try {
       db.collection("comments")
         .get()
         .then((querySnapshot) => {
+          let myComment = [];
           querySnapshot.forEach((doc) => {
             if (doc.id === related[0][myId].product_name) {
               myComment.push(doc.data().comments);
+              setAllComment(myComment);
             }
-            setAllComment(myComment);
-            console.log("-------");
+
+            console.log(Allcomment);
           });
         });
-    } catch (err) {
-      console.log("fe error hoon");
-    }
+    } catch (err) {}
   };
   const saveComment = () => {
-    console.log("i enterd here");
     let product_name = related[0][myId].product_name;
     let product_comments = [];
+
     Allcomment.map((e) => {
       product_comments.push(e);
     });
 
     console.log("before", product_comments);
-    product_comments[0].push({
+    product_comments.push({
       user_email: auth.currentUser.email,
       user_comemnt: comment,
     });
@@ -167,7 +168,7 @@ function Item() {
     console.log("after", product_comments);
 
     db.collection("comments").doc(product_name).set({
-      comments: product_comments[0],
+      comments: product_comments,
     });
   };
   return (
@@ -270,7 +271,7 @@ function Item() {
             <h3 className="secHeader a-size-medium">Customer reviews</h3>
             <div className="md:grid md:gap-10 md:grid-cols-2">
               <div className="rightt">
-                {Allcomment[0]?.map((e) => {
+                {Allcomment.map((e) => {
                   return (
                     <div>
                       <div className="flex items-center">
@@ -282,11 +283,7 @@ function Item() {
                         />
                         <p>{e.user_email}</p>
                       </div>
-                      <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-                      <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-                      <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-                      <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
-                      <StarIcon className="h-5 w-5 text-yellow-400 inline-block" />
+
                       <p className="">{e.user_comemnt}</p>
                     </div>
                   );
