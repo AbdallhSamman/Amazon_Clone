@@ -107,7 +107,7 @@ function Home() {
       });}catch(err){}
       console.log(`<!--       _
       .__(.)< (MEOW)
-       \___)   
+       \___)               
 ~~~~~~~~~~~~~~~~~~-->`);
         setProducts(product);
         localStorage.setItem("items", JSON.stringify(product));
